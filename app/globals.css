@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  font-family: "Open Sans";
+  color: rgba(45, 48, 56, 1);
+}
