@@ -1,10 +1,13 @@
 import React from "react";
-function AddTeam() {
+function AddPlayer() {
   return (
     <>
       <div className="bg-white w-full mx-16 rounded-xl px-10 py-10">
+        <button className="bg-[#137403] px-4 py-2 text-white mb-10 rounded-lg">
+          Kembali
+        </button>
         <div>
-          <h1 className="opensans font-bold text-xl">Tambah Tim </h1>
+          <h1 className="opensans font-bold text-xl">Tambah Player </h1>
           <h4 className="font-semibold">
             Lengkapi data di bawah,jika ada ({" "}
             <span className="text-[#D00D00]">* </span>) maka wajib diisi{" "}
@@ -14,8 +17,11 @@ function AddTeam() {
         <div className=" input_file_div mt-10 uper flex  justify-between    max-lg:flex-col ">
           <div>
             <div className="  flex flex-col justify-start mt-4">
-              <label htmlFor="label" className="opensans font-bold ">
-                Nama Asli <span className="text-[#D00D00]">*</span>
+              <label
+                htmlFor="label"
+                className=" uppercase  opensans font-bold "
+              >
+                Nama lengkap <span className="text-[#D00D00]">*</span>
               </label>
               <input
                 type="text"
@@ -26,8 +32,11 @@ function AddTeam() {
             </div>
 
             <div className="flex flex-col justify-start mt-4">
-              <label htmlFor="label" className="opensans font-bold ">
-                Nama Julukan <span className="text-[#D00D00]">*</span>
+              <label
+                htmlFor="label"
+                className=" uppercase  opensans font-bold "
+              >
+                Nama tampilan <span className="text-[#D00D00]">*</span>
               </label>
               <input
                 type="text"
@@ -37,8 +46,8 @@ function AddTeam() {
               />
             </div>
             <div className="flex flex-col justify-start mt-4">
-              <label htmlFor="label" className="opensans font-bold ">
-                Nama Lain
+              <label htmlFor="label" className=" uppercase opensans font-bold ">
+                nomor punggung
               </label>
               <input
                 type="text"
@@ -48,8 +57,17 @@ function AddTeam() {
               />
             </div>
             <div className="flex flex-col justify-start mt-4">
-              <label htmlFor="label" className="opensans font-bold ">
-                Asal <span className="text-[#D00D00]">*</span>
+              <label htmlFor="label" className="uppercase opensans font-bold ">
+                jenis kelamin <span className="text-[#D00D00]">*</span>
+              </label>
+              <select name="jenis_kelamin" id=""   className=" bg-[#F2F3F7] h-10 border-none w-[470px] focus:outline-none  p-2 mt-2 rounded-lg font-semibold "  >
+                <option value="Laki-laki">Laki-laki</option>
+                <option value="Perempuan">perempuan</option>
+              </select>
+            </div>
+            <div className="flex flex-col justify-start mt-4">
+              <label htmlFor="label" className="uppercase opensans font-bold ">
+                tempat lahir <span className="text-[#D00D00]">*</span>
               </label>
               <input
                 type="text"
@@ -61,8 +79,8 @@ function AddTeam() {
           </div>
           <div>
             <div className="flex flex-col justify-start mt-4">
-              <label htmlFor="label" className="opensans font-bold ">
-                Tanggal Berdiri <span className="text-[#D00D00]">*</span>
+              <label htmlFor="label" className="uppercase opensans font-bold ">
+                Tanggal lahir <span className="text-[#D00D00]">*</span>
               </label>
               <input
                 type="date"
@@ -71,28 +89,30 @@ function AddTeam() {
               />
             </div>
             <div className="flex flex-col justify-start mt-4">
-              <label htmlFor="label" className="opensans font-bold ">
-                season dimulai <span className="text-[#D00D00]">*</span>
+              <label htmlFor="label" className="uppercase opensans font-bold ">
+                tinggi badan <span className="lowercase text-xs">(cm)</span> <span className="text-[#D00D00]">*</span>
               </label>
               <input
-                type="date"
+                type="number"
                 value={""}
+                placeholder="e.g 58"
                 className=" bg-[#F2F3F7] h-10 border-none w-[470px] focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
               />
             </div>
             <div className="flex flex-col justify-start mt-4">
-              <label htmlFor="label" className="opensans font-bold ">
-                season berakhir <span className="text-[#D00D00]">*</span>
+              <label htmlFor="label" className="uppercase opensans font-bold ">
+                berat badan <span className="lowercase text-xs">(Kg)</span><span className="text-[#D00D00]">*</span>
               </label>
               <input
-                type="date"
+                type="number"
+                placeholder="e.g 58"
                 value={""}
                 className=" bg-[#F2F3F7]  h-10 border-none w-[470px] focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
               />
             </div>
             <div className="flex flex-col justify-start mt-4">
-              <label htmlFor="label" className="opensans font-bold ">
-                logo tim <span className="text-[#D00D00]">*</span>
+              <label htmlFor="label" className="uppercase opensans font-bold ">
+                foto pemain <span className="text-[#D00D00]">*</span>
               </label>
               <input
                 type="file"
@@ -103,11 +123,11 @@ function AddTeam() {
           </div>
         </div>
         <button className="bg-[#D00D00] h-10 rounded-lg mt-10 text-white opensans w-full">
-          Submit
+          Simpan
         </button>
       </div>
     </>
   );
 }
 
-export default AddTeam;
+export default AddPlayer;

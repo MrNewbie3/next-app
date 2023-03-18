@@ -3,7 +3,7 @@ import React from "react";
 function TeamCard() {
   return (
     <>
-      <div className="bg-slate-200 px-10 max-w-[1024px] rounded-lg py-4 mx-16">
+      <div className="bg-slate-200 px-10 w-full rounded-lg py-4 mx-16">
         <div className="head flex justify-between  items-center ">
           <h1 className="capitalize font-bold opensans text-3xl">
             Telkom shool soccer club
@@ -39,31 +39,31 @@ function TeamCard() {
               </p>
             </div>
             <div>
-              <label>tanggal berdiri</label>
+              <label className="text-xs font-bold" >tanggal berdiri</label>
               <p className=" capitalize bg-white h-10 w-[180px] p-2 rounded-lg">
                 19 juni 1992 (30)
               </p>
             </div>
             <div>
-              <label>asal club</label>
+              <label className="text-xs font-bold">asal club</label>
               <p className=" capitalize bg-white h-10 w-[180px] p-2 rounded-lg">
                 malang
               </p>
             </div>
             <div>
-              <label>jumlah pemain</label>
+              <label className="text-xs font-bold">jumlah pemain</label>
               <p className=" capitalize bg-white h-10 w-[180px] p-2 rounded-lg">
                 0
               </p>
             </div>{" "}
             <div>
-              <label>jumlah staf</label>
+              <label className="text-xs font-bold">jumlah staf</label>
               <p className=" capitalize bg-white h-10 w-[180px] p-2 rounded-lg">
                 0
               </p>
             </div>
             <div>
-              <label>jumlah trofi</label>
+              <label className="text-xs font-bold">jumlah trofi</label>
               <p className=" capitalize bg-white h-10 w-[180px] p-2 rounded-lg">
                 0
               </p>
