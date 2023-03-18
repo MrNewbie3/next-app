@@ -1,6 +1,7 @@
+import Image from "next/image";
 import React from "react";
 import { AiFillCaretDown } from "react-icons/ai";
-import Sidebar from "./Sidebar";
+import Sidebar from "./sidebar";
 
 // const NavbarWrapper = (WrappedContent: React.FC) => {
 //   function Navbar() {

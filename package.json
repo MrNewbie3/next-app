@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@fontsource/open-sans": "^4.5.14",
     "@headlessui/react": "^1.7.13",
     "@types/node": "18.15.3",
     "@types/react": "^18.0.28",
