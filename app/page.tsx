@@ -1,21 +1,18 @@
-import Image from "next/image";
-import { Inter } from "next/font/google";
-import Navbar from "@/components/navbar";
 import Popup from "@/components/popup";
 import AddTeam from "@/components/addteam";
 import TeamCard from "@/components/teamcard";
+import TabBar from "@/components/tabBar";
 
 
 
 
 export default function Home() {
   return (
-    <main>
-      <Navbar />
+    <main>  
       <Popup/>
       <AddTeam/>
       <TeamCard/>
-   
+      <TabBar/>   
     </main>
   );
 }
