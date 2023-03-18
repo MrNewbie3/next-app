@@ -14,7 +14,7 @@ function Popup() {
             name="firstName"
             placeholder="e.g Sepak Bola"
             value={""}
-            onChange={0}
+      
             className=" bg-[#F2F3F7] h-10 border-none focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
           />
           <button className="bg-[#D00D00] rounded-lg opensans-bold h-10  text-white mt-6 ">
