@@ -14,7 +14,7 @@ function AddTeam() {
         <div className=" input_file_div mt-10 uper flex  justify-between    max-lg:flex-col ">
           <div>
             <div className="  flex flex-col justify-start mt-4">
-              <label htmlFor="label" className="opensans font-bold ">
+              <label htmlFor="label" className=" opensans font-bold uppercase text-sm">
                 Nama Asli <span className="text-[#D00D00]">*</span>
               </label>
               <input
@@ -26,7 +26,7 @@ function AddTeam() {
             </div>
 
             <div className="flex flex-col justify-start mt-4">
-              <label htmlFor="label" className="opensans font-bold ">
+              <label htmlFor="label" className="opensans font-bold uppercase text-sm">
                 Nama Julukan <span className="text-[#D00D00]">*</span>
               </label>
               <input
@@ -37,7 +37,7 @@ function AddTeam() {
               />
             </div>
             <div className="flex flex-col justify-start mt-4">
-              <label htmlFor="label" className="opensans font-bold ">
+              <label htmlFor="label" className="opensans font-bold uppercase text-sm">
                 Nama Lain
               </label>
               <input
@@ -48,7 +48,7 @@ function AddTeam() {
               />
             </div>
             <div className="flex flex-col justify-start mt-4">
-              <label htmlFor="label" className="opensans font-bold ">
+              <label htmlFor="label" className="opensans font-bold uppercase text-sm">
                 Asal <span className="text-[#D00D00]">*</span>
               </label>
               <input
@@ -61,7 +61,7 @@ function AddTeam() {
           </div>
           <div>
             <div className="flex flex-col justify-start mt-4">
-              <label htmlFor="label" className="opensans font-bold ">
+              <label htmlFor="label" className="opensans font-bold uppercase text-sm">
                 Tanggal Berdiri <span className="text-[#D00D00]">*</span>
               </label>
               <input
@@ -71,7 +71,7 @@ function AddTeam() {
               />
             </div>
             <div className="flex flex-col justify-start mt-4">
-              <label htmlFor="label" className="opensans font-bold ">
+              <label htmlFor="label" className="opensans font-bold uppercase text-sm">
                 season dimulai <span className="text-[#D00D00]">*</span>
               </label>
               <input
@@ -81,7 +81,7 @@ function AddTeam() {
               />
             </div>
             <div className="flex flex-col justify-start mt-4">
-              <label htmlFor="label" className="opensans font-bold ">
+              <label htmlFor="label" className="opensans font-bold uppercase text-sm">
                 season berakhir <span className="text-[#D00D00]">*</span>
               </label>
               <input
@@ -91,7 +91,7 @@ function AddTeam() {
               />
             </div>
             <div className="flex flex-col justify-start mt-4">
-              <label htmlFor="label" className="opensans font-bold ">
+              <label htmlFor="label" className="opensans font-bold uppercase text-sm">
                 logo tim <span className="text-[#D00D00]">*</span>
               </label>
               <input

@@ -6,7 +6,10 @@ import MakePlayer from "@/components/makeplayer";
 import MakeSchedule from "@/components/makeschedule";
 import AddPlayer from "@/components/addPlayer";
 import ListPlayer from "@/components/listPlayer";
-
+import AddMatch from "@/components/addMatch";
+import MakeMatch from "@/components/makeMatch";
+import PlayerPick from "@/components/playerPick";
+import PlayerList from "@/components/playerList";
 export default function Home() {
   return (
     <main className="flex-col flex gap-12 container">
@@ -16,8 +19,12 @@ export default function Home() {
       <TabBar />
       <MakePlayer />
       <MakeSchedule />
+      <MakeMatch/>
       <AddPlayer />
       <ListPlayer/>
+      <AddMatch/>
+      <PlayerPick/>
+      <PlayerList/>
     </main>
   );
 }
