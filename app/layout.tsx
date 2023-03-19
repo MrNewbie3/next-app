@@ -1,11 +1,12 @@
 import Navbar from "@/components/navbar";
 import "./globals.css";
-import "@fontsource/open-sans/300.css";
+
 import "@fontsource/open-sans/400.css";
 import "@fontsource/open-sans/500.css";
 import "@fontsource/open-sans/700.css";
 import "@fontsource/open-sans/800.css";
-import Sidebar from "@/components/sidebar";
+
+import Sidebar from "../components/sidebar";
 export const metadata = {
   title: "STAPA",
   description: "For better performance stats",
