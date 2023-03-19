@@ -3,9 +3,9 @@ import React from "react";
 function PlayerPick() {
   return (
     <>
-      <div className="bg-white w-full mx-16 rounded-xl px-10 py-10">
+      <div className="bg-white px-10 w-full rounded-xl ">
         <div>
-          <ul className=" flex text-gray-600 font-semibold justify-around max-w-[384px] h-12 mt-8 items-center bg-[#F2F3F7]      drop-shadow-md rounded-lg  capitalize    ">
+          <ul className=" flex text-gray-600 font-semibold justify-around max-w-[384px] h-12 items-center bg-[#F2F3F7]      drop-shadow-md rounded-lg  capitalize    ">
             <li>General match</li>
             <li className="bg-[#D00D00] text-white px-4 py-1 rounded-lg">
               player pick

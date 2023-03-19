@@ -3,7 +3,7 @@ import React from "react";
 function AddMatch() {
   return (
     <>
-      <div className="bg-white w-full mx-16 rounded-xl px-10 py-10">
+      <div className="bg-white w-full  rounded-xl px-10 py-10">
         <button className="bg-[#137403] px-4 py-2 text-white mb-10 rounded-lg">
           Kembali
         </button>

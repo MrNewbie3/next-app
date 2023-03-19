@@ -2,7 +2,7 @@ import React from "react";
 function AddTeam() {
   return (
     <>
-      <div className="bg-white w-full mx-16 rounded-xl px-10 py-10">
+      <div className="bg-white w-full  rounded-xl px-10 py-10">
         <div>
           <h1 className="opensans font-bold text-xl">Tambah Tim </h1>
           <h4 className="font-semibold">

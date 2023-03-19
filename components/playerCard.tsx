@@ -1,19 +1,20 @@
-import React from "react";
+import React from "react"
+function PlayerCard(){
 
-function TeamCard() {
-  return (
-    <>
-      <div className="bg-slate-200 px-10 w-full rounded-lg py-4 ">
-        <div className="head flex justify-between  items-center ">
-          <h1 className="capitalize font-bold opensans text-3xl">
-            Telkom shool soccer club
+   
+      return (
+        <>
+          <div className="bg-white w-full rounded-xl px-10 py-10">
+          <div className="head flex justify-between  items-center ">
+          <h1 className="capitalize font-semibold opensans text-xs text-gray-600">
+           Futsal <span>>player ></span><span className="text-black"> agung dwi min1</span>
           </h1>
-          <button className="bg-[#D00D00] rounded-lg  text-white px-12 py-2">
-            Edit Club
+          <button className="bg-[#D00D00] rounded-lg  text-white px-6 py-1.5">
+            Edit Pemain
           </button>
         </div>
 
-        <div className="card flex justify-between mt-8 ">
+        <div className="card flex justify-between mt-8 ">   
           <div className="flex  gap-4">
             <img
               src={"../images/team_img.png"}
@@ -24,10 +25,14 @@ function TeamCard() {
             />
             <div>
               <h1 className="font-semibold mt-8 text-[#9d9d9d] text-base">
-                kategori
+                agung dwi
               </h1>
               <h1 className="font-bold capitalize mt-1 text-2xl text-gray-900">
-                nama Tim
+                mas cecep
+              </h1>
+              <h1 className="font-bold capitalize mt-1 text-red-600 text-2xl ">
+              <span>#</span>
+              23
               </h1>
             </div>
           </div>
@@ -70,9 +75,12 @@ function TeamCard() {
             </div>
           </div>
         </div>
-      </div>
-    </>
-  );
+          </div>
+        </>
+      );
+ 
+    
+
 }
 
-export default TeamCard;
+export default PlayerCard;

@@ -3,7 +3,7 @@ import React from "react";
 function PlayerList() {
   return (
     <>
-      <div className="bg-white w-full  mx-16 rounded-xl px-10 py-10">
+      <div className="bg-white w-full  rounded-xl px-10 py-10">
         <div className="mb-8">
           <label htmlFor="name" className="font-semibold">
             Search By Position
