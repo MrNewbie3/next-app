@@ -10,6 +10,7 @@ import AddMatch from "@/components/addMatch";
 import MakeMatch from "@/components/makeMatch";
 import PlayerPick from "@/components/playerPick";
 import PlayerList from "@/components/playerList";
+import MatchRekap from "@/components/matchRekap";
 export default function Home() {
   return (
     <main className="flex-col flex gap-12 container">
@@ -25,6 +26,7 @@ export default function Home() {
       <AddMatch/>
       <PlayerPick/>
       <PlayerList/>
+      <MatchRekap/>
     </main>
   );
 }
