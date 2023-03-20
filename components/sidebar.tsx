@@ -5,7 +5,7 @@ import { IoIosFootball } from "react-icons/io";
 function popup() {
   return (
     <>
-      <div className="bg-[#F2F3F7] w-[218px] h-screen">
+      <div className="bg-[#F2F3F7] w-[218px] h-full">
         <div className=" pt-32 flex flex-col items-center">
           {" "}
           <button className="flex pl-7 gap-4 items-center bg-white font-semibold py-2 w-[170px] rounded-md ">

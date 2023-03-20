@@ -1,27 +1,36 @@
 import React from "react";
-function AddPlayer() {
+import { FiDownload } from "react-icons/fi";
+function AddExercise() {
   return (
     <>
-      <div className="bg-white w-full  rounded-xl px-10 py-10">
-        <button className="bg-[#137403] px-4 py-2 text-white mb-10 rounded-lg">
-          Kembali
-        </button>
+      <div className="bg-white w-full rounded-xl px-10 py-10">
+      <div className=" flex gap-4">
+          <button className="bg-[#137403] px-4  py-2 text-white mb-10 rounded-lg">
+            Kembali
+          </button>
+          <button className="bg-[#1790FF] px-8   py-2 text-white mb-10 rounded-lg">
+            Edit
+          </button>
+          <button className="bg-[#2846AF] flex items-center gap-2 px-4 py-2 text-white mb-10 rounded-lg">
+            Download
+            <FiDownload />
+          </button>
+        </div>
         <div>
-          <h1 className="opensans font-bold text-xl">Tambah Player </h1>
-          <h4 className="font-semibold">
-            Lengkapi data di bawah,jika ada ({" "}
-            <span className="text-[#D00D00]">* </span>) maka wajib diisi{" "}
+          <h4 className="font-semibold capitalize">
+          Jumat <span>3 Februari 2023</span>
           </h4>
+          <h1 className="opensans font-bold text-xl">Latihan Fisik</h1>
         </div>
 
-        <div className=" input_file_div mt-10 uper flex  justify-between    max-lg:flex-col ">
+        <div className=" input_file_div mt-10 grid grid-cols-1 md:grid-cols-2 gap-5   max-md:flex-col ">
           <div>
             <div className="  flex flex-col justify-start mt-4">
               <label
                 htmlFor="label"
                 className=" uppercase  opensans font-bold text-sm "
               >
-                Nama lengkap <span className="text-[#D00D00]">*</span>
+                Nama Latihan
               </label>
               <input
                 type="text"
@@ -36,7 +45,7 @@ function AddPlayer() {
                 htmlFor="label"
                 className=" uppercase  opensans font-bold "
               >
-                Nama tampilan <span className="text-[#D00D00]">*</span>
+                Kategori
               </label>
               <input
                 type="text"
@@ -47,7 +56,7 @@ function AddPlayer() {
             </div>
             <div className="flex flex-col justify-start mt-4 text-sm">
               <label htmlFor="label" className=" uppercase opensans font-bold ">
-                nomor punggung
+                identitas
               </label>
               <input
                 type="text"
@@ -58,16 +67,19 @@ function AddPlayer() {
             </div>
             <div className="flex flex-col justify-start mt-4 text-sm">
               <label htmlFor="label" className="uppercase opensans font-bold ">
-                jenis kelamin <span className="text-[#D00D00]">*</span>
+                durasi (menit)
               </label>
-              <select name="jenis_kelamin" id=""   className=" bg-[#F2F3F7] h-10 border-none w-full focus:outline-none  p-2 mt-2 rounded-lg font-semibold "  >
-                <option value="Laki-laki">Laki-laki</option>
-                <option value="Perempuan">perempuan</option>
-              </select>
+              <input
+                type="number"
+                placeholder="e.g Manchester"
+                value={""}
+                className=" bg-[#F2F3F7] h-10 border-none w-full focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
+              />
+              
             </div>
             <div className="flex flex-col justify-start mt-4 text-sm">
               <label htmlFor="label" className="uppercase opensans font-bold ">
-                tempat lahir <span className="text-[#D00D00]">*</span>
+                Jurnal repetesi
               </label>
               <input
                 type="text"
@@ -80,17 +92,18 @@ function AddPlayer() {
           <div>
             <div className="flex flex-col justify-start mt-4 text-sm">
               <label htmlFor="label" className="uppercase opensans font-bold ">
-                Tanggal lahir <span className="text-[#D00D00]">*</span>
+                deskripsi
               </label>
-              <input
-                type="date"
-                value={""}
-                className=" bg-[#F2F3F7] h-10 border-none w-full focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
-              />
+              <textarea
+                
+            
+                className=" bg-[#F2F3F7] h-32 border-none w-full focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
+              ></textarea>
+
             </div>
-            <div className="flex flex-col justify-start mt-4 text-sm">
+            <div className="flex flex-col justify-start mt-3 text-sm">
               <label htmlFor="label" className="uppercase opensans font-bold ">
-                tinggi badan <span className="lowercase text-xs">(cm)</span> <span className="text-[#D00D00]">*</span>
+                jumlah pemain <span className="lowercase text-xs">(cm)</span> 
               </label>
               <input
                 type="number"
@@ -99,20 +112,10 @@ function AddPlayer() {
                 className=" bg-[#F2F3F7] h-10 border-none w-full focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
               />
             </div>
-            <div className="flex flex-col justify-start mt-4 text-sm">
-              <label htmlFor="label" className="uppercase opensans font-bold ">
-                berat badan <span className="lowercase text-xs">(Kg)</span><span className="text-[#D00D00]">*</span>
-              </label>
-              <input
-                type="number"
-                placeholder="e.g 58"
-                value={""}
-                className=" bg-[#F2F3F7]  h-10 border-none w-full focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
-              />
-            </div>
+        
             <div className="flex flex-col justify-start mt-4 text-sm  ">
               <label htmlFor="label" className="uppercase opensans font-bold ">
-                foto pemain <span className="text-[#D00D00]">*</span>
+                foto latihan
               </label>
               <input
                 type="file"
@@ -122,12 +125,10 @@ function AddPlayer() {
             </div>
           </div>
         </div>
-        <button className="bg-[#D00D00] h-10 rounded-lg mt-10 text-white opensans w-full">
-          Simpan
-        </button>
+       
       </div>
     </>
   );
 }
 
-export default AddPlayer;
+export default AddExercise;

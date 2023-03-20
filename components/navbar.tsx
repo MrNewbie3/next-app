@@ -21,7 +21,7 @@ import Sidebar from "./sidebar";
 function Navbar() {
   return (
     <>
-      <nav className="flex flex-row justify-between  items-center h-24 drop-shadow-xl px-10 bg-[#F2F3F7] fixed w-screen">
+      <nav className="flex flex-row justify-between  items-center h-24 drop-shadow-xl px-10 bg-[#F2F3F7] fixed w-full">
         <img
           className="bg-sky-100 font-bold "
           src="./images/STAPA.png "
