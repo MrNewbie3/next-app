@@ -3,7 +3,7 @@ import React from "react";
 function AddMatch() {
   return (
     <>
-      <div className="bg-white w-full  rounded-xl px-10 py-10">
+      <div className="bg-white w-full rounded-xl px-10 py-10">
         <button className="bg-[#137403] px-4 py-2 text-white mb-10 rounded-lg">
           Kembali
         </button>
@@ -25,7 +25,7 @@ function AddMatch() {
           </ul>
         </div>
 
-        <div className=" input_file_div mt-10 uper flex  justify-between    max-lg:flex-col ">
+        <div className=" input_file_div mt-10 uper flex  justify-between  max-lg:flex-col ">
           <div>
             <div className="  flex flex-col justify-start mt-4">
               <label
@@ -38,7 +38,7 @@ function AddMatch() {
                 type="text"
                 placeholder="e.g Mancester United"
                 value={""}
-                className=" bg-[#F2F3F7] h-10 border-none w-[470px]  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
+                className=" bg-[#F2F3F7] h-10 border-none w-full   focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
               />
             </div>
 
@@ -53,7 +53,7 @@ function AddMatch() {
                 type="text"
                 placeholder="e.g Red Devil"
                 value={""}
-                className=" bg-[#F2F3F7] h-10 border-none w-[470px] focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
+                className=" bg-[#F2F3F7] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
               />
             </div>
             <div className="flex flex-col justify-start mt-4">
@@ -64,7 +64,7 @@ function AddMatch() {
                 type="date"
                 placeholder="e.g MU "
                 value={""}
-                className=" bg-[#F2F3F7] h-10 border-none w-[470px] focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
+                className=" bg-[#F2F3F7] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
               />
             </div>
           </div>
@@ -77,7 +77,7 @@ function AddMatch() {
                 type="number"
                 placeholder="e.g 180"
                 value={""}
-                className=" bg-[#F2F3F7] h-10 border-none w-[470px] focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
+                className=" bg-[#F2F3F7] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
               />
             </div>
             <div className="flex flex-col justify-start mt-4">
@@ -89,7 +89,7 @@ function AddMatch() {
                 type="number"
                 value={""}
                 placeholder="e.g 58"
-                className=" bg-[#F2F3F7] h-10 border-none w-[470px] focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
+                className=" bg-[#F2F3F7] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
               />
             </div>
             <div className="flex flex-col justify-start mt-4">
@@ -101,7 +101,7 @@ function AddMatch() {
                 type="number"
                 placeholder="e.g 58"
                 value={""}
-                className=" bg-[#F2F3F7]  h-10 border-none w-[470px] focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
+                className=" bg-[#F2F3F7]  h-10 border-none w-full focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
               />
             </div>
           </div>

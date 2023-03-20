@@ -35,8 +35,8 @@ function PraticeTime() {
           </ul>
         </div>
 
-        <div className="grid grid-cols-2 mt-8">
-          <div className="bg-[#F2F3F7] max-w-[470px] p-2 rounded-lg  gap-5 mb-4   items-center h-12 w- flex">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-8">
+          <div className="bg-[#F2F3F7] max-w-lg p-2 rounded-lg  gap-5 mb-4   items-center h-12 w- flex">
             <h1 className="text-2xl font-bold  text-[#D00D00]">18</h1>
             <div>
               <div className="flex gap-1">
@@ -52,7 +52,7 @@ function PraticeTime() {
               </h2>
             </div>
           </div>
-          <div className="bg-[#F2F3F7] max-w-[470px] p-2 rounded-lg  gap-5 mb-4   items-center h-12 w- flex">
+          <div className="bg-[#F2F3F7] max-w-lg p-2 rounded-lg  gap-5 mb-4   items-center h-12 w- flex">
             <h1 className="text-2xl font-bold  text-[#D00D00]">18</h1>
             <div>
               <div className="flex gap-1">
@@ -68,7 +68,7 @@ function PraticeTime() {
               </h2>
             </div>
           </div>
-          <div className="bg-[#F2F3F7] max-w-[470px] p-2 rounded-lg  gap-5 mb-4   items-center h-12 w- flex">
+          <div className="bg-[#F2F3F7] max-w-lg p-2 rounded-lg  gap-5 mb-4   items-center h-12 w- flex">
             <h1 className="text-2xl font-bold  text-[#D00D00]">18</h1>
             <div>
               <div className="flex gap-1">
@@ -84,7 +84,7 @@ function PraticeTime() {
               </h2>
             </div>
           </div>
-          <div className="bg-[#F2F3F7] max-w-[470px] p-2 rounded-lg  gap-5 mb-4   items-center h-12 w- flex">
+          <div className="bg-[#F2F3F7] max-w-lg p-2 rounded-lg  gap-5 mb-4   items-center h-12 w- flex">
             <h1 className="text-2xl font-bold  text-[#D00D00]">18</h1>
             <div>
               <div className="flex gap-1">
@@ -100,7 +100,7 @@ function PraticeTime() {
               </h2>
             </div>
           </div>
-          <div className="bg-[#F2F3F7] max-w-[470px] p-2 rounded-lg  gap-5 mb-4   items-center h-12 w- flex">
+          <div className="bg-[#F2F3F7] max-w-lg p-2 rounded-lg  gap-5 mb-4   items-center h-12 w- flex">
             <h1 className="text-2xl font-bold  text-[#D00D00]">18</h1>
             <div>
               <div className="flex gap-1">

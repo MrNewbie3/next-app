@@ -21,7 +21,7 @@ import History from "@/components/history";
 
 export default function Home() {
   return (
-    <main className="flex-col flex px-10 gap-11   container">
+    <main className="flex-col flex px-10 items-center gap-11 ">
       <Popup />
       <AddTeam />
       <TeamCard />

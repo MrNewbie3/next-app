@@ -40,8 +40,8 @@ function PlayerData() {
         </div>
         <div className="lg:flex gap-6">
           <div className="w-full max-w-4xl">
-            <div className="flex gap-5 mt-6">
-              <div className="max-w-md w-full bg-white rounded-lg px-6 py-4 ">
+            <div className="flex max-md:flex-col w-full gap-5 mt-6">
+              <div className="md:max-w-md w-full bg-white rounded-lg px-6 py-4 ">
                 <div className="mb-6 text-[20px] font-semibold">General</div>
                 <div>
                   <div className="flex justify-between mb-4">
@@ -63,7 +63,7 @@ function PlayerData() {
                 </div>
               </div>
 
-              <div className="max-w-md w-full bg-white rounded-lg px-6 py-4 ">
+              <div className="md:max-w-md w-full bg-white rounded-lg px-6 py-4 ">
                 <div className="mb-6 text-[20px] font-semibold">Goalkeping</div>
                 <div>
                   <div className="flex justify-between mb-4">
@@ -86,9 +86,9 @@ function PlayerData() {
               <div className="mb-6 text-[20px] font-semibold">
                 Passing & Ball Position{" "}
               </div>
-              <div className="flex gap-20">
-                <div className="max-w-sm w-full">
-                  <div className="flex justify-between mb-4">
+              <div className="flex max-md:flex-col w-full gap-20">
+                <div className="md:max-w-sm w-full">
+                  <div className="flex justify-between w-full mb-4">
                     <div className="relative  flex gap-2 items-center ">
                       <div className="inset-0 bg-red-500 h-2 w-2 rounded-full"></div>
                       <h1 className="font-semibold">Succesful pases</h1>
@@ -166,7 +166,7 @@ function PlayerData() {
           <div className="lg:max-w-md w-full mt-6 bg-white rounded-lg px-6 py-4 ">
             <div className="mb-6 text-[20px] font-semibold">Saves </div>
             <div className="h-full md:flex md:gap-20 lg:flex-col  md-w-full">
-              <div className="max-w-sm w-full">
+              <div className="md:max-w-sm w-full">
                 <div className="flex justify-between mb-4">
                   <div className="relative  flex gap-2 items-center ">
                     <div className="inset-0 bg-red-500 h-2 w-2 rounded-full"></div>
@@ -240,15 +240,15 @@ function PlayerData() {
             <div className="mb-6 text-[20px] font-semibold">Defending</div>
 
             <div className=" w-full ">
-              <div className="flex justify-between mb-1">
-                <div className="flex justify-between items-center max-w-sm w-full">
+              <div className="flex max-md:flex-col  justify-between mb-1">
+                <div className="flex justify-between items-center md:max-w-sm w-full">
                   <div className="relative  flex gap-2 items-center ">
                     <div className="inset-0 bg-blue-500 h-2 w-2 rounded-full"></div>
                     <h1 className="font-semibold">Tackle won</h1>
                   </div>
                   <p className="font-bold text-base">25</p>
                 </div>
-                <div className="w-full max-w-[226px] ">
+                <div className="w-full md:max-w-[226px] ">
                   {/* range tracking */}
                   <label
                     htmlFor="range"
@@ -263,15 +263,15 @@ function PlayerData() {
             </div>
 
             <div className=" w-full ">
-              <div className="flex justify-between mb-1">
-                <div className="flex justify-between items-center max-w-sm w-full">
+              <div className="flex max-md:flex-col justify-between mb-1">
+                <div className="flex justify-between items-center md:max-w-sm w-full">
                   <div className="relative  flex gap-2 items-center ">
                     <div className="inset-0 bg-red-600 h-2 w-2 rounded-full"></div>
                     <h1 className="font-semibold">Duel won</h1>
                   </div>
                   <p className="font-bold text-base">25</p>
                 </div>
-                <div className="w-full max-w-[226px] ">
+                <div className="w-full md:max-w-[226px] ">
                   {/* range tracking */}
                   <label
                     htmlFor="range"
@@ -292,15 +292,15 @@ function PlayerData() {
             </div>
 
             <div className=" w-full   ">
-              <div className="flex justify-between mb-1">
-                <div className="flex justify-between items-center max-w-sm w-full">
+              <div className="flex max-md:flex-col justify-between mb-1">
+                <div className="flex justify-between items-center md:max-w-sm w-full">
                   <div className="relative  flex gap-2 items-center ">
                     <div className="inset-0 bg-yellow-300 h-2 w-2 rounded-full"></div>
                     <h1 className="font-semibold">50-50s won </h1>
                   </div>
                   <p className="font-bold text-base">25</p>
                 </div>
-                <div className="w-full max-w-[226px] ">
+                <div className="w-full md:max-w-[226px] ">
                   {/* range tracking */}
                   <label
                     htmlFor="range"
@@ -321,15 +321,15 @@ function PlayerData() {
             </div>
 
             <div className=" w-full ">
-              <div className="flex justify-between mb-1">
-                <div className="flex justify-between items-center max-w-sm w-full">
+              <div className="flex max-md:flex-col justify-between mb-1">
+                <div className="flex justify-between items-center md:max-w-sm w-full">
                   <div className="relative  flex gap-2 items-center ">
                     <div className="inset-0 bg-blue-500 h-2 w-2 rounded-full"></div>
                     <h1 className="font-semibold">Interception won</h1>
                   </div>
                   <p className="font-bold text-base">25</p>
                 </div>
-                <div className="w-full max-w-[226px] ">
+                <div className="w-full md:max-w-[226px] ">
                   {/* range tracking */}
                   <label
                     htmlFor="range"
