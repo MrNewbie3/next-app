@@ -17,7 +17,11 @@ import ExerciseTime from "@/components/exerciseTime";
 import PlayerCard from "@/components/playerCard";
 import PlayerData from "@/components/playerData";
 import History from "@/components/history";
+import IndividualStatistik from "@/components/IndividualStatistik";
+import AddPlayerOption from "@/components/AddPlayerOption";
+import EditPlayer from "@/components/editPlayer";
 
+import PlayerStatistik from "@/components/PlayerStatistik";
 
 export default function Home() {
   return (
@@ -28,20 +32,25 @@ export default function Home() {
       <TabBar />
       <MakePlayer />
       <MakeSchedule />
-      <MakeMatch/>
+      <MakeMatch />
       <AddPlayer />
-      <ListPlayer/>
-      <AddMatch/>
-      <PlayerPick/>
-      <PlayerList/>
-      <MatchRekap/>
-      <PraticeTime/>
-      <AddExercise/>
-      <ExerciseTime/>
-      <PlayerCard/>
-      <PlayerData/>
-      <History/>
-
+      <ListPlayer />
+      <AddMatch />
+      <PlayerPick />
+      <PlayerList />
+      <MatchRekap />
+      <PraticeTime />
+      <AddExercise />
+      <ExerciseTime />
+      <PlayerCard />
+      <PlayerData />
+      <History />
+      <PlayerStatistik />
+      <IndividualStatistik/>
+      <AddPlayerOption/>
+      <EditPlayer/>
+      
+    
     </main>
   );
 }
