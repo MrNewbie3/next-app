@@ -1,6 +1,21 @@
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React from "react";
+type PageProps = {
+  params: {
+    category: string;
+    team: string;
+  };
+};
 
-function MakePlayer() {
+interface Props {
+  category: string;
+  team: string;
+}
+
+function MakePlayer({ params: { category, team } }: PageProps) {
+  console.log(team);
+
   return (
     <>
       <div className="flex justify-between w-full items-center ">
@@ -9,13 +24,11 @@ function MakePlayer() {
             <p> 16 juni 2023 -</p>
             <p>18 juni 2023</p>
           </div>
-          <h1 className="text-xl font-bold ">MOKLET'S Player</h1>
+          <h1 className="text-xl font-bold ">MOKLET&apos;S Player</h1>
         </div>
-
-        <button className="hover:bg-[#D00D00] bg-white ring-1 capitalize font-semibold ring-[#D00D00] text-[#D00D00] px-4 rounded-lg h-9 hover:text-white active:bg-[#D00D00] active:text-white   ">
-          {" "}
-          Add player
-        </button>
+        <Link href={`${category}/${team}/new_player`}>
+          <button className="hover:bg-[#D00D00] bg-white ring-1 capitalize font-semibold ring-[#D00D00] text-[#D00D00] px-8 rounded-lg h-9 hover:text-white active:bg-[#D00D00] active:text-white   "> Add player</button>
+        </Link>
       </div>
     </>
   );

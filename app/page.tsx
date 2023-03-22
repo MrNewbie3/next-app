@@ -1,10 +1,9 @@
-import Popup from "@/components/popup";
-import AddTeam from "@/components/addteam";
-import TeamCard from "@/components/teamcard";
-import TabBar from "@/components/tabBar";
+import AddTeam from "@/components/client/addteam";
+import TeamCard from "@/components/server/teamcard";
+import TabBar from "@/components/client/tabBar";
 import MakePlayer from "@/components/makeplayer";
 import MakeSchedule from "@/components/makeschedule";
-import AddPlayer from "@/components/addPlayer";
+import AddPlayer from "@/components/client/addPlayer";
 import ListPlayer from "@/components/listPlayer";
 import AddMatch from "@/components/addMatch";
 import MakeMatch from "@/components/makeMatch";
@@ -20,37 +19,33 @@ import History from "@/components/history";
 import IndividualStatistik from "@/components/IndividualStatistik";
 import AddPlayerOption from "@/components/AddPlayerOption";
 import EditPlayer from "@/components/editPlayer";
-
 import PlayerStatistik from "@/components/PlayerStatistik";
 
 export default function Home() {
   return (
     <main className="flex-col flex px-10 items-center gap-11 ">
-      <Popup />
-      <AddTeam />
-      <TeamCard />
-      <TabBar />
-      <MakePlayer />
+      {/* <AddTeam /> */}
+      {/* <TeamCard /> */}
+      {/* <TabBar /> */}
+      {/* <MakePlayer /> */}
       <MakeSchedule />
-      <MakeMatch />
-      <AddPlayer />
+      {/* <MakeMatch /> */}
+      {/* <AddPlayer /> */}
       <ListPlayer />
       <AddMatch />
       <PlayerPick />
       <PlayerList />
-      <MatchRekap />
+      {/* <MatchRekap /> */}
       <PraticeTime />
       <AddExercise />
       <ExerciseTime />
       <PlayerCard />
       <PlayerData />
-      <History />
+      {/* <History /> */}
       <PlayerStatistik />
-      <IndividualStatistik/>
-      <AddPlayerOption/>
-      <EditPlayer/>
-      
-    
+      <IndividualStatistik />
+      <AddPlayerOption />
+      <EditPlayer />
     </main>
   );
 }

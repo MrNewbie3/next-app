@@ -1,38 +1,22 @@
 import React from "react";
-import {BsThreeDotsVertical} from "react-icons/bs";
+import { BsThreeDotsVertical } from "react-icons/bs";
 
-import {IoMdArrowDropdown} from "react-icons/io";
-
-
-
+import { IoMdArrowDropdown } from "react-icons/io";
 
 function History() {
   return (
-    <div className=" px-10 w-full">
-      <ul className=" flex text-gray-600 font-semibold justify-around max-w-[550px] h-12  items-center bg-white drop-shadow-md rounded-lg  capitalize    ">
-        <li>Last match</li>
-        <li>season stats</li>
-        <li className="bg-[#D00D00] text-white px-4 py-1 rounded-lg">
-          History
-        </li>
-        <li>medis</li>
-        <li>measurement</li>
-      </ul>
-
-      <div className="flex justify-between w-full mt-6 items-center ">
+    <div className=" mb-6 w-full">
+      <div className="flex justify-between w-full  items-center ">
         <div className="h-16 max-w-[650px] px-10 py-2 w-[650px] rounded-lg drop-shadow-md  bg-white">
           <div className="flex text-xs font-semibold  ">
             <p> 16 juni 2023 -</p>
             <p>Sekarang</p>
           </div>
-          <h1 className="text-xl font-bold ">
-            MOKLET
-          </h1>
+          <h1 className="text-xl font-bold ">MOKLET</h1>
         </div>
 
         <button className="hover:bg-[#D00D00] flex items-center gap-2 bg-white ring-1 capitalize font-semibold ring-[#D00D00] text-[#D00D00] px-4 rounded-lg h-9 hover:text-white active:bg-[#D00D00] active:text-white   ">
-          {" "}
-          2023/2024 <IoMdArrowDropdown/>
+          2023/2024 <IoMdArrowDropdown />
         </button>
       </div>
 
@@ -58,7 +42,9 @@ function History() {
               <td className=" py-2">balai kota malang cup 2023</td>
               <td className=" py-2">2-1</td>
               <td className=" py-2">
-                <a href="#"><BsThreeDotsVertical/></a>
+                <a href="#">
+                  <BsThreeDotsVertical />
+                </a>
               </td>
             </tr>
             <tr>
@@ -68,10 +54,11 @@ function History() {
               <td className=" py-2">La Liga</td>
               <td className=" py-2">3-2</td>
               <td className=" py-2">
-                <a href="#"><BsThreeDotsVertical/></a>
+                <a href="#">
+                  <BsThreeDotsVertical />
+                </a>
               </td>
             </tr>
-        
           </tbody>
         </table>
       </div>

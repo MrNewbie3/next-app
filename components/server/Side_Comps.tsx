@@ -1,5 +1,5 @@
 import Link from "next/link";
-import React, { Component } from "react";
+import React from "react";
 import { MdSportsSoccer } from "react-icons/md";
 
 async function getData() {
@@ -15,14 +15,15 @@ export default async function Side_Comps() {
   return (
     <>
       <div className="flex flex-col gap-y-4 ">
+        {data.length > 1 ? <h1 className="font-bold ">Kategori</h1> : <></>}
         {data.map((value: any) => {
           return (
             <Link href={`/${value.id}`} key={value.id}>
-              <button className="bg-primary-red text-white w-full px-5 py-3 rounded-lg flex flex-row items-center gap-x-3 ">
+              <button className="text-grey flex px-7 gap-4 items-center font-semibold py-2 w-[170px] rounded-md ">
                 <div className="icon">
-                  <MdSportsSoccer className="text-xl" />
+                  <MdSportsSoccer className="text-2xl" />
                 </div>
-                <p>{value.title}</p>
+                <p className="capitalize font-semibold">{String(value.completed)}</p>
               </button>
             </Link>
           );
