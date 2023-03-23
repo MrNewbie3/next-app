@@ -1,9 +1,14 @@
+import Link from "next/link";
 import React from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 
 import { IoMdArrowDropdown } from "react-icons/io";
-
-function History() {
+type PageProps = {
+  params: {
+    query: string;
+  };
+};
+function History({ params: query }: PageProps) {
   return (
     <div className=" mb-6 w-full">
       <div className="flex justify-between w-full  items-center ">
@@ -42,9 +47,9 @@ function History() {
               <td className=" py-2">balai kota malang cup 2023</td>
               <td className=" py-2">2-1</td>
               <td className=" py-2">
-                <a href="#">
+                <Link href={`/${query.category}/${query.team}/${query.detail}/league`}>
                   <BsThreeDotsVertical />
-                </a>
+                </Link>
               </td>
             </tr>
             <tr>
@@ -54,9 +59,9 @@ function History() {
               <td className=" py-2">La Liga</td>
               <td className=" py-2">3-2</td>
               <td className=" py-2">
-                <a href="#">
+                <Link href={`/${query.category}/${query.team}/${query.detail}/league`}>
                   <BsThreeDotsVertical />
-                </a>
+                </Link>
               </td>
             </tr>
           </tbody>

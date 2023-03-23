@@ -5,17 +5,11 @@ type PageProps = {
   params: {
     category: string;
     team: string;
+    detail: string;
   };
 };
 
-interface Props {
-  category: string;
-  team: string;
-}
-
 function MakePlayer({ params: { category, team } }: PageProps) {
-  console.log(team);
-
   return (
     <>
       <div className="flex justify-between w-full items-center ">

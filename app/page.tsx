@@ -4,11 +4,11 @@ import TabBar from "@/components/client/tabBar";
 import MakePlayer from "@/components/makeplayer";
 import MakeSchedule from "@/components/makeschedule";
 import AddPlayer from "@/components/client/addPlayer";
-import ListPlayer from "@/components/listPlayer";
-import AddMatch from "@/components/addMatch";
-import MakeMatch from "@/components/makeMatch";
+import ListPlayer from "@/components/server/listPlayer";
+import AddMatch from "@/components/client/addMatch";
+import MakeMatch from "@/components/server/makeMatch";
 import PlayerPick from "@/components/playerPick";
-import PlayerList from "@/components/playerList";
+import PlayerList from "@/components/client/match/playerList";
 import MatchRekap from "@/components/matchRekap";
 import PraticeTime from "@/components/practiceTime";
 import AddExercise from "@/components/addExercise";
@@ -28,23 +28,43 @@ export default function Home() {
       {/* <TeamCard /> */}
       {/* <TabBar /> */}
       {/* <MakePlayer /> */}
-      <MakeSchedule />
       {/* <MakeMatch /> */}
       {/* <AddPlayer /> */}
-      <ListPlayer />
-      <AddMatch />
-      <PlayerPick />
-      <PlayerList />
-      {/* <MatchRekap /> */}
-      <PraticeTime />
-      <AddExercise />
-      <ExerciseTime />
+      {/* make schedule
+      <MakeSchedule /> */}
+      {/* list player
+      <ListPlayer /> */}
+      {/* add match
+      <AddMatch /> */}
+      {/* player pick
+      <PlayerPick /> */}
+      {/* player list
+      <PlayerList /> */}
+      {/* match rekap
+      <MatchRekap /> */}
+      {/* practice time
+      <PraticeTime
+        params={{
+          query: "",
+        }}
+      /> */}
+      {/* add exercise
+      <AddExercise /> */}
+      {/* exercise time
+      <ExerciseTime /> */}
+      {/* history
+      <History /> */}
+      player card
       <PlayerCard />
+      palyer data
       <PlayerData />
-      {/* <History /> */}
+      player stats
       <PlayerStatistik />
+      individual stats
       <IndividualStatistik />
+      player option
       <AddPlayerOption />
+      edit player
       <EditPlayer />
     </main>
   );
