@@ -7,7 +7,8 @@ type PageProps = {
 export default function page({ params: query }: PageProps) {
   return (
     <>
-      <PraticeTime params={query}/>
+      {/* @ts-ignore */}
+      <PraticeTime params={query} />
     </>
   );
 }

@@ -4,7 +4,10 @@ import { FiDownload } from "react-icons/fi";
 
 const data = [1, 2, 3, 4, 5, 6, 7, 8];
 type PageProps = {
-  params: { query: string };
+  params: {
+    team: any;
+    category: any; query: string 
+};
 };
 function PraticeTime({ params: query }: PageProps) {
   return (

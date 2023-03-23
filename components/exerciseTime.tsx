@@ -8,6 +8,7 @@ type PageProps = {
 function ExerciseTime({ params: query }: PageProps) {
   return (
     <div className="flex flex-col gap-6">
+      {/* @ts-ignore */}
       <MakeSchedule params={query} />
       <div className="bg-white w-full  rounded-xl px-10 py-10  items-center h-full">
         <h1 className="uppercase flex justify-center font-bold text-2xl">Februari 2023</h1>

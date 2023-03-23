@@ -15,6 +15,7 @@ type PageProps = {
 export default function page({ params: query }: PageProps) {
   const navigation = ["player", "last match", "season stats", "history", "periodisasi"];
   // eslint-disable-next-line react/jsx-key
-  const pages = [<MakePlayer params={query} />, <MakeMatch params={query} />, <MatchRekap />, <History params={query} />, <ExerciseTime params={query} />];
+  // @ts-ignore
+  const pages = [<MakePlayer params={query} key={1} />, <MakeMatch params={query} key={2} />, <MatchRekap key={3} />, <History params={query} key={4} />, <ExerciseTime params={query} key={5} />];
   return <div>{pages[navigation.indexOf(decodeURI(query.detail))]}</div>;
 }

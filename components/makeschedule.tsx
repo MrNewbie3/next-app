@@ -1,7 +1,10 @@
 import Link from "next/link";
 import React from "react";
 type PageProps = {
-  params: { query: string };
+  params: {
+    team: any;
+    category: any; query: string 
+};
 };
 
 function MakeSchedule({ params: query }: PageProps) {
