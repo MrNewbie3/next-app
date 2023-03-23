@@ -1,4 +1,5 @@
 import React from "react";
+import {GrFormNext} from 'react-icons/gr'
 
 function PlayerPick() {
   return (
@@ -13,6 +14,10 @@ function PlayerPick() {
             <li>player list</li>
           </ul>
         </div>
+
+        <h1 className="capitalize font-semibold flex mt-8 opensans text-xs text-gray-600">
+           Payer Pick <span className="flex items-center"> <GrFormNext/></span><span className="text-black"> agung dwi min1</span>
+          </h1>
 
         <div className="bg-white max-w-full p-2 rounded-lg mt-8  gap-5 mb-4   items-center h-12 w- flex">
           <h1 className="text-2xl font-bold  text-[#D00D00]">18</h1>
@@ -44,7 +49,7 @@ function PlayerPick() {
                 htmlFor="label"
                 className=" uppercase  opensans font-bold text-sm "
               >
-                Minutes played<span className="text-[#D00D00]">*</span>
+                Red card<span className="text-[#D00D00]">*</span>
               </label>
               <input
                 type="number"
@@ -59,7 +64,7 @@ function PlayerPick() {
                 htmlFor="label"
                 className=" uppercase  opensans font-bold text-sm "
               >
-                Minutes played<span className="text-[#D00D00]">*</span>
+                Fouls<span className="text-[#D00D00]">*</span>
               </label>
               <input
                 type="number"
@@ -73,7 +78,7 @@ function PlayerPick() {
                 htmlFor="label"
                 className=" uppercase  opensans font-bold text-sm "
               >
-                Minutes played<span className="text-[#D00D00]">*</span>
+                Yellow card<span className="text-[#D00D00]">*</span>
               </label>
               <input
                 type="number"
@@ -91,7 +96,7 @@ function PlayerPick() {
                 htmlFor="label"
                 className=" uppercase  opensans font-bold text-sm "
               >
-                Minutes played<span className="text-[#D00D00]">*</span>
+                Total saves<span className="text-[#D00D00]">*</span>
               </label>
               <input
                 type="number"
@@ -106,7 +111,7 @@ function PlayerPick() {
                 htmlFor="label"
                 className=" uppercase  opensans font-bold text-sm "
               >
-                Minutes played<span className="text-[#D00D00]">*</span>
+                Goal conceded<span className="text-[#D00D00]">*</span>
               </label>
               <input
                 type="number"
@@ -121,7 +126,7 @@ function PlayerPick() {
                 htmlFor="label"
                 className=" uppercase  opensans font-bold text-sm "
               >
-                Minutes played<span className="text-[#D00D00]">*</span>
+                Punches<span className="text-[#D00D00]">*</span>
               </label>
               <input
                 type="number"
@@ -139,7 +144,7 @@ function PlayerPick() {
                 htmlFor="label"
                 className=" uppercase  opensans font-bold text-sm "
               >
-                Minutes played<span className="text-[#D00D00]">*</span>
+                inside the box<span className="text-[#D00D00]">*</span>
               </label>
               <input
                 type="number"
@@ -154,7 +159,7 @@ function PlayerPick() {
                 htmlFor="label"
                 className=" uppercase  opensans font-bold text-sm "
               >
-                Minutes played<span className="text-[#D00D00]">*</span>
+                save caught<span className="text-[#D00D00]">*</span>
               </label>
               <input
                 type="number"
@@ -169,7 +174,7 @@ function PlayerPick() {
                 htmlFor="label"
                 className=" uppercase  opensans font-bold text-sm "
               >
-                Minutes played<span className="text-[#D00D00]">*</span>
+                outside the box<span className="text-[#D00D00]">*</span>
               </label>
               <input
                 type="number"
@@ -184,7 +189,7 @@ function PlayerPick() {
                 htmlFor="label"
                 className=" uppercase  opensans font-bold text-sm "
               >
-                Minutes played<span className="text-[#D00D00]">*</span>
+                save parried<span className="text-[#D00D00]">*</span>
               </label>
               <input
                 type="number"
@@ -202,7 +207,7 @@ function PlayerPick() {
                 htmlFor="label"
                 className=" uppercase  opensans font-bold text-sm "
               >
-                Minutes played<span className="text-[#D00D00]">*</span>
+                succesful passes<span className="text-[#D00D00]">*</span>
               </label>
               <input
                 type="number"
@@ -217,7 +222,7 @@ function PlayerPick() {
                 htmlFor="label"
                 className=" uppercase  opensans font-bold text-sm "
               >
-                Minutes played<span className="text-[#D00D00]">*</span>
+                succesfull final third passes<span className="text-[#D00D00]">*</span>
               </label>
               <input
                 type="number"
@@ -232,7 +237,7 @@ function PlayerPick() {
                 htmlFor="label"
                 className=" uppercase  opensans font-bold text-sm "
               >
-                Minutes played<span className="text-[#D00D00]">*</span>
+                Unsuccelful passes<span className="text-[#D00D00]">*</span>
               </label>
               <input
                 type="number"
@@ -247,7 +252,7 @@ function PlayerPick() {
                 htmlFor="label"
                 className=" uppercase  opensans font-bold text-sm "
               >
-                Minutes played<span className="text-[#D00D00]">*</span>
+                Unsuccelful final third passes<span className="text-[#D00D00]">*</span>
               </label>
               <input
                 type="number"
@@ -265,7 +270,7 @@ function PlayerPick() {
                 htmlFor="label"
                 className=" uppercase  opensans font-bold text-sm "
               >
-                Minutes played<span className="text-[#D00D00]">*</span>
+                tackle won<span className="text-[#D00D00]">*</span>
               </label>
               <input
                 type="number"
@@ -280,7 +285,7 @@ function PlayerPick() {
                 htmlFor="label"
                 className=" uppercase  opensans font-bold text-sm "
               >
-                Minutes played<span className="text-[#D00D00]">*</span>
+                50 50s won<span className="text-[#D00D00]">*</span>
               </label>
               <input
                 type="number"
@@ -295,7 +300,7 @@ function PlayerPick() {
                 htmlFor="label"
                 className=" uppercase  opensans font-bold text-sm "
               >
-                Minutes played<span className="text-[#D00D00]">*</span>
+                duel won<span className="text-[#D00D00]">*</span>
               </label>
               <input
                 type="number"
@@ -310,7 +315,7 @@ function PlayerPick() {
                 htmlFor="label"
                 className=" uppercase  opensans font-bold text-sm "
               >
-                Minutes played<span className="text-[#D00D00]">*</span>
+                Interception won<span className="text-[#D00D00]">*</span>
               </label>
               <input
                 type="number"
@@ -328,7 +333,7 @@ function PlayerPick() {
                 htmlFor="label"
                 className=" uppercase  opensans font-bold text-sm "
               >
-                Minutes played<span className="text-[#D00D00]">*</span>
+                touches in oppo box<span className="text-[#D00D00]">*</span>
               </label>
               <input
                 type="number"
@@ -343,7 +348,7 @@ function PlayerPick() {
                 htmlFor="label"
                 className=" uppercase  opensans font-bold text-sm "
               >
-                Minutes played<span className="text-[#D00D00]">*</span>
+                forward passes<span className="text-[#D00D00]">*</span>
               </label>
               <input
                 type="number"
@@ -358,7 +363,7 @@ function PlayerPick() {
                 htmlFor="label"
                 className=" uppercase  opensans font-bold text-sm "
               >
-                Minutes played<span className="text-[#D00D00]">*</span>
+                changes created<span className="text-[#D00D00]">*</span>
               </label>
               <input
                 type="number"
@@ -373,7 +378,7 @@ function PlayerPick() {
                 htmlFor="label"
                 className=" uppercase  opensans font-bold text-sm "
               >
-                Minutes played<span className="text-[#D00D00]">*</span>
+                trought-balls<span className="text-[#D00D00]">*</span>
               </label>
               <input
                 type="number"
@@ -387,7 +392,7 @@ function PlayerPick() {
                 htmlFor="label"
                 className=" uppercase  opensans font-bold text-sm "
               >
-                Minutes played<span className="text-[#D00D00]">*</span>
+              assists<span className="text-[#D00D00]">*</span>
               </label>
               <input
                 type="number"
