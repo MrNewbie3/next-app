@@ -10,6 +10,7 @@ type PageProps = {
 export default function PlayePage({ params: player }: PageProps) {
   return (
     <div>
+      {/* @ts-ignore */}
       <PlayerPick params={player} />
     </div>
   );

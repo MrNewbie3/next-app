@@ -5,6 +5,9 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import { IoMdArrowDropdown } from "react-icons/io";
 type PageProps = {
   params: {
+    detail: any;
+    team: any;
+    category: any;
     query: string;
   };
 };

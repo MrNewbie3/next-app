@@ -5,6 +5,8 @@ import PlayerMatchDetail from "./client/match/playerMatchDetail";
 
 type PageProps = {
   params: {
+    category: any;
+    team: any;
     player: string;
   };
 };
