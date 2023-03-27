@@ -13,9 +13,7 @@ function PlayerData() {
     <>
       <div className="px-10 w-full">
         <ul className=" flex text-gray-600 font-semibold justify-around max-w-[550px] h-12  items-center bg-white drop-shadow-md rounded-lg  capitalize    ">
-          <li className="bg-[#D00D00] text-white px-4 py-1 rounded-lg">
-            last match
-          </li>
+          <li className="bg-[#D00D00] text-white px-4 py-1 rounded-lg">last match</li>
           <li>season stats</li>
           <li>history</li>
           <li>medis</li>
@@ -33,9 +31,9 @@ function PlayerData() {
             </h1>
           </div>
 
-          <button className="hover:bg-[#D00D00] bg-white ring-1 capitalize font-semibold ring-[#D00D00] text-[#D00D00] px-4 rounded-lg h-9 hover:text-white active:bg-[#D00D00] active:text-white   ">
+          <button className="hover:bg-[#D00D00] transition-all duration-200 bg-white ring-1 capitalize font-semibold ring-[#D00D00] text-[#D00D00] px-4 rounded-lg h-9 hover:text-white active:bg-[#D00D00] active:text-white   ">
             {" "}
-            Add player
+            Edit Match
           </button>
         </div>
         <div className="lg:flex gap-6">
@@ -83,9 +81,7 @@ function PlayerData() {
             </div>
 
             <div className="max-w-4xl w-full mt-6 bg-white  rounded-lg px-6 py-4 ">
-              <div className="mb-6 text-[20px] font-semibold">
-                Passing & Ball Position{" "}
-              </div>
+              <div className="mb-6 text-[20px] font-semibold">Passing & Ball Position </div>
               <div className="flex max-md:flex-col w-full gap-20">
                 <div className="md:max-w-sm w-full">
                   <div className="flex justify-between w-full mb-4">
@@ -105,9 +101,7 @@ function PlayerData() {
                   <div className="flex justify-between mb-4">
                     <div className="relative  flex gap-2 items-center ">
                       <div className="inset-0 bg-yellow-500 h-2 w-2 rounded-full"></div>
-                      <h1 className="font-semibold">
-                        Succelful final third passes
-                      </h1>
+                      <h1 className="font-semibold">Succelful final third passes</h1>
                     </div>
 
                     <p className="font-bold text-base">
@@ -117,9 +111,7 @@ function PlayerData() {
                   <div className="flex  justify-between mb-4">
                     <div className="relative  flex gap-2 items-center ">
                       <div className="inset-0 bg-green-500 h-2 w-2 rounded-full"></div>
-                      <h1 className="font-semibold">
-                        Unsuccelful final third passes
-                      </h1>
+                      <h1 className="font-semibold">Unsuccelful final third passes</h1>
                     </div>
 
                     <p className="font-bold text-base">
@@ -133,9 +125,7 @@ function PlayerData() {
                       <div className="absolute inset-0 bg-gray-100 rounded-full"></div>
                       <div className="absolute inset-0 bg-sky-500  rounded-full border-3"></div>
                       <div className="absolute inset-0 flex items-center justify-center text-white font-bold rounded-full">
-                        <span className="text-xl text-black-main z-20 ">
-                          50%
-                        </span>
+                        <span className="text-xl text-black-main z-20 ">50%</span>
                       </div>
                       <div className="absolute inset-1.5 bg-white rounded-full"></div>
                       <div className="absolute inset-10 bg-transparent rounded-full"></div>
@@ -144,9 +134,7 @@ function PlayerData() {
                       <div className="absolute inset-0 bg-gray-100 rounded-full"></div>
                       <div className="absolute inset-0 bg-sky-500  rounded-full border-3"></div>
                       <div className="absolute inset-0 flex items-center justify-center text-white font-bold rounded-full">
-                        <span className="text-xl text-black-main z-20 ">
-                          50%
-                        </span>
+                        <span className="text-xl text-black-main z-20 ">50%</span>
                       </div>
                       <div className="absolute inset-1.5 bg-white rounded-full"></div>
                       <div className="absolute inset-10 bg-transparent rounded-full"></div>
@@ -250,10 +238,7 @@ function PlayerData() {
                 </div>
                 <div className="w-full md:max-w-[226px] ">
                   {/* range tracking */}
-                  <label
-                    htmlFor="range"
-                    className="flex font-bold h-6 justify-end  text-red-500"
-                  >
+                  <label htmlFor="range" className="flex font-bold h-6 justify-end  text-red-500">
                     <h1>0</h1>
                   </label>
                   {/* range */}
@@ -273,19 +258,13 @@ function PlayerData() {
                 </div>
                 <div className="w-full md:max-w-[226px] ">
                   {/* range tracking */}
-                  <label
-                    htmlFor="range"
-                    className="flex font-bold h-6 justify-end  text-red-500"
-                  >
+                  <label htmlFor="range" className="flex font-bold h-6 justify-end  text-red-500">
                     <h1>1</h1>
                     <h1>/2</h1>
                   </label>
                   {/* range */}
                   <div className="w-full bg-gray-200  rounded-full h-2.5  ">
-                    <div
-                      className="bg-red-600 h-2.5 rounded-full "
-                      style={{ width: `${percent1}%` }}
-                    ></div>
+                    <div className="bg-red-600 h-2.5 rounded-full " style={{ width: `${percent1}%` }}></div>
                   </div>
                 </div>
               </div>
@@ -302,19 +281,13 @@ function PlayerData() {
                 </div>
                 <div className="w-full md:max-w-[226px] ">
                   {/* range tracking */}
-                  <label
-                    htmlFor="range"
-                    className="flex font-bold h-6 justify-end  text-red-500"
-                  >
+                  <label htmlFor="range" className="flex font-bold h-6 justify-end  text-red-500">
                     <h1>1</h1>
                     <h1>/3</h1>
                   </label>
                   {/* range */}
                   <div className="w-full bg-gray-200  rounded-full h-2.5  ">
-                    <div
-                      className="bg-red-600 h-2.5 rounded-full "
-                      style={{ width: `${percent3}%` }}
-                    ></div>
+                    <div className="bg-red-600 h-2.5 rounded-full " style={{ width: `${percent3}%` }}></div>
                   </div>
                 </div>
               </div>
@@ -331,10 +304,7 @@ function PlayerData() {
                 </div>
                 <div className="w-full md:max-w-[226px] ">
                   {/* range tracking */}
-                  <label
-                    htmlFor="range"
-                    className="flex font-bold h-6 justify-end  text-red-500"
-                  >
+                  <label htmlFor="range" className="flex font-bold h-6 justify-end  text-red-500">
                     <h1>0</h1>
                   </label>
                   {/* range */}

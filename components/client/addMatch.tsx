@@ -1,17 +1,24 @@
 "use client";
 import { Tab } from "@headlessui/react";
 import React from "react";
-import ListPlayer from "../server/listPlayer";
+import ListPlayer from "./listPlayer";
 import PlayerList from "./match/playerList";
 import GeneralMatch from "./match/generalMatch";
 import { usePathname, useRouter } from "next/navigation";
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(" ");
 }
-function AddMatch() {
+
+type PageProps = {
+  params: {
+    category: string;
+    team: string; query: string 
+};
+};
+
+function AddMatch({ params: query }: PageProps) {
   const navigate = useRouter();
   const router = usePathname().replace("new_match", "");
-
   return (
     <div className="">
       <div className="bg-white w-full rounded-xl px-10 py-10">
@@ -40,7 +47,7 @@ function AddMatch() {
               <GeneralMatch />
             </Tab.Panel>
             <Tab.Panel>
-              <ListPlayer />
+              <ListPlayer params={{ category: query.category, team: query.team, detail: "new_match" }} />
             </Tab.Panel>
             <Tab.Panel>
               <PlayerList />

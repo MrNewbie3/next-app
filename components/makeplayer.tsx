@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import React from "react";
+import ListPlayer from "./client/listPlayer";
 type PageProps = {
   params: {
     category: string;
@@ -9,7 +9,7 @@ type PageProps = {
   };
 };
 
-function MakePlayer({ params: { category, team } }: PageProps) {
+function MakePlayer({ params: query }: PageProps) {
   return (
     <>
       <div className="flex justify-between w-full items-center ">
@@ -20,9 +20,12 @@ function MakePlayer({ params: { category, team } }: PageProps) {
           </div>
           <h1 className="text-xl font-bold ">MOKLET&apos;S Player</h1>
         </div>
-        <Link href={`${category}/${team}/new_player`}>
+        <Link href={`${query.category}/${query.team}/new_player`}>
           <button className="hover:bg-[#D00D00] bg-white ring-1 capitalize font-semibold ring-[#D00D00] text-[#D00D00] px-8 rounded-lg h-9 hover:text-white active:bg-[#D00D00] active:text-white   "> Add player</button>
         </Link>
+      </div>
+      <div className="px-8 mt-6 bg-white rounded-xl">
+        <ListPlayer params={query} />
       </div>
     </>
   );

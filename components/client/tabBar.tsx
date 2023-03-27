@@ -22,7 +22,7 @@ function TeamDetails({ params: query }: PageProps) {
         {arr.map((data, index) => {
           return (
             <Link key={index} href={`/${query.category}/${query.team}/${data}`}>
-              <Tab key={index} className={({ selected }) => classNames(!decode.includes(arr[index]) ? "capitalize transition-all duration-300 ease-in-out" : "bg-[#D00D00] text-white px-4 py-1 rounded-lg focus:outline-none capitalize ")}>
+              <Tab key={index} className={({ selected }) => classNames(!decode.includes(arr[index]) ? "capitalize " : "bg-[#D00D00] text-white px-4 py-1 rounded-lg focus:outline-none capitalize ")}>
                 {data}
               </Tab>
             </Link>

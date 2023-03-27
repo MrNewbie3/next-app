@@ -4,7 +4,7 @@ import TabBar from "@/components/client/tabBar";
 import MakePlayer from "@/components/makeplayer";
 import MakeSchedule from "@/components/makeschedule";
 import AddPlayer from "@/components/client/addPlayer";
-import ListPlayer from "@/components/server/listPlayer";
+import ListPlayer from "@/components/client/listPlayer";
 import AddMatch from "@/components/client/addMatch";
 import MakeMatch from "@/components/server/makeMatch";
 import PlayerPick from "@/components/playerPick";
@@ -22,50 +22,5 @@ import EditPlayer from "@/components/editPlayer";
 import PlayerStatistik from "@/components/PlayerStatistik";
 
 export default function Home() {
-  return (
-    <main className="flex-col flex px-10 items-center gap-11 ">
-      {/* <AddTeam /> */}
-      {/* <TeamCard /> */}
-      {/* <TabBar /> */}
-      {/* <MakePlayer /> */}
-      {/* <MakeMatch /> */}
-      {/* <AddPlayer /> */}
-      {/* make schedule
-      <MakeSchedule /> */}
-      {/* list player
-      <ListPlayer /> */}
-      {/* add match
-      <AddMatch /> */}
-      {/* player pick
-      <PlayerPick /> */}
-      {/* player list
-      <PlayerList /> */}
-      {/* match rekap
-      <MatchRekap /> */}
-      {/* practice time
-      <PraticeTime
-        params={{
-          query: "",
-        }}
-      /> */}
-      {/* add exercise
-      <AddExercise /> */}
-      {/* exercise time
-      <ExerciseTime /> */}
-      {/* history
-      <History /> */}
-      player card
-      <PlayerCard />
-      palyer data
-      <PlayerData />
-      player stats
-      <PlayerStatistik />
-      individual stats
-      <IndividualStatistik />
-      player option
-      <AddPlayerOption />
-      edit player
-      <EditPlayer />
-    </main>
-  );
+  return <main className="flex-col flex px-10 items-center gap-11 "></main>;
 }

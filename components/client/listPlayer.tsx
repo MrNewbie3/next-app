@@ -5,16 +5,25 @@ import React from "react";
 
 const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 
-function ListPlayer() {
-  const path = usePathname();
+type PageProps = {
+  params: {
+    category: string;
+    team: string;
+    detail: string;
+  };
+};
+
+function ListPlayer({ params: query }: PageProps) {
+  console.log(query);
+
   return (
     <>
       <div className="bg-white w-full  rounded-xl py-10">
         <div className="mb-8">
-          <label htmlFor="name" className="font-semibold">
-            Search By Position
-          </label>
           <select name="" id="" className="bg-transparent  focus:outline-none ">
+            <option value="" selected disabled>
+              Search By Position
+            </option>
             <option value="list1">jenis 1</option>
             <option value="list2">jenis 2</option>
             <option value="list3">jenis 3</option>
@@ -24,7 +33,7 @@ function ListPlayer() {
         <div className="grid grid-cols-1 lg:grid-cols-2  gap-5">
           {data.map((key) => {
             return (
-              <Link key={key} href={path + "/" + key}>
+              <Link key={key} href={query.detail === "player" ? `/${query.category}/${query.team}/player_detail/${key}` : `/${query.category}/${query.team}/new_match/${key}`}>
                 <div className="flex flex-col w-full capitalize">
                   <div className="bg-[#F2F3F7] py-2 rounded-lg flex justify-between px-8 w-full items-center  ">
                     <div className="gap-5 items-center h-12 w- flex">
