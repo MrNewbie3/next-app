@@ -11,7 +11,9 @@ type PageProps = {
 };
 
 async function getData(params: string) {
-  const res = await fetch("https://jsonplaceholder.typicode.com/todos/" + params);
+  const res = await fetch(
+    "https://jsonplaceholder.typicode.com/todos/" + params
+  );
   if (!res) {
     return "Error";
   }
@@ -23,7 +25,10 @@ export default async function page({ params: { category } }: PageProps) {
   return (
     <div className="w-full px-8">
       {data.length < 1 ? (
-        <Link href={`${category}/new_team`} className="flex pl-7 gap-4 items-center bg-white font-semibold py-2 w-[170px] rounded-md ">
+        <Link
+          href={`${category}/new_team`}
+          className="flex pl-7 gap-4 items-center bg-white font-semibold py-2 w-[170px] rounded-md "
+        >
           <span className="text-[#D00D00]">
             <FaPlus />
           </span>

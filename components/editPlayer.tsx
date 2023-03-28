@@ -2,6 +2,9 @@ import React from "react";
 import { GrFormNext } from "react-icons/gr";
 
 function EditPlayer() {
+
+
+  
   return (
     <div className="w-full rounded-xl px-10 py-10">
       <div className="head flex justify-between  items-center ">
