@@ -2,19 +2,12 @@ import { GrFormNext } from "react-icons/gr";
 import React from "react";
 import Stacked from "./polygon/Stacked";
 import Polygon from "./polygon/Bentukpolygon";
-import {BsThreeDotsVertical} from "react-icons/bs";
+import { BsThreeDotsVertical } from "react-icons/bs";
 import { FaPlus } from "react-icons/fa";
-
-
-
-
-
 
 const maxtaktik = 10;
 const valuetaktik = 3;
 const taktik = (valuetaktik / maxtaktik) * 100;
-
-
 
 function AddPlayerOption() {
   return (
@@ -181,108 +174,80 @@ function AddPlayerOption() {
         </div>
       </div>
 
+      <div className="under-datas  flex gap-6 ">
+        <div className="last_match  w-full bg-white rounded-lg mt-6 px-6 py-4">
+          <div className="flex justify-between    ">
+            <h1 className="font-bold text-lg">Pertandingan Terakhir</h1>
+            <button className="bg-red-600  flex justify-between items-center text-white gap-2 px-4 py-1 rounded-lg">
+              <FaPlus />
+              {" Tambah"}
+            </button>
+          </div>
 
-<div className="under-datas  flex gap-6 ">
-      <div className="last_match  w-full bg-white rounded-lg mt-6 px-6 py-4">
-        <div className="flex justify-between    ">
+          <table className="table-auto w-full capitalize   ">
+            <thead>
+              <tr className="">
+                <th className="text-left py-2">No.</th>
+                <th className="text-left py-2">Tanggal</th>
+                <th className="text-left py-2">Tanding</th>
+                <th className="text-left py-2">Rating</th>
+                <th className="text-left py-2">Info</th>
+              </tr>
+            </thead>
+            <tbody className="font-semibold capitalize">
+              <tr>
+                <td className=" py-2">1</td>
+                <td className=" py-2">2022-01-01</td>
+                <td className=" py-2">Chelsea vs. Arsenal</td>
 
-        <h1 className="font-bold text-lg">Pertandingan Terakhir</h1>
-        <button className="bg-red-600  flex justify-between items-center text-white gap-2 px-4 py-1 rounded-lg"><FaPlus />{" Tambah"}</button>
+                <td className=" py-2">2-1</td>
+                <td className=" py-2">
+                  <a href="#">
+                    <BsThreeDotsVertical />
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td className=" py-2">2</td>
+                <td className=" py-2">2022-01-02</td>
+                <td className=" py-2">Real Madrid vs. Barca</td>
+
+                <td className=" py-2">3-2</td>
+                <td className=" py-2">
+                  <a href="#">
+                    <BsThreeDotsVertical />
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-        
-        
+        <div className="last_match  max-w-sm  w-full bg-white rounded-lg mt-6 px-6 py-4">
+          <h1 className="font-bold text-lg">Taktik</h1>
 
-        <table className="table-auto w-full capitalize   ">
-          <thead>
-            <tr className="">
-              <th className="text-left py-2">No.</th>
-              <th className="text-left py-2">Tanggal</th>
-              <th className="text-left py-2">Tanding</th>
-              <th className="text-left py-2">Rating</th>
-              <th className="text-left py-2">Info</th>
-            
-            </tr>
-          </thead>
-          <tbody className="font-semibold capitalize">
-            <tr>
-              <td className=" py-2">1</td>
-              <td className=" py-2">2022-01-01</td>
-              <td className=" py-2">Chelsea vs. Arsenal</td>
-             
-              <td className=" py-2">2-1</td>
-              <td className=" py-2">
-                <a href="#"><BsThreeDotsVertical/></a>
-              </td>
-            </tr>
-            <tr>
-              <td className=" py-2">2</td>
-              <td className=" py-2">2022-01-02</td>
-              <td className=" py-2">Real Madrid vs. Barca</td>
-              
-              <td className=" py-2">3-2</td>
-              <td className=" py-2">
-                <a href="#"><BsThreeDotsVertical/></a>
-              </td>
-            </tr>
-        
-          </tbody>
-        </table>
+          <div className="w-full flex flex-col items-center mt-12 ">
+            {/* range tracking */}
+            <div className="w-full mb-6">
+              <label
+                htmlFor="range"
+                className="flex font-bold h-6 justify-between  text-red-500"
+              >
+                <h1>{valuetaktik}</h1>
+                <h1>{maxtaktik}</h1>
+              </label>
+              {/* range */}
+              <div className="w-full bg-gray-200  rounded-full h-2.5  ">
+                <div
+                  className="bg-red-600 h-2.5 rounded-full "
+                  style={{ width: `${taktik}%` }}
+                ></div>
+              </div>
+            </div>
+
+            <h1 className="font-bold text-lg">Biasa</h1>
+          </div>
+        </div>
       </div>
-      <div className="last_match  max-w-sm  w-full bg-white rounded-lg mt-6 px-6 py-4">
-        <h1 className="font-bold text-lg">Taktik</h1>
-
-
-        <div className="w-full flex flex-col items-center mt-12 ">
-                {/* range tracking */}
-                <div className="w-full mb-6">
-                <label
-                  htmlFor="range"
-                  className="flex font-bold h-6 justify-between  text-red-500"
-                >
-                  <h1>{valuetaktik}</h1>
-                  <h1>{maxtaktik}</h1>
-                </label>
-                {/* range */}
-                <div className="w-full bg-gray-200  rounded-full h-2.5  ">
-                  <div
-                    className="bg-red-600 h-2.5 rounded-full "
-                    style={{ width: `${taktik}%` }}
-                  ></div>
-                  </div>
-                </div>
-
-                <h1 className="font-bold text-lg">Biasa</h1>
-                </div>
-
-
-      </div>
-
-
-      </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     </div>
   );
 }

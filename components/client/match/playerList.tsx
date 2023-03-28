@@ -6,7 +6,11 @@ function PlayerList() {
     <>
       <div className="bg-white w-full  rounded-xl py-10">
         <div className="mb-8">
-          <select name="" id="" className="bg-transparent font-semibold focus:outline-none ">
+          <select
+            name=""
+            id=""
+            className="bg-transparent font-semibold focus:outline-none "
+          >
             <option value="" disabled selected>
               Search By Position
             </option>
@@ -24,16 +28,25 @@ function PlayerList() {
                     <h1 className="text-2xl font-bold  text-[#D00D00]">18</h1>
                     <div>
                       <p className="text-xs text-gray-400">golkiper</p>
-                      <h2 className="text-md font-semibold   ">dimas setiawan surya</h2>
+                      <h2 className="text-md font-semibold   ">
+                        dimas setiawan surya
+                      </h2>
                     </div>
                   </div>
-                  <input id="green-checkbox" type="checkbox" value="" className="w-6 h-6 text-green-800 ring-green-800  border-green-800 rounded focus:ring-green-500" />
+                  <input
+                    id="green-checkbox"
+                    type="checkbox"
+                    value=""
+                    className="w-6 h-6 text-green-800 ring-green-800  border-green-800 rounded focus:ring-green-500"
+                  />
                 </div>
               </div>
             );
           })}
         </div>
-        <button className="bg-[#D00D00] h-10 rounded-lg mt-10 text-white opensans w-full">Import Data</button>
+        <button className="bg-[#D00D00] h-10 rounded-lg mt-10 text-white opensans w-full">
+          Import Data
+        </button>
       </div>
     </>
   );
