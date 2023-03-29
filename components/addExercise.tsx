@@ -1,3 +1,4 @@
+"use client";
 import { FiDownload } from "react-icons/fi";
 import { redirect, useRouter } from "next/navigation";
 import React, { useState } from "react";
@@ -17,7 +18,7 @@ function AddExercise({ params: query }: PageProps) {
     minute: "",
     journal: "",
     amount: "",
-    description:"",
+    description: "",
     pict: "",
   });
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -54,9 +55,7 @@ function AddExercise({ params: query }: PageProps) {
           >
             Kembali
           </button>
-          <button className="bg-[#1790FF] px-8   py-2 text-white mb-10 rounded-lg">
-            Edit
-          </button>
+          <button className="bg-[#1790FF] px-8   py-2 text-white mb-10 rounded-lg">Edit</button>
           <button className="bg-[#2846AF] flex items-center gap-2 px-4 py-2 text-white mb-10 rounded-lg">
             Download
             <FiDownload />
@@ -72,10 +71,7 @@ function AddExercise({ params: query }: PageProps) {
         <div className=" input_file_div mt-10 grid grid-cols-1 md:grid-cols-2 gap-5   max-md:flex-col ">
           <div>
             <div className="  flex flex-col justify-start mt-4">
-              <label
-                htmlFor="label"
-                className=" uppercase  opensans font-bold text-sm "
-              >
+              <label htmlFor="label" className=" uppercase  opensans font-bold text-sm ">
                 Nama Latihan
               </label>
               <input
@@ -91,10 +87,7 @@ function AddExercise({ params: query }: PageProps) {
             </div>
 
             <div className="flex flex-col justify-start mt-4 text-sm">
-              <label
-                htmlFor="label"
-                className=" uppercase  opensans font-bold "
-              >
+              <label htmlFor="label" className=" uppercase  opensans font-bold ">
                 Kategori
               </label>
               <input

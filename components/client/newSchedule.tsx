@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState } from "react";
 type PageProps = {
   params: { query: string };
@@ -14,7 +14,7 @@ function TambahLatihan() {
     description: "",
     journal: "",
     amount_player: "",
-    pict:"",
+    pict: "",
   });
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -42,16 +42,13 @@ function TambahLatihan() {
     <>
       <div className="bg-white w-full rounded-xl px-10 py-10">
         <div className=" flex gap-4">
-          <button className="bg-[#137403] px-4  py-2 text-white mb-10 rounded-lg">
-            Kembali
-          </button>
+          <button className="bg-[#137403] px-4  py-2 text-white mb-10 rounded-lg">Kembali</button>
         </div>
         <div>
           <h1 className="opensans font-bold text-xl">Tambah program latihan</h1>
           <div>
             <h4 className="font-semibold">
-              Lengkapi data di bawah,jika ada ({" "}
-              <span className="text-[#D00D00]">* </span>) maka wajib diisi{" "}
+              Lengkapi data di bawah,jika ada ( <span className="text-[#D00D00]">* </span>) maka wajib diisi{" "}
             </h4>
           </div>
         </div>
@@ -77,10 +74,7 @@ function TambahLatihan() {
             </div>
 
             <div className="flex flex-col justify-start mt-4 text-sm">
-              <label
-                htmlFor="label"
-                className=" uppercase  opensans font-bold "
-              >
+              <label htmlFor="label" className=" uppercase  opensans font-bold ">
                 Nama Latihan<span className="text-[#D00D00]">*</span>
               </label>
               <input
@@ -144,10 +138,7 @@ function TambahLatihan() {
               </select>
             </div>
             <div className="flex flex-col justify-start mt-4 text-sm">
-              <label
-                htmlFor="label"
-                className=" uppercase  opensans font-bold "
-              >
+              <label htmlFor="label" className=" uppercase  opensans font-bold ">
                 Durasi (menit)<span className="text-[#D00D00]">*</span>
               </label>
               <input
@@ -168,7 +159,7 @@ function TambahLatihan() {
                 deskripsi<span className="text-[#D00D00]">*</span>
               </label>
               <textarea
-                name="dercription"
+                name="description"
                 onChange={(e) => {
                   handleChangeText(e);
                 }}
@@ -223,9 +214,7 @@ function TambahLatihan() {
             </div>
           </div>
         </div>
-        <button className="bg-[#D00D00] h-10 rounded-lg mt-10 text-white opensans w-full">
-          Simpan
-        </button>
+        <button className="bg-[#D00D00] h-10 rounded-lg mt-10 text-white opensans w-full">Simpan</button>
       </div>
     </>
   );

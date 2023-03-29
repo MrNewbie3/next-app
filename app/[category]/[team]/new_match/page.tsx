@@ -8,5 +8,6 @@ type PageProps = {
 };
 
 export default function page({ params: query }: PageProps) {
+  // @ts-ignore
   return <AddMatch params={query} />;
 }

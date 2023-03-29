@@ -14,8 +14,6 @@ type PageProps = {
 };
 
 function ListPlayer({ params: query }: PageProps) {
-  console.log(query);
-
   return (
     <>
       <div className="bg-white w-full  rounded-xl py-10">

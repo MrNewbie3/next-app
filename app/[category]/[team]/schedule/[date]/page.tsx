@@ -7,7 +7,7 @@ type PageProps = {
 export default function page({ params: query }: PageProps) {
   return (
     <div>
-      <AddExercise />
+      <AddExercise params={query} />
     </div>
   );
 }
