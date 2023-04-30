@@ -22,7 +22,6 @@ function AddTeam({ params }: Props) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setData((state) => ({
-      // @ts-ignore 
       ...state,
       [name]: value,
     }));
