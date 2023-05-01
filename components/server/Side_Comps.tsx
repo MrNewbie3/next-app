@@ -8,7 +8,7 @@ async function getData() {
     next: {
       revalidate: 10,
     },
-    headers: { Authentication: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY4MjgxNDM2OCwiZXhwIjoxNjgyODI1MTY4fQ.LXEWQSJJ4v8F0KQLBqOeS-k8DDLAQhC-H4SaztUNeaU" },
+    headers: { Authentication: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY4Mjg3MDMzNiwiZXhwIjoxNjgyODgxMTM2fQ.7Ip3UXTm966u3F5IKZVW8hnsF4I1swm3Dx1AhN_RN4M" },
   });
   if (!res.ok) {
     throw new Error("Failed to fetch data = " + res.statusText);

@@ -3,31 +3,52 @@ import React, { useState } from "react";
 
 export default function PlayerMatchDetail() {
   const [data, setData] = useState({
-    minutes_played: "",
-    red_card: "",
+    minute_played: "",
+    red_cards: "",
     fouls: "",
-    yellow_card: "",
+    yellow_cards: "",
     total_saves: "",
-    goal_conceded: "",
-    punches: "",
-    inside_the_box: "",
-    save_caught: "",
-    outside_the_box: "",
-    save_parried: "",
-    succesful_pass: "",
-    succesful_final: "",
-    unsuccesful_pass: "",
-    unsuccesful_final: "",
+    goal_conceded_saves: "",
+    punched_saves: "",
+    insider_saves: "",
+    caught_saves: "",
+    outsider_saves: "",
+    parried_saves: "",
+    succes_passes: "",
+    succes_final_third_passes: "",
+    unsuccesful_passes: "",
+    unsuccesful_final_thirf_passes: "",
     takle_won: "",
-    s_won: "",
-    duel: "",
-    interception: "",
-    touches: "",
-    forward: "",
-    change: "",
-    throught: "",
+    fifty_won: "",
+    duel_won: "",
+    interception_won: "",
+    touches_in_opponent_box: "",
+    forward_passes: "",
+    changes_created: "",
+    throught_balls: "",
     assist: "",
+    matchId:1,
+    playerId:1,
   });
+
+  async function postData(e: React.FormEvent) {
+    e.preventDefault();
+    const post = await fetch("http://localhost:4002/api/v1/match/d/", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+        Authentication:
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY4Mjg3NTc5OCwiZXhwIjoxNjgyODg2NTk4fQ.AzHS-AMvEoHHgxaQ0FyEIODRHjNSeMTCOyrcPE95cd",
+      },
+    });
+    const res = await post.json();
+    console.log(res);
+
+    window.location.reload();
+    if (!res.ok) console.log(res);
+  }
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setData((prevState) => ({
@@ -37,7 +58,9 @@ export default function PlayerMatchDetail() {
   };
 
   return (
-    <form>
+    <form onSubmit={(e)=>{
+      postData(e);
+    }}>
       <div className=" input_file_div mt-10   max-lg:flex-col ">
         <h1 className="font-bold text-lg">General</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 ">
@@ -50,12 +73,12 @@ export default function PlayerMatchDetail() {
             </label>
             <input
               type="number"
-              name="minutes_played"
+              name="minute_played"
               onChange={(e) => {
                 handleChange(e);
               }}
               placeholder="e.g 90"
-              value={data.minutes_played}
+              value={data.minute_played}
               className=" bg-[#F2F3F7] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
             />
           </div>
@@ -69,17 +92,18 @@ export default function PlayerMatchDetail() {
             </label>
             <input
               type="number"
-              name="red_card"
+              name="red_cards"
               placeholder="e.g 90"
               onChange={(e) => {
                 handleChange(e);
               }}
-              value={data.red_card}
+              value={data.red_cards}
               className=" bg-[#F2F3F7] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
             />
           </div>
 
           <div className="  flex flex-col justify-start mt-4">
+            
             <label
               htmlFor="label"
               className=" uppercase  opensans font-bold text-sm "
@@ -94,7 +118,7 @@ export default function PlayerMatchDetail() {
                 handleChange(e);
               }}
               value={data.fouls}
-              className=" bg-[#F2F3F7] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
+              className=" bg-[#F2F3F7]  h-10 border-none w-full focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
             />
           </div>
           <div className="  flex flex-col justify-start mt-4">
@@ -106,12 +130,12 @@ export default function PlayerMatchDetail() {
             </label>
             <input
               type="number"
-              name="yellow_card"
+              name="yellow_cards"
               placeholder="e.g 90"
               onChange={(e) => {
                 handleChange(e);
               }}
-              value={data.yellow_card}
+              value={data.yellow_cards}
               className=" bg-[#F2F3F7] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
             />
           </div>
@@ -147,12 +171,12 @@ export default function PlayerMatchDetail() {
             </label>
             <input
               type="number"
-              name="goal_conceded"
+              name="goal_conceded_saves"
               placeholder="e.g 90"
               onChange={(e) => {
                 handleChange(e);
               }}
-              value={data.goal_conceded}
+              value={data.goal_conceded_saves}
               className=" bg-[#F2F3F7] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
             />
           </div>
@@ -162,16 +186,16 @@ export default function PlayerMatchDetail() {
               htmlFor="label"
               className=" uppercase  opensans font-bold text-sm "
             >
-              punches<span className="text-[#D00D00]">*</span>
+              punced_saves<span className="text-[#D00D00]">*</span>
             </label>
             <input
               type="number"
-              name="punches"
+              name="punched_saves"
               placeholder="e.g 90"
               onChange={(e) => {
                 handleChange(e);
               }}
-              value={data.punches}
+              value={data.punched_saves}
               className=" bg-[#F2F3F7] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
             />
           </div>
@@ -188,12 +212,12 @@ export default function PlayerMatchDetail() {
             </label>
             <input
               type="number"
-              name="inside_the_box"
+              name="insider_saves"
               placeholder="e.g 90"
               onChange={(e) => {
                 handleChange(e);
               }}
-              value={data.inside_the_box}
+              value={data.insider_saves}
               className=" bg-[#F2F3F7] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
             />
           </div>
@@ -207,12 +231,12 @@ export default function PlayerMatchDetail() {
             </label>
             <input
               type="number"
-              name="save_caught"
+              name="caught_saves"
               placeholder="e.g 90"
               onChange={(e) => {
                 handleChange(e);
               }}
-              value={data.save_caught}
+              value={data.caught_saves}
               className=" bg-[#F2F3F7] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
             />
           </div>
@@ -226,12 +250,12 @@ export default function PlayerMatchDetail() {
             </label>
             <input
               type="number"
-              name="outside_the_box"
+              name="outsider_saves"
               placeholder="e.g 90"
               onChange={(e) => {
                 handleChange(e);
               }}
-              value={data.outside_the_box}
+              value={data.outsider_saves}
               className=" bg-[#F2F3F7] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
             />
           </div>
@@ -245,12 +269,12 @@ export default function PlayerMatchDetail() {
             </label>
             <input
               type="number"
-              name="save_parried"
+              name="parried_saves"
               placeholder="e.g 90"
               onChange={(e) => {
                 handleChange(e);
               }}
-              value={data.save_parried}
+              value={data.parried_saves}
               className=" bg-[#F2F3F7] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
             />
           </div>
@@ -267,12 +291,12 @@ export default function PlayerMatchDetail() {
             </label>
             <input
               type="number"
-              name="succesful_pass"
+              name="succes_passes"
               placeholder="e.g 90"
               onChange={(e) => {
                 handleChange(e);
               }}
-              value={data.succesful_pass}
+              value={data.succes_passes}
               className=" bg-[#F2F3F7] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
             />
           </div>
@@ -287,12 +311,12 @@ export default function PlayerMatchDetail() {
             </label>
             <input
               type="number"
-              name="succesful_final"
+              name="succes_final_third_passes"
               placeholder="e.g 90"
               onChange={(e) => {
                 handleChange(e);
               }}
-              value={data.succesful_final}
+              value={data.succes_final_third_passes}
               className=" bg-[#F2F3F7] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
             />
           </div>
@@ -306,12 +330,12 @@ export default function PlayerMatchDetail() {
             </label>
             <input
               type="number"
-              name="unsuccesful_pass"
+              name="unsuccesful_passes"
               placeholder="e.g 90"
               onChange={(e) => {
                 handleChange(e);
               }}
-              value={data.unsuccesful_pass}
+              value={data.unsuccesful_passes}
               className=" bg-[#F2F3F7] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
             />
           </div>
@@ -326,12 +350,12 @@ export default function PlayerMatchDetail() {
             </label>
             <input
               type="number"
-              name="unsuccesful_final"
+              name="unsuccesful_final_third_passes"
               placeholder="e.g 90"
               onChange={(e) => {
                 handleChange(e);
               }}
-              value={data.unsuccesful_final}
+              value={data.unsuccesful_final_thirf_passes}
               className=" bg-[#F2F3F7] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
             />
           </div>
@@ -367,12 +391,12 @@ export default function PlayerMatchDetail() {
             </label>
             <input
               type="number"
-              name="s_won"
+              name="fifty_won"
               onChange={(e) => {
                 handleChange(e);
               }}
               placeholder="e.g 90"
-              value={data.s_won}
+              value={data.fifty_won}
               className=" bg-[#F2F3F7] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
             />
           </div>
@@ -386,12 +410,12 @@ export default function PlayerMatchDetail() {
             </label>
             <input
               type="number"
-              name="duel"
+              name="duel_won"
               placeholder="e.g 90"
               onChange={(e) => {
                 handleChange(e);
               }}
-              value={data.duel}
+              value={data.duel_won}
               className=" bg-[#F2F3F7] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
             />
           </div>
@@ -405,12 +429,12 @@ export default function PlayerMatchDetail() {
             </label>
             <input
               type="number"
-              name="interception"
+              name="interception_won"
               placeholder="e.g 90"
               onChange={(e) => {
                 handleChange(e);
               }}
-              value={data.interception}
+              value={data.interception_won}
               className=" bg-[#F2F3F7] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
             />
           </div>
@@ -427,12 +451,12 @@ export default function PlayerMatchDetail() {
             </label>
             <input
               type="number"
-              name="touches"
+              name="touches_in_opponent_box"
               placeholder="e.g 90"
               onChange={(e) => {
                 handleChange(e);
               }}
-              value={data.touches}
+              value={data.touches_in_opponent_box}
               className=" bg-[#F2F3F7] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
             />
           </div>
@@ -446,12 +470,12 @@ export default function PlayerMatchDetail() {
             </label>
             <input
               type="number"
-              name="forward"
+              name="forward_passes"
               placeholder="e.g 90"
               onChange={(e) => {
                 handleChange(e);
               }}
-              value={data.forward}
+              value={data.forward_passes}
               className=" bg-[#F2F3F7] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
             />
           </div>
@@ -465,12 +489,12 @@ export default function PlayerMatchDetail() {
             </label>
             <input
               type="number"
-              name="change"
+              name="changes_created"
               placeholder="e.g 90"
               onChange={(e) => {
                 handleChange(e);
               }}
-              value={data.change}
+              value={data.changes_created}
               className=" bg-[#F2F3F7] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
             />
           </div>
@@ -484,12 +508,12 @@ export default function PlayerMatchDetail() {
             </label>
             <input
               type="number"
-              name="throught"
+              name="throught_balls"
               placeholder="e.g 90"
               onChange={(e) => {
                 handleChange(e);
               }}
-              value={data.throught}
+              value={data.throught_balls}
               className=" bg-[#F2F3F7] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
             />
           </div>

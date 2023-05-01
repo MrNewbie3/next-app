@@ -21,7 +21,10 @@ function MakePlayer({ params: query }: PageProps) {
           <h1 className="text-xl font-bold ">MOKLET&apos;S Player</h1>
         </div>
         <Link href={`${query.category}/${query.team}/new_player`}>
-          <button className="hover:bg-[#D00D00] bg-white ring-1 capitalize font-semibold ring-[#D00D00] text-[#D00D00] px-8 rounded-lg h-9 hover:text-white active:bg-[#D00D00] active:text-white   "> Add player</button>
+          <button className="hover:bg-[#D00D00] bg-white ring-1 capitalize font-semibold ring-[#D00D00] text-[#D00D00] px-8 rounded-lg h-9 hover:text-white active:bg-[#D00D00] active:text-white   ">
+            {" "}
+            Add player
+          </button>
         </Link>
       </div>
       <div className="px-8 mt-6 bg-white rounded-xl">

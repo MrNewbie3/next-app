@@ -1,4 +1,7 @@
+"use client"
 import react from "react";
+import { useEffect, useRef } from "react";
+import Chart from "chart.js/auto";
 
 // untuk memasukkan data pada range===!!
 const max = 2;
@@ -7,6 +10,157 @@ const percent1 = (value / max) * 100;
 const max2 = 3;
 const value2 = 2;
 const percent3 = (value2 / max2) * 100;
+
+// const SuccesfulPass=2
+// const UnsuccelfulPass=  10
+// const HasilPass=Math.floor((SuccesfulPass/UnsuccelfulPass)*100);
+
+// const SuccesfulFinal=4
+// const UnsuccelfulFinal=7
+// const HasilFinal= Math.floor((SuccesfulFinal/UnsuccelfulFinal)*100);
+
+
+const succesfull_passes=2
+const unsuccesfull_passes=  10
+const Hasil_Passes=Math.floor((succesfull_passes/unsuccesfull_passes)*100);
+
+const unsuccelfull_final_thirdpasses=4
+const succesfull_final_third_passes=7
+const Hasil_Third= Math.floor((unsuccelfull_final_thirdpasses/succesfull_final_third_passes)*100);
+
+const hasil_pass=(unsuccesfull_passes+unsuccesfull_passes+succesfull_final_third_passes+unsuccelfull_final_thirdpasses);
+
+const inside_the_box=2
+const outside_the_box=  10
+const Hasil_box=Math.floor((inside_the_box/outside_the_box)*100);
+
+const save_caught=4
+const save_parried=7
+const Hasil_save= Math.floor((save_caught/save_parried)*100);
+const hasil_saves=(inside_the_box+outside_the_box+save_caught+save_parried)
+
+const Chartthirdpasses = () => {
+  const chartRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    if (chartRef.current) {
+      const ctx = chartRef.current.getContext("2d");
+      if (ctx) {
+        new Chart(ctx, {
+          type: "doughnut",
+          data: {
+            datasets: [
+              {
+                data: [succesfull_passes,unsuccesfull_passes],
+                backgroundColor: ["#EFE616", "#137403"],
+                hoverBackgroundColor: ["#EFE616", "#137403"],
+                borderWidth: 10,
+              },
+            ],
+          },
+          options: {
+            spacing: 1,
+          },
+        });
+      }
+    }
+  }, []);
+
+  return <canvas ref={chartRef} />;
+};
+
+const ChartPasses = () => {
+  const chartRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    if (chartRef.current) {
+      const ctx = chartRef.current.getContext("2d");
+      if (ctx) {
+        new Chart(ctx, {
+          type: "doughnut",
+          data: {
+            datasets: [
+              {
+                data: [unsuccelfull_final_thirdpasses,succesfull_final_third_passes ],
+                backgroundColor: ["#D00D00", "#2846AF"],
+                hoverBackgroundColor: ["#D00D00", "#2846AF"],
+                borderWidth: 10,
+              },
+            ],
+          },
+          options: {
+            spacing: 1,
+          },
+        });
+      }
+    }
+  }, []);
+
+  return <canvas ref={chartRef} />;
+};
+
+
+const Chartbox = () => {
+  const chartRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    if (chartRef.current) {
+      const ctx = chartRef.current.getContext("2d");
+      if (ctx) {
+        new Chart(ctx, {
+          type: "doughnut",
+          data: {
+            datasets: [
+              {
+                data: [inside_the_box, outside_the_box],
+                backgroundColor: ["#EFE616", "#137403"],
+                hoverBackgroundColor: ["#EFE616", "#137403"],
+                borderWidth: 10,
+              },
+            ],
+          },
+          options: {
+            spacing: 1,
+          },
+        });
+      }
+    }
+  }, []);
+
+  return <canvas ref={chartRef} />;
+};
+
+const Chartsave = () => {
+  const chartRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    if (chartRef.current) {
+      const ctx = chartRef.current.getContext("2d");
+      if (ctx) {
+        new Chart(ctx, {
+          type: "doughnut",
+          data: {
+            datasets: [
+              {
+                data: [save_caught,save_parried],
+                backgroundColor: ["#D00D00", "#2846AF"],
+                hoverBackgroundColor: ["#D00D00", "#2846AF"],
+                borderWidth: 10,
+              },
+            ],
+          },
+          options: {
+            spacing: 1,
+          },
+        });
+      }
+    }
+  }, []);
+
+  return <canvas ref={chartRef} />;
+};
+
+
 
 function PlayerData() {
   return (
@@ -89,14 +243,14 @@ function PlayerData() {
                       <div className="inset-0 bg-red-500 h-2 w-2 rounded-full"></div>
                       <h1 className="font-semibold">Succesful pases</h1>
                     </div>
-                    <p className="font-bold text-base">25</p>
+                    <p className="font-bold text-base">{succesfull_passes}</p>
                   </div>
                   <div className="flex justify-between mb-4">
                     <div className="relative  flex gap-2 items-center ">
                       <div className="inset-0 bg-blue-500 h-2 w-2 rounded-full"></div>
                       <h1 className="font-semibold">Unsuccesful pases</h1>
                     </div>
-                    <p className="font-bold text-base">25</p>
+                    <p className="font-bold text-base">{unsuccesfull_passes}</p>
                   </div>
                   <div className="flex justify-between mb-4">
                     <div className="relative  flex gap-2 items-center ">
@@ -105,7 +259,7 @@ function PlayerData() {
                     </div>
 
                     <p className="font-bold text-base">
-                      25<span>%</span>
+                      {unsuccesfull_passes}<span>%</span>
                     </p>
                   </div>
                   <div className="flex  justify-between mb-4">
@@ -121,27 +275,19 @@ function PlayerData() {
                 </div>
                 <div className="flex justify-center flex-col w-full items-center">
                   <div className="flex  gap-8">
-                    <div className="relative w-20  h-20 ">
-                      <div className="absolute inset-0 bg-gray-100 rounded-full"></div>
-                      <div className="absolute inset-0 bg-sky-500  rounded-full border-3"></div>
-                      <div className="absolute inset-0 flex items-center justify-center text-white font-bold rounded-full">
-                        <span className="text-xl text-black-main z-20 ">50%</span>
-                      </div>
-                      <div className="absolute inset-1.5 bg-white rounded-full"></div>
-                      <div className="absolute inset-10 bg-transparent rounded-full"></div>
-                    </div>
-                    <div className="relative w-20  h-20 ">
-                      <div className="absolute inset-0 bg-gray-100 rounded-full"></div>
-                      <div className="absolute inset-0 bg-sky-500  rounded-full border-3"></div>
-                      <div className="absolute inset-0 flex items-center justify-center text-white font-bold rounded-full">
-                        <span className="text-xl text-black-main z-20 ">50%</span>
-                      </div>
-                      <div className="absolute inset-1.5 bg-white rounded-full"></div>
-                      <div className="absolute inset-10 bg-transparent rounded-full"></div>
-                    </div>
+                  <div className="flex justify-center items-center ">
+                  <h2 className="z-0 absolute mt-3 font-semibold">{Hasil_Passes} <span>%</span></h2>
+                  <div className=" w-32 h-32 z-10"><ChartPasses /></div>
+                </div>
+                <div className="flex justify-center items-center ">
+                  <h2 className="z-0 absolute mt-3 font-semibold">{Hasil_Third}<span>%</span></h2>
+                  <div className=" w-32 h-32 z-10">  <Chartthirdpasses /></div>
+                </div>
+                   
+
                   </div>
                   <div className="flex flex-col justify-center items-center">
-                    <h1 className="font-bold text-xl text-[#D00D00] ">344</h1>
+                    <h1 className="font-bold text-xl text-[#D00D00] ">{hasil_pass}</h1>
                     <p className="font-semibold">Total Passes</p>
                   </div>
                 </div>
@@ -160,14 +306,14 @@ function PlayerData() {
                     <div className="inset-0 bg-red-500 h-2 w-2 rounded-full"></div>
                     <h1 className="font-semibold">Inside the box</h1>
                   </div>
-                  <p className="font-bold text-base">25</p>
+                  <p className="font-bold text-base">{inside_the_box}</p>
                 </div>
                 <div className="flex justify-between mb-4">
                   <div className="relative  flex gap-2 items-center ">
                     <div className="inset-0 bg-blue-500 h-2 w-2 rounded-full"></div>
                     <h1 className="font-semibold">Outside the box</h1>
                   </div>
-                  <p className="font-bold text-base">25</p>
+                  <p className="font-bold text-base">{outside_the_box}</p>
                 </div>
                 <div className="flex justify-between mb-4">
                   <div className="relative  flex gap-2 items-center ">
@@ -176,7 +322,7 @@ function PlayerData() {
                   </div>
 
                   <p className="font-bold text-base">
-                    25<span>%</span>
+                    {save_caught}
                   </p>
                 </div>
                 <div className="flex justify-between mb-4">
@@ -186,35 +332,25 @@ function PlayerData() {
                   </div>
 
                   <p className="font-bold text-base">
-                    25<span>%</span>
+                    {save_parried}
                   </p>
                 </div>
               </div>
 
               <div className="flex flex-col items-center lg:mt-12 sm:mt-12 md:mt-0  md:justify-center  w-full">
                 <div className="flex gap-8 ">
-                  <div className="relative w-20  h-20 ">
-                    <div className="absolute inset-0 bg-gray-100 rounded-full"></div>
-                    <div className="absolute inset-0 bg-sky-500  rounded-full border-3"></div>
-                    <div className="absolute inset-0 flex items-center justify-center text-white font-bold rounded-full">
-                      <span className="text-xl text-black-main z-20 ">50%</span>
-                    </div>
-                    <div className="absolute inset-1.5 bg-white rounded-full"></div>
-                    <div className="absolute inset-10 bg-transparent rounded-full"></div>
-                  </div>
-                  <div className="relative w-20  h-20 ">
-                    <div className="absolute inset-0 bg-gray-100 rounded-full"></div>
-                    <div className="absolute inset-0 bg-sky-500  rounded-full border-3"></div>
-                    <div className="absolute inset-0 flex items-center justify-center text-white font-bold rounded-full">
-                      <span className="text-xl text-black-main z-20 ">50%</span>
-                    </div>
-                    <div className="absolute inset-1.5 bg-white rounded-full"></div>
-                    <div className="absolute inset-10 bg-transparent rounded-full"></div>
-                  </div>
+                <div className="flex justify-center items-center ">
+                  <h2 className="z-0 absolute mt-3 font-semibold">{Hasil_box} <span>%</span></h2>
+                  <div className=" w-32 h-32 z-10"><Chartbox/></div>
+                </div>
+                <div className="flex justify-center items-center ">
+                  <h2 className="z-0 absolute mt-3 font-semibold">{Hasil_save}<span>%</span></h2>
+                  <div className=" w-32 h-32 z-10">  <Chartsave /></div>
+                </div>
                 </div>
                 <div className="flex flex-col justify-center items-center">
-                  <h1 className="font-bold text-xl text-[#D00D00] ">344</h1>
-                  <p className="font-semibold">Total Passes</p>
+                  <h1 className="font-bold text-xl text-[#D00D00] ">{hasil_saves}</h1>
+                  <p className="font-semibold">Total Saves</p>
                 </div>
               </div>
             </div>
