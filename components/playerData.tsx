@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import react from "react";
 import { useEffect, useRef } from "react";
 import Chart from "chart.js/auto";
@@ -19,25 +19,24 @@ const percent3 = (value2 / max2) * 100;
 // const UnsuccelfulFinal=7
 // const HasilFinal= Math.floor((SuccesfulFinal/UnsuccelfulFinal)*100);
 
+const succesfull_passes = 2;
+const unsuccesfull_passes = 10;
+const Hasil_Passes = Math.floor((succesfull_passes / unsuccesfull_passes) * 100);
 
-const succesfull_passes=2
-const unsuccesfull_passes=  10
-const Hasil_Passes=Math.floor((succesfull_passes/unsuccesfull_passes)*100);
+const unsuccelfull_final_thirdpasses = 4;
+const succesfull_final_third_passes = 7;
+const Hasil_Third = Math.floor((unsuccelfull_final_thirdpasses / succesfull_final_third_passes) * 100);
 
-const unsuccelfull_final_thirdpasses=4
-const succesfull_final_third_passes=7
-const Hasil_Third= Math.floor((unsuccelfull_final_thirdpasses/succesfull_final_third_passes)*100);
+const hasil_pass = unsuccesfull_passes + unsuccesfull_passes + succesfull_final_third_passes + unsuccelfull_final_thirdpasses;
 
-const hasil_pass=(unsuccesfull_passes+unsuccesfull_passes+succesfull_final_third_passes+unsuccelfull_final_thirdpasses);
+const inside_the_box = 2;
+const outside_the_box = 10;
+const Hasil_box = Math.floor((inside_the_box / outside_the_box) * 100);
 
-const inside_the_box=2
-const outside_the_box=  10
-const Hasil_box=Math.floor((inside_the_box/outside_the_box)*100);
-
-const save_caught=4
-const save_parried=7
-const Hasil_save= Math.floor((save_caught/save_parried)*100);
-const hasil_saves=(inside_the_box+outside_the_box+save_caught+save_parried)
+const save_caught = 4;
+const save_parried = 7;
+const Hasil_save = Math.floor((save_caught / save_parried) * 100);
+const hasil_saves = inside_the_box + outside_the_box + save_caught + save_parried;
 
 const Chartthirdpasses = () => {
   const chartRef = useRef<HTMLCanvasElement>(null);
@@ -51,7 +50,7 @@ const Chartthirdpasses = () => {
           data: {
             datasets: [
               {
-                data: [succesfull_passes,unsuccesfull_passes],
+                data: [succesfull_passes, unsuccesfull_passes],
                 backgroundColor: ["#EFE616", "#137403"],
                 hoverBackgroundColor: ["#EFE616", "#137403"],
                 borderWidth: 10,
@@ -81,7 +80,7 @@ const ChartPasses = () => {
           data: {
             datasets: [
               {
-                data: [unsuccelfull_final_thirdpasses,succesfull_final_third_passes ],
+                data: [unsuccelfull_final_thirdpasses, succesfull_final_third_passes],
                 backgroundColor: ["#D00D00", "#2846AF"],
                 hoverBackgroundColor: ["#D00D00", "#2846AF"],
                 borderWidth: 10,
@@ -98,7 +97,6 @@ const ChartPasses = () => {
 
   return <canvas ref={chartRef} />;
 };
-
 
 const Chartbox = () => {
   const chartRef = useRef<HTMLCanvasElement>(null);
@@ -142,7 +140,7 @@ const Chartsave = () => {
           data: {
             datasets: [
               {
-                data: [save_caught,save_parried],
+                data: [save_caught, save_parried],
                 backgroundColor: ["#D00D00", "#2846AF"],
                 hoverBackgroundColor: ["#D00D00", "#2846AF"],
                 borderWidth: 10,
@@ -159,8 +157,6 @@ const Chartsave = () => {
 
   return <canvas ref={chartRef} />;
 };
-
-
 
 function PlayerData() {
   return (
@@ -259,7 +255,8 @@ function PlayerData() {
                     </div>
 
                     <p className="font-bold text-base">
-                      {unsuccesfull_passes}<span>%</span>
+                      {unsuccesfull_passes}
+                      <span>%</span>
                     </p>
                   </div>
                   <div className="flex  justify-between mb-4">
@@ -275,16 +272,24 @@ function PlayerData() {
                 </div>
                 <div className="flex justify-center flex-col w-full items-center">
                   <div className="flex  gap-8">
-                  <div className="flex justify-center items-center ">
-                  <h2 className="z-0 absolute mt-3 font-semibold">{Hasil_Passes} <span>%</span></h2>
-                  <div className=" w-32 h-32 z-10"><ChartPasses /></div>
-                </div>
-                <div className="flex justify-center items-center ">
-                  <h2 className="z-0 absolute mt-3 font-semibold">{Hasil_Third}<span>%</span></h2>
-                  <div className=" w-32 h-32 z-10">  <Chartthirdpasses /></div>
-                </div>
-                   
-
+                    <div className="flex justify-center items-center ">
+                      <h2 className="z-0 absolute mt-3 font-semibold">
+                        {Hasil_Passes} <span>%</span>
+                      </h2>
+                      <div className=" w-32 h-32 z-10">
+                        <ChartPasses />
+                      </div>
+                    </div>
+                    <div className="flex justify-center items-center ">
+                      <h2 className="z-0 absolute mt-3 font-semibold">
+                        {Hasil_Third}
+                        <span>%</span>
+                      </h2>
+                      <div className=" w-32 h-32 z-10">
+                        {" "}
+                        <Chartthirdpasses />
+                      </div>
+                    </div>
                   </div>
                   <div className="flex flex-col justify-center items-center">
                     <h1 className="font-bold text-xl text-[#D00D00] ">{hasil_pass}</h1>
@@ -321,9 +326,7 @@ function PlayerData() {
                     <h1 className="font-semibold">Save cought</h1>
                   </div>
 
-                  <p className="font-bold text-base">
-                    {save_caught}
-                  </p>
+                  <p className="font-bold text-base">{save_caught}</p>
                 </div>
                 <div className="flex justify-between mb-4">
                   <div className="relative  flex gap-2 items-center ">
@@ -331,22 +334,30 @@ function PlayerData() {
                     <h1 className="font-semibold">Save paried</h1>
                   </div>
 
-                  <p className="font-bold text-base">
-                    {save_parried}
-                  </p>
+                  <p className="font-bold text-base">{save_parried}</p>
                 </div>
               </div>
 
               <div className="flex flex-col items-center lg:mt-12 sm:mt-12 md:mt-0  md:justify-center  w-full">
                 <div className="flex gap-8 ">
-                <div className="flex justify-center items-center ">
-                  <h2 className="z-0 absolute mt-3 font-semibold">{Hasil_box} <span>%</span></h2>
-                  <div className=" w-32 h-32 z-10"><Chartbox/></div>
-                </div>
-                <div className="flex justify-center items-center ">
-                  <h2 className="z-0 absolute mt-3 font-semibold">{Hasil_save}<span>%</span></h2>
-                  <div className=" w-32 h-32 z-10">  <Chartsave /></div>
-                </div>
+                  <div className="flex justify-center items-center ">
+                    <h2 className="z-0 absolute mt-3 font-semibold">
+                      {Hasil_box} <span>%</span>
+                    </h2>
+                    <div className=" w-32 h-32 z-10">
+                      <Chartbox />
+                    </div>
+                  </div>
+                  <div className="flex justify-center items-center ">
+                    <h2 className="z-0 absolute mt-3 font-semibold">
+                      {Hasil_save}
+                      <span>%</span>
+                    </h2>
+                    <div className=" w-32 h-32 z-10">
+                      {" "}
+                      <Chartsave />
+                    </div>
+                  </div>
                 </div>
                 <div className="flex flex-col justify-center items-center">
                   <h1 className="font-bold text-xl text-[#D00D00] ">{hasil_saves}</h1>
