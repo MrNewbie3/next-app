@@ -1,7 +1,7 @@
 "use client";
 import react from "react";
 import { useEffect, useRef } from "react";
-import Chart from "chart.js/auto";
+import { Chart } from "chart.js";
 
 // untuk memasukkan data pada range===!!
 const max = 2;
@@ -10,14 +10,6 @@ const percent1 = (value / max) * 100;
 const max2 = 3;
 const value2 = 2;
 const percent3 = (value2 / max2) * 100;
-
-// const SuccesfulPass=2
-// const UnsuccelfulPass=  10
-// const HasilPass=Math.floor((SuccesfulPass/UnsuccelfulPass)*100);
-
-// const SuccesfulFinal=4
-// const UnsuccelfulFinal=7
-// const HasilFinal= Math.floor((SuccesfulFinal/UnsuccelfulFinal)*100);
 
 const succesfull_passes = 2;
 const unsuccesfull_passes = 10;
