@@ -9,10 +9,7 @@ function CardIndividual() {
           <h1>TAC</h1>
           <h1>PAS</h1>
         </div>
-
         <Stacked />
-
-      
         <h1>CON</h1>
       </div>
       <h1 className=" border-y-2 py-1 uppercase border-gray-300 flex justify-center  font-semibold mt-4">
