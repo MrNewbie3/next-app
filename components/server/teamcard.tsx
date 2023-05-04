@@ -26,8 +26,6 @@ async function getData(params: String) {
 
 async function TeamCard({ params: query }: PageProps) {
   let data = await getData(query.team);
-  console.log(data);
-
   return (
     <>
       {data.success ? "" : (data = [])}

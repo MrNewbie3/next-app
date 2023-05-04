@@ -52,7 +52,14 @@ function AddMatch({ params: query }: PageProps) {
               <ListPlayer params={{ category: query.category, team: query.team, detail: "new_match" }} />
             </Tab.Panel>
             <Tab.Panel>
-              <PlayerList />
+              {/* @ts-ignore */}
+              <PlayerList
+                params={{
+                  category: query.category,
+                  team: query.team,
+                  detail: "new_match",
+                }}
+              />
             </Tab.Panel>
           </Tab.Panels>
         </Tab.Group>
