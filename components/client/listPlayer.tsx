@@ -2,9 +2,9 @@ import Link from "next/link";
 import React from "react";
 type PageProps = {
   params: {
-    category: string;
-    team: string;
-    detail: string;
+    category: String;
+    team: String;
+    detail: String;
   };
 };
 
@@ -29,10 +29,7 @@ async function ListPlayer({ params: query }: PageProps) {
 
   return (
     <div>
-      {
-        // @ts-ignore
-        data.success ? "" : (data = [])
-      }
+      {data.success ? "" : (data = [])}
       <div className="bg-white w-full  rounded-xl py-10">
         <div className="mb-8">
           <select name="" id="" className="bg-transparent  focus:outline-none ">
@@ -65,7 +62,6 @@ async function ListPlayer({ params: query }: PageProps) {
           })}
         </div>
       </div>
-      <div />
     </div>
   );
 }

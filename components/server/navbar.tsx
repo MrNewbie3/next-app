@@ -3,21 +3,6 @@ import Link from "next/link";
 import React from "react";
 import { AiFillCaretDown } from "react-icons/ai";
 
-// const NavbarWrapper = (WrappedContent: React.FC) => {
-//   function Navbar() {
-//     return (
-//       <nav className="flex flex-row bg-light-grey">
-//         <WrappedContent />
-//       </nav>
-//     );
-//   }
-//   return Navbar;
-// };
-
-// export default NavbarWrapper;
-
-//POP UP
-
 function Navbar() {
   return (
     <>

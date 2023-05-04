@@ -8,8 +8,9 @@ type PageProps = {
 export default function TeamLayouts(children: PageProps) {
   return (
     <div className="w-full px-8 flex-col flex gap-y-6">
-      <TeamCard />
-      {/* @ts-ignore */}
+      {/*@ts-ignore  */}
+      <TeamCard params={children.params} />
+      {/*@ts-ignore  */}
       <TeamDetails params={children.params} />
       {children.children}
     </div>

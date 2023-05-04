@@ -9,8 +9,8 @@ function classNames(...classes: any) {
 const arr = ["player", "last match", "season stats", "history", "periodisasi"];
 type PageProps = {
   params: {
-    team: any;
-    category: any;
+    team: String;
+    category: String;
   };
 };
 function TeamDetails({ params: query }: PageProps) {

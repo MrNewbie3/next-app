@@ -12,8 +12,9 @@ function classNames(...classes: any) {
 type PageProps = {
   params: {
     category: string;
-    team: string; query: string 
-};
+    team: string;
+    query: string;
+  };
 };
 
 function AddMatch({ params: query }: PageProps) {
@@ -47,6 +48,7 @@ function AddMatch({ params: query }: PageProps) {
               <GeneralMatch />
             </Tab.Panel>
             <Tab.Panel>
+              {/* @ts-ignore */}
               <ListPlayer params={{ category: query.category, team: query.team, detail: "new_match" }} />
             </Tab.Panel>
             <Tab.Panel>

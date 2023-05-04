@@ -1,6 +1,7 @@
 "use client";
 import { redirect, useRouter } from "next/navigation";
 import React, { Suspense, useState } from "react";
+import { blob } from "stream/consumers";
 // to: @lakyulakyu
 // remind me to repair file input form @MrNewbie3
 type PageProps = {
@@ -28,6 +29,7 @@ function AddPlayer({ params: query }: PageProps) {
     const dataForm = new FormData();
     dataForm.append("fullname", data.fullname);
     dataForm.append("nickname", data.nickname);
+    // @ts-ignore
     dataForm.append("photo_player", data.photo_player);
     dataForm.append("number_of_player", data.number_of_player);
     dataForm.append("gender", data.gender);
@@ -37,6 +39,7 @@ function AddPlayer({ params: query }: PageProps) {
     dataForm.append("weight", data.weight);
     dataForm.append("username", data.username);
     dataForm.append("password", data.password);
+    // @ts-ignore
     dataForm.append("clubId", data.clubId);
     alert("oke");
 
@@ -45,8 +48,7 @@ function AddPlayer({ params: query }: PageProps) {
       body: dataForm,
 
       headers: {
-        Authentication:
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImlhdCI6MTY4MjkwNDM5MCwiZXhwIjoxNjgyOTE1MTkwfQ.OE-PDGMS6u4km8ZDyvtPmyNv2jef2oYdkaDpbFrIVzY",
+        Authentication: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImlhdCI6MTY4MjkwNDM5MCwiZXhwIjoxNjgyOTE1MTkwfQ.OE-PDGMS6u4km8ZDyvtPmyNv2jef2oYdkaDpbFrIVzY",
       },
     });
     const res = await post.json();
@@ -90,8 +92,7 @@ function AddPlayer({ params: query }: PageProps) {
         <div>
           <h1 className="opensans font-bold text-xl">Tambah Player </h1>
           <h4 className="font-semibold">
-            Lengkapi data di bawah,jika ada ({" "}
-            <span className="text-[#D00D00]">* </span>) maka wajib diisi
+            Lengkapi data di bawah,jika ada ( <span className="text-[#D00D00]">* </span>) maka wajib diisi
           </h4>
         </div>
         <form
@@ -104,10 +105,7 @@ function AddPlayer({ params: query }: PageProps) {
           <div className="wrapper flex flex-row gap-x-5">
             <div className="w-full">
               <div className="  flex flex-col justify-start mt-4">
-                <label
-                  htmlFor="label"
-                  className=" uppercase  opensans font-bold text-sm "
-                >
+                <label htmlFor="label" className=" uppercase  opensans font-bold text-sm ">
                   Nama lengkap <span className="text-[#D00D00]">*</span>
                 </label>
                 <input
@@ -123,10 +121,7 @@ function AddPlayer({ params: query }: PageProps) {
               </div>
 
               <div className="flex flex-col justify-start mt-4 text-sm">
-                <label
-                  htmlFor="label"
-                  className=" uppercase  opensans font-bold "
-                >
+                <label htmlFor="label" className=" uppercase  opensans font-bold ">
                   Nama tampilan <span className="text-[#D00D00]">*</span>
                 </label>
                 <input
@@ -141,10 +136,7 @@ function AddPlayer({ params: query }: PageProps) {
                 />
               </div>
               <div className="flex flex-col justify-start mt-4 text-sm">
-                <label
-                  htmlFor="label"
-                  className=" uppercase opensans font-bold "
-                >
+                <label htmlFor="label" className=" uppercase opensans font-bold ">
                   nomor punggung
                 </label>
                 <input
@@ -159,10 +151,7 @@ function AddPlayer({ params: query }: PageProps) {
                 />
               </div>
               <div className="flex flex-col justify-start mt-4 text-sm">
-                <label
-                  htmlFor="label"
-                  className="uppercase opensans font-bold "
-                >
+                <label htmlFor="label" className="uppercase opensans font-bold ">
                   jenis kelamin <span className="text-[#D00D00]">*</span>
                 </label>
                 <select
@@ -181,10 +170,7 @@ function AddPlayer({ params: query }: PageProps) {
                 </select>
               </div>
               <div className="flex flex-col justify-start mt-4 text-sm">
-                <label
-                  htmlFor="label"
-                  className="uppercase opensans font-bold "
-                >
+                <label htmlFor="label" className="uppercase opensans font-bold ">
                   tempat lahir <span className="text-[#D00D00]">*</span>
                 </label>
                 <input
@@ -201,10 +187,7 @@ function AddPlayer({ params: query }: PageProps) {
             </div>
             <div className="w-full">
               <div className="flex flex-col justify-start mt-4 text-sm">
-                <label
-                  htmlFor="label"
-                  className="uppercase opensans font-bold "
-                >
+                <label htmlFor="label" className="uppercase opensans font-bold ">
                   Tanggal lahir <span className="text-[#D00D00]">*</span>
                 </label>
                 <input
@@ -218,12 +201,8 @@ function AddPlayer({ params: query }: PageProps) {
                 />
               </div>
               <div className="flex flex-col justify-start mt-4 text-sm">
-                <label
-                  htmlFor="label"
-                  className="uppercase opensans font-bold "
-                >
-                  tinggi badan <span className="lowercase text-xs">(cm)</span>{" "}
-                  <span className="text-[#D00D00]">*</span>
+                <label htmlFor="label" className="uppercase opensans font-bold ">
+                  tinggi badan <span className="lowercase text-xs">(cm)</span> <span className="text-[#D00D00]">*</span>
                 </label>
                 <input
                   type="number"
@@ -237,10 +216,7 @@ function AddPlayer({ params: query }: PageProps) {
                 />
               </div>
               <div className="flex flex-col justify-start mt-4 text-sm">
-                <label
-                  htmlFor="label"
-                  className="uppercase opensans font-bold "
-                >
+                <label htmlFor="label" className="uppercase opensans font-bold ">
                   berat badan <span className="lowercase text-xs">(Kg)</span>
                   <span className="text-[#D00D00]">*</span>
                 </label>
@@ -256,10 +232,7 @@ function AddPlayer({ params: query }: PageProps) {
                 />
               </div>
               <div className="flex flex-col justify-start mt-4 text-sm  ">
-                <label
-                  htmlFor="label"
-                  className="uppercase opensans font-bold "
-                >
+                <label htmlFor="label" className="uppercase opensans font-bold ">
                   foto pemain <span className="text-[#D00D00]">*</span>
                 </label>
                 <input
@@ -274,10 +247,7 @@ function AddPlayer({ params: query }: PageProps) {
               </div>
             </div>
           </div>
-          <button
-            type="submit"
-            className="bg-[#D00D00] h-10 rounded-lg mt-10 text-white opensans w-full"
-          >
+          <button type="submit" className="bg-[#D00D00] h-10 rounded-lg mt-10 text-white opensans w-full">
             Simpan
           </button>
         </form>
