@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+
 type PageProps = {
   params: {
     category: string;
@@ -9,19 +10,16 @@ type PageProps = {
 };
 
 async function getData() {
-  const res = await fetch(
-    "http://localhost:4002/api/v1/player/f3641710-14df-4a75-84a1-0169a765e94b",
-    {
-      cache: "no-store",
-      next: {
-        revalidate: 10,
-      },
-      headers: {
-        Authentication:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY4Mjg3MDMzNiwiZXhwIjoxNjgyODgxMTM2fQ.7Ip3UXTm966u3F5IKZVW8hnsF4I1swm3Dx1AhN_RN4M",
-      },
-    }
-  );
+  const res = await fetch("http://localhost:4002/api/v1/player/", {
+    cache: "no-store",
+    next: {
+      revalidate: 10,
+    },
+    headers: {
+      Authentication:
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY4Mjg3MDMzNiwiZXhwIjoxNjgyODgxMTM2fQ.7Ip3UXTm966u3F5IKZVW8hnsF4I1swm3Dx1AhN_RN4M",
+    },
+  });
   if (!res.ok) {
     throw new Error("Failed to fetch data = " + res.statusText);
   }

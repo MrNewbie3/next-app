@@ -5,13 +5,37 @@ import React, { useState } from "react";
 export default function GeneralMatch() {
 
   const [data, setData] = useState({
-    name: "",
-    liga: "",
-    date: "",
-    position: "",
-    lost_ball: "",
-    corner: "",
+    opponent_name: "",
+    league_name: "",
+    ball_position: "",
+    lost_ball_position: "",
+    corner_kick_position: "",
+    match_date: "",
+    clubId:1,
+    detailMatch:[0]
   });
+
+  async function postData(e: React.FormEvent) {
+    e.preventDefault();
+    const post = await fetch("http://localhost:4002/api/v1/match/", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+        Authentication:
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY4Mjg3NTc5OCwiZXhwIjoxNjgyODg2NTk4fQ.AzHS-AMvEoHHgxaQ0FyEIODRHjNSeMTCOyrcPE95cd",
+      },
+    });
+    alert("tes");
+    const res = await post.json();
+    console.log(res);
+
+    window.location.reload();
+    if (!res.ok) console.log(res);
+  }
+
+
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setData((prevState) => ({
@@ -20,7 +44,11 @@ export default function GeneralMatch() {
     }));
   };
   return (
-    <form>
+    <form
+    onSubmit={(e) => {
+      postData(e);
+    }}
+    >
       <div className=" input_file_div mt-10 uper flex gap-x-5 justify-between  max-lg:flex-col ">
         <div className="w-full">
           <div className="  flex flex-col justify-start mt-4">
@@ -29,12 +57,12 @@ export default function GeneralMatch() {
             </label>
             <input
               type="text"
-              name="name"
+              name="opponent_name"
               placeholder="e.g Mancester United"
               onChange={(e) => {
                 handleChange(e);
               }}
-              value={data.name}
+              value={data.opponent_name}
               className=" bg-[#F2F3F7] h-10 border-none w-full   focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
             />
           </div>
@@ -45,12 +73,12 @@ export default function GeneralMatch() {
             </label>
             <input
               type="text"
-              name="liga"
+              name="league_name"
               placeholder="e.g Red Devil"
               onChange={(e) => {
                 handleChange(e);
               }}
-              value={data.liga}
+              value={data.league_name}
               className=" bg-[#F2F3F7] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
             />
           </div>
@@ -60,12 +88,12 @@ export default function GeneralMatch() {
             </label>
             <input
               type="date"
-              name="date"
+              name="match_date"
               placeholder="e.g MU "
               onChange={(e) => {
                 handleChange(e);
               }}
-              value={data.date}
+              value={data.match_date}
               className=" bg-[#F2F3F7] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
             />
           </div>
@@ -78,12 +106,12 @@ export default function GeneralMatch() {
             </label>
             <input
               type="number"
-              name="position"
+              name="ball_position"
               placeholder="e.g 180"
               onChange={(e) => {
                 handleChange(e);
               }}
-              value={data.position}
+              value={data.ball_position}
               className=" bg-[#F2F3F7] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
             />
           </div>
@@ -94,11 +122,11 @@ export default function GeneralMatch() {
             </label>
             <input
               type="number"
-              name="lost_ball"
+              name="lost_ball_position"
               onChange={(e) => {
                 handleChange(e);
               }}
-              value={data.lost_ball}
+              value={data.lost_ball_position}
               placeholder="e.g 58"
               className=" bg-[#F2F3F7] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
             />
@@ -110,12 +138,12 @@ export default function GeneralMatch() {
             </label>
             <input
               type="number"
-              name="corner"
+              name="corner_kick_position"
               onChange={(e) => {
                 handleChange(e);
               }}
               placeholder="e.g 58"
-              value={data.corner}
+              value={data.corner_kick_position}
               className=" bg-[#F2F3F7]  h-10 border-none w-full focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
             />
           </div>

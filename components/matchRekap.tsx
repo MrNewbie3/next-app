@@ -1,4 +1,3 @@
-
 import React from "react";
 import { IoMdArrowDropdown } from "react-icons/io";
 import Shooting from "./datatim/shooting";
@@ -8,7 +7,7 @@ import Defending from "./datatim/defending";
 
 function MatchRekap() {
   return (
-    <div className="container ">
+    <div className="container pb-20 ">
       <div className="flex justify-between w-full mb-6 items-center ">
         <div className="h-16 max-w-[650px] px-10 py-2 w-[650px] rounded-lg drop-shadow-md  bg-white">
           <div className="flex text-xs font-semibold  ">

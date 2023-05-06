@@ -27,8 +27,8 @@ export default function PlayerMatchDetail() {
     changes_created: "",
     throught_balls: "",
     assist: "",
-    matchId:1,
-    playerId:1,
+    matchId: 1,
+    playerId: 1,
   });
 
   async function postData(e: React.FormEvent) {
@@ -58,9 +58,11 @@ export default function PlayerMatchDetail() {
   };
 
   return (
-    <form onSubmit={(e)=>{
-      postData(e);
-    }}>
+    <form
+      onSubmit={(e) => {
+        postData(e);
+      }}
+    >
       <div className=" input_file_div mt-10   max-lg:flex-col ">
         <h1 className="font-bold text-lg">General</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 ">
@@ -74,10 +76,10 @@ export default function PlayerMatchDetail() {
             <input
               type="number"
               name="minute_played"
+              placeholder="e.g 180"
               onChange={(e) => {
                 handleChange(e);
               }}
-              placeholder="e.g 90"
               value={data.minute_played}
               className=" bg-[#F2F3F7] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
             />
@@ -103,7 +105,6 @@ export default function PlayerMatchDetail() {
           </div>
 
           <div className="  flex flex-col justify-start mt-4">
-            
             <label
               htmlFor="label"
               className=" uppercase  opensans font-bold text-sm "
@@ -540,6 +541,9 @@ export default function PlayerMatchDetail() {
           Simpan
         </button>
       </div>
+
+
+      
     </form>
   );
 }
