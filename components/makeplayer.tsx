@@ -27,7 +27,6 @@ async function getData(params: String) {
 
 async function MakePlayer({ params: query }: PageProps) {
   const data = await getData(query.team);
-  console.log(data);
 
   return (
     <>
