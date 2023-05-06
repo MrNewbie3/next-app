@@ -37,24 +37,32 @@ function PlayerPick({ params: player }: PageProps) {
     forward_passes: "",
     through_balls: "",
     assists: "",
+    matchId: 1,
+    playerId: parseInt(player.category),
   });
+
+  
+
 
   async function postData(e: React.FormEvent) {
     e.preventDefault();
-    const post = await fetch("http://localhost:4002/api/v1/p/", {
+        alert("oke");
+    const post = await fetch("http://localhost:4002/api/v1/match/d/", {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
         Authentication:
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY4Mjg3NTc5OCwiZXhwIjoxNjgyODg2NTk4fQ.AzHS-AMvEoHHgxaQ0FyEIODRHjNSeMTCOyrcPE95cd",
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsImlhdCI6MTY4MzM3NDk5MywiZXhwIjoxNjgzMzg1NzkzfQ.hqLAUaJbFsfLY_p0BivmTdFiBvFE8NQmVaOK__q5ilM",
       },
     });
+
     const res = await post.json();
     console.log(res);
 
-    window.location.reload();
+    // window.location.reload();
     if (!res.ok) console.log(res);
+
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -104,7 +112,11 @@ function PlayerPick({ params: player }: PageProps) {
             <h2 className="text-lg font-semibold  ">dimas setiawan surya</h2>
           </div>
         </div>
-        <form action="">
+        <form
+          onSubmit={(e) => {
+            postData(e);
+          }}
+        >
           <div className=" input_file_div mt-10   max-lg:flex-col ">
             <h1 className="font-bold text-lg">General</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 ">
@@ -119,6 +131,9 @@ function PlayerPick({ params: player }: PageProps) {
                   type="number"
                   name="minute_played"
                   placeholder="e.g 90"
+                  onChange={(e) => {
+                    handleChange(e);
+                  }}
                   value={data.minute_played}
                   className=" bg-[#F2F3F7] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
                 />
@@ -135,6 +150,9 @@ function PlayerPick({ params: player }: PageProps) {
                   type="number"
                   name="red_cards"
                   placeholder="e.g 90"
+                  onChange={(e) => {
+                    handleChange(e);
+                  }}
                   value={data.red_cards}
                   className=" bg-[#F2F3F7] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
                 />
@@ -151,6 +169,9 @@ function PlayerPick({ params: player }: PageProps) {
                   type="number"
                   name="fouls"
                   placeholder="e.g 90"
+                  onChange={(e) => {
+                    handleChange(e);
+                  }}
                   value={data.fouls}
                   className=" bg-[#F2F3F7] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
                 />
@@ -166,6 +187,9 @@ function PlayerPick({ params: player }: PageProps) {
                   type="number"
                   name="yellow_cards"
                   placeholder="e.g 90"
+                  onChange={(e) => {
+                    handleChange(e);
+                  }}
                   value={data.yellow_cards}
                   className=" bg-[#F2F3F7] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
                 />
@@ -185,6 +209,9 @@ function PlayerPick({ params: player }: PageProps) {
                   type="number"
                   name="total_saves"
                   placeholder="e.g 90"
+                  onChange={(e) => {
+                    handleChange(e);
+                  }}
                   value={data.total_saves}
                   className=" bg-[#F2F3F7] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
                 />
@@ -201,6 +228,9 @@ function PlayerPick({ params: player }: PageProps) {
                   type="number"
                   name="goal_conceded_saves"
                   placeholder="e.g 90"
+                  onChange={(e) => {
+                    handleChange(e);
+                  }}
                   value={data.goal_conceded_saves}
                   className=" bg-[#F2F3F7] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
                 />
@@ -217,6 +247,9 @@ function PlayerPick({ params: player }: PageProps) {
                   type="number"
                   name="punched_saves"
                   placeholder="e.g 90"
+                  onChange={(e) => {
+                    handleChange(e);
+                  }}
                   value={data.punched_saves}
                   className=" bg-[#F2F3F7] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
                 />
@@ -236,6 +269,9 @@ function PlayerPick({ params: player }: PageProps) {
                   type="number"
                   name="insider_saves"
                   placeholder="e.g 90"
+                  onChange={(e) => {
+                    handleChange(e);
+                  }}
                   value={data.insider_saves}
                   className=" bg-[#F2F3F7] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
                 />
@@ -252,6 +288,9 @@ function PlayerPick({ params: player }: PageProps) {
                   type="number"
                   name="caught_saves"
                   placeholder="e.g 90"
+                  onChange={(e) => {
+                    handleChange(e);
+                  }}
                   value={data.caught_saves}
                   className=" bg-[#F2F3F7] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
                 />
@@ -268,6 +307,9 @@ function PlayerPick({ params: player }: PageProps) {
                   type="number"
                   name="outsider_saves"
                   placeholder="e.g 90"
+                  onChange={(e) => {
+                    handleChange(e);
+                  }}
                   value={data.outsider_saves}
                   className=" bg-[#F2F3F7] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
                 />
@@ -282,8 +324,11 @@ function PlayerPick({ params: player }: PageProps) {
                 </label>
                 <input
                   type="number"
-                  name='parried_saves'
+                  name="parried_saves"
                   placeholder="e.g 90"
+                  onChange={(e) => {
+                    handleChange(e);
+                  }}
                   value={data.parried_saves}
                   className=" bg-[#F2F3F7] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
                 />
@@ -301,8 +346,11 @@ function PlayerPick({ params: player }: PageProps) {
                 </label>
                 <input
                   type="number"
-                  name="succes_passes"
+                  name="success_passes"
                   placeholder="e.g 90"
+                  onChange={(e) => {
+                    handleChange(e);
+                  }}
                   value={data.success_passes}
                   className=" bg-[#F2F3F7] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
                 />
@@ -320,6 +368,9 @@ function PlayerPick({ params: player }: PageProps) {
                   type="number"
                   name="success_final_third_passes"
                   placeholder="e.g 90"
+                  onChange={(e) => {
+                    handleChange(e);
+                  }}
                   value={data.success_final_third_passes}
                   className=" bg-[#F2F3F7] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
                 />
@@ -334,8 +385,11 @@ function PlayerPick({ params: player }: PageProps) {
                 </label>
                 <input
                   type="number"
-                  name='unsuccessful_passes'
+                  name="unsuccessful_passes"
                   placeholder="e.g 90"
+                  onChange={(e) => {
+                    handleChange(e);
+                  }}
                   value={data.unsuccessful_passes}
                   className=" bg-[#F2F3F7] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
                 />
@@ -353,6 +407,9 @@ function PlayerPick({ params: player }: PageProps) {
                   type="number"
                   name="unsuccessful_final_third_passes"
                   placeholder="e.g 90"
+                  onChange={(e) => {
+                    handleChange(e);
+                  }}
                   value={data.unsuccessful_final_third_passes}
                   className=" bg-[#F2F3F7] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
                 />
@@ -372,6 +429,9 @@ function PlayerPick({ params: player }: PageProps) {
                   type="number"
                   name="tackle_won"
                   placeholder="e.g 90"
+                  onChange={(e) => {
+                    handleChange(e);
+                  }}
                   value={data.tackle_won}
                   className=" bg-[#F2F3F7] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
                 />
@@ -388,6 +448,9 @@ function PlayerPick({ params: player }: PageProps) {
                   type="number"
                   name="fifty_won"
                   placeholder="e.g 90"
+                  onChange={(e) => {
+                    handleChange(e);
+                  }}
                   value={data.fifty_won}
                   className=" bg-[#F2F3F7] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
                 />
@@ -402,8 +465,11 @@ function PlayerPick({ params: player }: PageProps) {
                 </label>
                 <input
                   type="number"
-                  name=""
+                  name="duel_won"
                   placeholder="e.g 90"
+                  onChange={(e) => {
+                    handleChange(e);
+                  }}
                   value={data.duel_won}
                   className=" bg-[#F2F3F7] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
                 />
@@ -418,8 +484,11 @@ function PlayerPick({ params: player }: PageProps) {
                 </label>
                 <input
                   type="number"
-                  name=""
+                  name="interception_won"
                   placeholder="e.g 90"
+                  onChange={(e) => {
+                    handleChange(e);
+                  }}
                   value={data.interception_won}
                   className=" bg-[#F2F3F7] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
                 />
@@ -439,6 +508,9 @@ function PlayerPick({ params: player }: PageProps) {
                   type="number"
                   name="touches_in_opponent_box"
                   placeholder="e.g 90"
+                  onChange={(e) => {
+                    handleChange(e);
+                  }}
                   value={data.touches_in_opponent_box}
                   className=" bg-[#F2F3F7] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
                 />
@@ -455,6 +527,9 @@ function PlayerPick({ params: player }: PageProps) {
                   type="number"
                   name="forward_passes"
                   placeholder="e.g 90"
+                  onChange={(e) => {
+                    handleChange(e);
+                  }}
                   value={data.forward_passes}
                   className=" bg-[#F2F3F7] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
                 />
@@ -471,6 +546,9 @@ function PlayerPick({ params: player }: PageProps) {
                   type="number"
                   name="changes_created"
                   placeholder="e.g 90"
+                  onChange={(e) => {
+                    handleChange(e);
+                  }}
                   value={data.changes_created}
                   className=" bg-[#F2F3F7] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
                 />
@@ -485,8 +563,11 @@ function PlayerPick({ params: player }: PageProps) {
                 </label>
                 <input
                   type="number"
-                  name="througt_balls"
+                  name="through_balls"
                   placeholder="e.g 90"
+                  onChange={(e) => {
+                    handleChange(e);
+                  }}
                   value={data.through_balls}
                   className=" bg-[#F2F3F7] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
                 />
@@ -500,14 +581,17 @@ function PlayerPick({ params: player }: PageProps) {
                 </label>
                 <input
                   type="number"
-                  name="assist"
+                  name="assists"
                   placeholder="e.g 90"
+                  onChange={(e) => {
+                    handleChange(e);
+                  }}
                   value={data.assists}
                   className=" bg-[#F2F3F7] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
                 />
               </div>
             </div>
-          </div>  
+          </div>
           <button className="bg-[#D00D00] h-10 rounded-lg mt-10 text-white opensans w-full">
             Simpan
           </button>
