@@ -24,7 +24,7 @@ function AddTeam({ params }: Props) {
   });
   async function postData(e: React.FormEvent) {
     e.preventDefault();
-    const post = await fetch("http://localhost:4002/api/v1/p/", {
+    const post = await fetch("http://localhost:4002/api/v1/club", {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
