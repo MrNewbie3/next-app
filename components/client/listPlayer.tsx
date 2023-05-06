@@ -15,7 +15,7 @@ function ListPlayer({ params: query }: PageProps) {
   useEffect(() => {
     if (data === null) {
       axios
-        .get("player/f3641710-14df-4a75-84a1-0169a765e94b")
+        .get("player/" + query.team)
         .then((result: any) => {
           setData(result.data);
         })
@@ -24,12 +24,11 @@ function ListPlayer({ params: query }: PageProps) {
         });
     }
   });
-  console.log(data);
 
   return (
     <div>
       {data === null && <h1>Loading</h1>}
-      {!(data !== null && data.success) ? (
+      {!(data !== null && data.success && data.data.players.length !== 0) ? (
         ""
       ) : (
         <div className="bg-white w-full  rounded-xl py-10">
