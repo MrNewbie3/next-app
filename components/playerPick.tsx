@@ -95,7 +95,7 @@ function PlayerPick({ params: player }: PageProps) {
           </div>
 
           <h1 className="capitalize font-semibold flex mt-8 opensans text-xs text-gray-600">
-            <Link href={`/${player.category}/${player.team}/new_match/`}>Player Pick </Link>
+            <Link href={`/main/${player.category}/${player.team}/new_match/`}>Player Pick </Link>
             <span className="flex items-center">
               <GrFormNext />
             </span>
