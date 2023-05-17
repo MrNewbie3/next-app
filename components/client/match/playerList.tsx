@@ -23,6 +23,8 @@ function PlayerList({ params: query }: PageProps) {
       .post("/match", matchData)
       .then((result: Object) => {
         console.log(result);
+        localStorage.removeItem("data_player");
+        localStorage.removeItem("match");
       })
       .catch((err: Object) => {
         console.log(err);

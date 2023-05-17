@@ -34,11 +34,7 @@ function ListPlayer({ params: query }: PageProps) {
       ) : (
         <div className="bg-white w-full  rounded-xl py-10">
           <div className="mb-8">
-            <select
-              name=""
-              id=""
-              className="bg-transparent  focus:outline-none "
-            >
+            <select name="" id="" className="bg-transparent  focus:outline-none ">
               <option value="" selected disabled>
                 Search By Position
               </option>
@@ -53,24 +49,12 @@ function ListPlayer({ params: query }: PageProps) {
               return (
                 <Link key={value} href={query.detail === "player" ? `/main/${query.category}/${query.team}/player_detail/${value.uuid}` : `/main/${query.category}/${query.team}/new_match/${value.uuid}`}>
                   <div className="flex flex-col w-full capitalize">
-                    <div className="bg-[#F2F3F7] py-2 rounded-lg flex justify-between px-8 w-full items-center  ">
+                    <div className="bg-[#F2F3F7] py-2 rounded-lg flex gap-5 px-8 w-full items-center  ">
+                      <h1 className="text-3xl font-bold  text-[#D00D00]">{value.number_of_player}</h1>
                       <div className="gap-5 items-center h-12 w- flex">
-                        <div><Image
-                          src={value.photo_player}
-                          alt="My Image"
-                          width={50}
-                          height={50}
-                        /></div>
-                        
-                        
                         <div>
                           <p className="text-xs text-gray-400">golkiper</p>
-                          <h2 className="text-md font-semibold   ">
-                            {value.fullname}
-                          </h2>
-                          <h1 className="text-2xl font-bold  text-[#D00D00]">
-                          {value.number_of_player}
-                        </h1> 
+                          <h2 className="text-md font-semibold   ">{value.fullname}</h2>
                         </div>
                       </div>
                     </div>

@@ -33,10 +33,9 @@ async function MakePlayer({ params: query }: PageProps) {
       <div className="flex justify-between w-full items-center ">
         <div className="h-16 max-w-[650px] px-10 py-2 w-[650px] rounded-lg drop-shadow-md  bg-white">
           <div className="flex text-xs font-semibold  ">
-            <p>16 juni 2023 -</p>
-            <p>18 juni 2023</p>
+            <p>{data.data.club_established}</p>
           </div>
-          <h1 className="text-xl font-bold uppercase">{data.club_name}</h1>
+          <h1 className="text-xl font-bold uppercase">{data.data.club_name}</h1>
         </div>
         <Link href={`/main/${query.category}/${query.team}/new_player`}>
           <button className="hover:bg-[#D00D00] bg-white ring-1 capitalize font-semibold ring-[#D00D00] text-[#D00D00] px-8 rounded-lg h-9 hover:text-white active:bg-[#D00D00] active:text-white   "> Add player</button>
