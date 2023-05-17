@@ -79,7 +79,7 @@ function PlayerPick({ params: player }: PageProps) {
     <div className="px-8">
       {playerData.fullname !== null ? (
         <div className="bg-white w-full rounded-xl px-10 py-10 ">
-          <Link href={`/${player.category}/${player.team}/new_match/`}>
+          <Link href={`/main/${player.category}/${player.team}/new_match/`}>
             <button className="bg-[#137403] px-4 py-2 text-white mb-10 rounded-lg">Kembali</button>
           </Link>
           <div>
