@@ -36,7 +36,7 @@ async function MakePlayer({ params: query }: PageProps) {
             <p>16 juni 2023 -</p>
             <p>18 juni 2023</p>
           </div>
-          <h1 className="text-xl font-bold uppercase">{data.data.club_name}</h1>
+          <h1 className="text-xl font-bold uppercase">{data.club_name}</h1>
         </div>
         <Link href={`/main/${query.category}/${query.team}/new_player`}>
           <button className="hover:bg-[#D00D00] bg-white ring-1 capitalize font-semibold ring-[#D00D00] text-[#D00D00] px-8 rounded-lg h-9 hover:text-white active:bg-[#D00D00] active:text-white   "> Add player</button>

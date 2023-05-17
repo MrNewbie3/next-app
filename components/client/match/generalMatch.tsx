@@ -1,4 +1,4 @@
-"use client";
+ "use client";
 import React, { useState } from "react";
 
 type PageProps = {
@@ -16,8 +16,8 @@ export default function GeneralMatch({ params: detail }: PageProps) {
     lost_ball_position: "",
     corner_kick_position: "",
     match_date: "",
-    clubId: 1,
-    detailMatch: "",
+    clubId: "",
+    detailMatch: 0,
   });
 
   async function postData(e: React.FormEvent) {

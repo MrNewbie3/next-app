@@ -11,9 +11,33 @@ type PageProps = {
     query: string;
   };
 };
-function History({ params: query }: PageProps) {
+
+async function getData() {
+  const res = await fetch("http://localhost:4002/api/v1/match/", {
+    cache: "no-store",
+    next: {
+      revalidate: 10,
+    },
+    headers: {
+      Authentication:
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsImlhdCI6MTY4MzM3NDk5MywiZXhwIjoxNjgzMzg1NzkzfQ.hqLAUaJbFsfLY_p0BivmTdFiBvFE8NQmVaOK__q5ilM",
+    },
+  });
+  if (!res.ok) {
+    throw new Error("Failed to fetch data = " + res.statusText);
+  }
+  return res.json();
+}
+
+async function History({ params: query }: PageProps) {
+  let data = await getData();
+
   return (
     <div className=" mb-6 w-full">
+      {
+        // @ts-ignore
+        data.success ? "" : (data = [])
+      }
       <div className="flex justify-between w-full  items-center ">
         <div className="h-16 max-w-[650px] px-10 py-2 w-[650px] rounded-lg drop-shadow-md  bg-white">
           <div className="flex text-xs font-semibold  ">
@@ -30,7 +54,6 @@ function History({ params: query }: PageProps) {
 
       <div className="last_match  w-full bg-white rounded-lg mt-6 px-6 py-4">
         <h1 className="font-bold text-lg">Pertandingan Terakhir</h1>
-
         <table className="table-auto w-full capitalize   ">
           <thead>
             <tr className="">
