@@ -21,7 +21,7 @@ function TeamDetails({ params: query }: PageProps) {
       <Tab.List className=" flex text-gray-600 font-semibold justify-around w-fit h-12 px-8 gap-x-8 items-center bg-white drop-shadow-md rounded-lg ">
         {arr.map((data, index) => {
           return (
-            <Link key={index} href={`/${query.category}/${query.team}/${data}`}>
+            <Link key={index} href={`/main/${query.category}/${query.team}/${data}`}>
               <Tab key={index} className={({ selected }) => classNames(!decode.includes(arr[index]) ? "capitalize " : "bg-[#D00D00] text-white px-4 py-1 rounded-lg focus:outline-none capitalize ")}>
                 {data}
               </Tab>

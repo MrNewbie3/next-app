@@ -38,7 +38,7 @@ async function MakePlayer({ params: query }: PageProps) {
           </div>
           <h1 className="text-xl font-bold uppercase">{data.data.club_name}</h1>
         </div>
-        <Link href={`${query.category}/${query.team}/new_player`}>
+        <Link href={`/main/${query.category}/${query.team}/new_player`}>
           <button className="hover:bg-[#D00D00] bg-white ring-1 capitalize font-semibold ring-[#D00D00] text-[#D00D00] px-8 rounded-lg h-9 hover:text-white active:bg-[#D00D00] active:text-white   "> Add player</button>
         </Link>
       </div>

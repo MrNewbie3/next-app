@@ -29,7 +29,7 @@ export default async function Side_Comps() {
         {data.data.length > 0 ? <h1 className="font-bold ">Kategori</h1> : <></>}
         {data.data.map((value: any) => {
           return (
-            <Link href={`/${value.id}`} key={value.id}>
+            <Link href={`/main/${value.id}`} key={value.id}>
               <button className="text-grey flex px-7 gap-4 items-center w-[170px] font-semibold py-2 rounded-md ">
                 <div className="icon">
                   <MdSportsSoccer className="text-2xl" />

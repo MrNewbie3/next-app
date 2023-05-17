@@ -50,7 +50,7 @@ function History({ params: query }: PageProps) {
               <td className=" py-2">balai kota malang cup 2023</td>
               <td className=" py-2">2-1</td>
               <td className=" py-2">
-                <Link href={`/${query.category}/${query.team}/${query.detail}/league`}>
+                <Link href={`/main/${query.category}/${query.team}/${query.detail}/league`}>
                   <BsThreeDotsVertical />
                 </Link>
               </td>
@@ -62,7 +62,7 @@ function History({ params: query }: PageProps) {
               <td className=" py-2">La Liga</td>
               <td className=" py-2">3-2</td>
               <td className=" py-2">
-                <Link href={`/${query.category}/${query.team}/${query.detail}/league`}>
+                <Link href={`/main/${query.category}/${query.team}/${query.detail}/league`}>
                   <BsThreeDotsVertical />
                 </Link>
               </td>

@@ -45,7 +45,7 @@ function AddMatch({ params: query }: PageProps) {
           </Tab.List>
           <Tab.Panels>
             <Tab.Panel>
-              <GeneralMatch />
+              <GeneralMatch params={query} />
             </Tab.Panel>
             <Tab.Panel>
               {/* @ts-ignore */}

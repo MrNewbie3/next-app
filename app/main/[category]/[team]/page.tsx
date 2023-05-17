@@ -8,5 +8,5 @@ type PageProps = {
   };
 };
 export default function page({ params: query }: PageProps) {
-  return <div className="">{redirect(`/${query.category}/${query.team}/player`)}</div>;
+  return <div className="">{redirect(`/main/${query.category}/${query.team}/player`)}</div>;
 }

@@ -11,9 +11,9 @@ type PageProps = {
 };
 
 function ListPlayer({ params: query }: PageProps) {
-  let [data, setData] = useState(null);
+  let [data, setData] = useState({ success: null, data: { players: [] } });
   useEffect(() => {
-    if (data === null) {
+    if (data.success === null) {
       axios
         .get("player/" + query.team)
         .then((result: any) => {
@@ -46,7 +46,7 @@ function ListPlayer({ params: query }: PageProps) {
           <div className="grid grid-cols-1 lg:grid-cols-2  gap-5">
             {data.data.players.map((value: any) => {
               return (
-                <Link key={value} href={query.detail === "player" ? `/${query.category}/${query.team}/player_detail/${value.id}` : `/${query.category}/${query.team}/new_match/${value.id}`}>
+                <Link key={value} href={query.detail === "player" ? `/main/${query.category}/${query.team}/player_detail/${value.uuid}` : `/main/${query.category}/${query.team}/new_match/${value.uuid}`}>
                   <div className="flex flex-col w-full capitalize">
                     <div className="bg-[#F2F3F7] py-2 rounded-lg flex justify-between px-8 w-full items-center  ">
                       <div className="gap-5 items-center h-12 w- flex">

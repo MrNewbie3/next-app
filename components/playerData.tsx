@@ -1,6 +1,3 @@
-"use client";
-import react from "react";
-import { Chart } from "chart.js";
 import General from "./dataplayer/general";
 import Goalkeping from "./dataplayer/goalkeping";
 import Passing_ball from "./dataplayer/passing_ball";
@@ -8,7 +5,15 @@ import Saves from "./dataplayer/saves";
 import Fouls from "./dataplayer/fouls";
 import Defending from "./dataplayer/defending";
 
-function PlayerData() {
+type PageProps = {
+  params: {
+    category: String;
+    team: String;
+    id_player: String;
+  };
+};
+
+function PlayerData({ params: query }: PageProps) {
   return (
     <>
       <div className="px-10 w-full">

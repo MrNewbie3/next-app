@@ -1,9 +1,14 @@
 "use client";
 import React, { useState } from "react";
 
+type PageProps = {
+  params: {
+    category: String;
+    team: String;
+  };
+};
 
-export default function GeneralMatch() {
-
+export default function GeneralMatch({ params: detail }: PageProps) {
   const [data, setData] = useState({
     opponent_name: "",
     league_name: "",
@@ -11,30 +16,18 @@ export default function GeneralMatch() {
     lost_ball_position: "",
     corner_kick_position: "",
     match_date: "",
-    clubId:1,
-    detailMatch:[0]
+    clubId: 1,
+    detailMatch: "",
   });
 
   async function postData(e: React.FormEvent) {
     e.preventDefault();
-    const post = await fetch("http://localhost:4002/api/v1/match/", {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json",
-        Authentication:
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY4Mjg3NTc5OCwiZXhwIjoxNjgyODg2NTk4fQ.AzHS-AMvEoHHgxaQ0FyEIODRHjNSeMTCOyrcPE95cd",
-      },
-    });
-    alert("tes");
-    const res = await post.json();
-    console.log(res);
-
-    window.location.reload();
-    if (!res.ok) console.log(res);
+    if (data.opponent_name === "") {
+      return alert("data tidak boleh kosong");
+    }
+    localStorage.setItem("match", JSON.stringify(data));
+    return alert("berhasil menyimpan data");
   }
-
-
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -45,9 +38,9 @@ export default function GeneralMatch() {
   };
   return (
     <form
-    onSubmit={(e) => {
-      postData(e);
-    }}
+      onSubmit={(e) => {
+        postData(e);
+      }}
     >
       <div className=" input_file_div mt-10 uper flex gap-x-5 justify-between  max-lg:flex-col ">
         <div className="w-full">
@@ -117,8 +110,7 @@ export default function GeneralMatch() {
           </div>
           <div className="flex flex-col justify-start mt-4">
             <label htmlFor="label" className="uppercase opensans font-bold ">
-              lost ball position <span className="lowercase text-xs">(%)</span>{" "}
-              <span className="text-[#D00D00]">*</span>
+              lost ball position <span className="lowercase text-xs">(%)</span> <span className="text-[#D00D00]">*</span>
             </label>
             <input
               type="number"
@@ -149,7 +141,7 @@ export default function GeneralMatch() {
           </div>
         </div>
       </div>
-      <button className="bg-[#D00D00] h-10 rounded-lg mt-10 text-white opensans w-full">
+      <button className="bg-[#D00D00] h-10 rounded-lg mt-10 text-white opensans w-full" type="submit">
         Simpan
       </button>
     </form>

@@ -24,10 +24,7 @@ function MatchRekap() {
       <div className="flex max-lg:flex-col gap-5">
         <Shooting />
         <Passing_ball />
-
-        <div></div>
       </div>
-
       <div className="lg:flex gap-5  mt-6">
         <Defending />
         <Fouls />

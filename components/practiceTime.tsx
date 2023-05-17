@@ -6,8 +6,9 @@ const data = [1, 2, 3, 4, 5, 6, 7, 8];
 type PageProps = {
   params: {
     team: any;
-    category: any; query: string 
-};
+    category: any;
+    query: string;
+  };
 };
 function PraticeTime({ params: query }: PageProps) {
   return (
@@ -36,7 +37,7 @@ function PraticeTime({ params: query }: PageProps) {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 gap-y-4 mt-8">
           {data.map((params) => {
             return (
-              <Link key={params} href={`/${query.category}/${query.team}/schedule/${params}`}>
+              <Link key={params} href={`/main/${query.category}/${query.team}/schedule/${params}`}>
                 <div className="bg-[#F2F3F7]  px-4 py-2 rounded-lg  gap-5   items-center  flex">
                   <h1 className="text-2xl font-bold  text-[#D00D00]">{params}</h1>
                   <div>

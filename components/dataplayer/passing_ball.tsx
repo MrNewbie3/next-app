@@ -1,23 +1,16 @@
+"use client";
 import React from "react";
 import { useEffect, useRef } from "react";
 import Chart from "chart.js/auto";
 
 const succesfull_passes = 2;
 const unsuccesfull_passes = 10;
-const Hasil_Passes = Math.floor(
-  (succesfull_passes / unsuccesfull_passes) * 100
-);
+const Hasil_Passes = Math.floor((succesfull_passes / unsuccesfull_passes) * 100);
 const unsuccelfull_final_thirdpasses = 4;
 const succesfull_final_third_passes = 7;
-const Hasil_Third = Math.floor(
-  (unsuccelfull_final_thirdpasses / succesfull_final_third_passes) * 100
-);
+const Hasil_Third = Math.floor((unsuccelfull_final_thirdpasses / succesfull_final_third_passes) * 100);
 
-const hasil_pass =
-  unsuccesfull_passes +
-  unsuccesfull_passes +
-  succesfull_final_third_passes +
-  unsuccelfull_final_thirdpasses;
+const hasil_pass = unsuccesfull_passes + unsuccesfull_passes + succesfull_final_third_passes + unsuccelfull_final_thirdpasses;
 
 const Chartthirdpasses = () => {
   const chartRef = useRef<HTMLCanvasElement>(null);
@@ -61,10 +54,7 @@ const ChartPasses = () => {
           data: {
             datasets: [
               {
-                data: [
-                  unsuccelfull_final_thirdpasses,
-                  succesfull_final_third_passes,
-                ],
+                data: [unsuccelfull_final_thirdpasses, succesfull_final_third_passes],
                 backgroundColor: ["#D00D00", "#2846AF"],
                 hoverBackgroundColor: ["#D00D00", "#2846AF"],
                 borderWidth: 10,

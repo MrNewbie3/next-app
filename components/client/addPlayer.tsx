@@ -22,10 +22,22 @@ function AddPlayer({ params: query }: PageProps) {
     password: "rahasia123",
     photo_player: null,
     // @ts-ignore
-    clubId: parseInt(query.category),
+    clubId: query.team,
   });
   async function postData(e: React.FormEvent) {
     e.preventDefault();
+    const getClubID = await fetch("http://localhost:4002/api/v1/club/" + data.clubId, {
+      headers: {
+        Authentication: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImlhdCI6MTY4MjkwNDM5MCwiZXhwIjoxNjgyOTE1MTkwfQ.OE-PDGMS6u4km8ZDyvtPmyNv2jef2oYdkaDpbFrIVzY",
+      },
+    });
+    const response = await getClubID.json();
+    if (!response.ok) {
+      console.log(response);
+    }
+    // @ts-ignore
+    setData({ clubId: parseInt(response.data.id) });
+
     const dataForm = new FormData();
     dataForm.append("fullname", data.fullname);
     dataForm.append("nickname", data.nickname);
@@ -52,9 +64,8 @@ function AddPlayer({ params: query }: PageProps) {
       },
     });
     const res = await post.json();
-    console.log(post.formData);
 
-    // window.location.reload();
+    window.location.reload();
     if (!res.ok) console.log(res);
   }
 
@@ -160,11 +171,10 @@ function AddPlayer({ params: query }: PageProps) {
                     handleOption(e);
                   }}
                   id=""
-                  className=" bg-[#F2F3F7] h-10 border-none w-full focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
+                  className=" bg-[#F2F3F7] h-10 border-none w-full focus:outline-none p-2 mt-2 rounded-lg font-semibold "
+                  defaultValue={"Pilih jenis kelamin"}
                 >
-                  <option disabled selected>
-                    Pilih jenis kelamin
-                  </option>
+                  <option disabled>Pilih jenis kelamin</option>
                   <option value="laki-laki">Laki-laki</option>
                   <option value="perempuan">perempuan</option>
                 </select>
