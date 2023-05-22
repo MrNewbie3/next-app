@@ -13,15 +13,15 @@ const Login = () => {
     const post = await fetch("http://localhost:4002/api/v1/user/login", {
       method: "POST",
       body: JSON.stringify(data),
-     
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
     const res = await post.json();
-    console.log(res);
-
+    if (!res.success) return console.log(res);
     window.location.reload();
-    if (!res.ok) console.log(res);
     alert("berhasil login");
-
+    return localStorage.setItem("login", JSON.stringify(res));
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
