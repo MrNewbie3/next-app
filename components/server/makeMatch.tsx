@@ -35,7 +35,7 @@ async function MakeMatch({ params: query }: PageProps) {
 
   return (
     <>
-      <div className="flex justify-between w-full items-center ">
+    <div className="pb-20"><div className="flex justify-between w-full items-center  ">
         <div className="h-16 max-w-[650px] px-10 py-2 w-[650px] rounded-lg drop-shadow-md  bg-white">
           <div className="flex text-xs font-semibold  ">
             <p>{new Date().toLocaleDateString()}</p>
@@ -53,7 +53,8 @@ async function MakeMatch({ params: query }: PageProps) {
       <div className="lg:flex gap-5  mt-6">
         <Defending />
         <Fouls />
-      </div>
+      </div></div>
+      
     </>
   );
 }

@@ -1,12 +1,29 @@
 "use client";
 import Logo from "../Assets/logo_stapa.png";
+import { redirect, useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 const Login = () => {
   const [data, setData] = useState({
-    email: "",
+    username: "",
     password: "",
   });
+  async function postData(e: React.FormEvent) {
+    e.preventDefault();
+    const post = await fetch("http://localhost:4002/api/v1/user/login", {
+      method: "POST",
+      body: JSON.stringify(data),
+     
+    });
+    const res = await post.json();
+    console.log(res);
+
+    window.location.reload();
+    if (!res.ok) console.log(res);
+    alert("berhasil login");
+
+  }
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setData((prevState) => ({
@@ -14,24 +31,29 @@ const Login = () => {
       [name]: value,
     }));
   };
+  const router = useRouter();
   return (
-    <section>
+    <form
+      onSubmit={(e) => {
+        postData(e);
+      }}
+    >
       <div className="flex justify-center  bg-white items-center  h-screen w-screen text-slate-600">
         {" "}
         <div className=" w-full px-6 py-10  bg-slate-100  text-center max-w-sm min-w-fit">
           <div className="">{/* <img className="w-fit h-8 px-36" src={Logo} width={0} height={0} alt="" /> */}</div>
           <h1 className="text-center text-lg font-semibold mt-2 mb-6">LOGIN</h1>
           <div className="mb-2 w-full ">
-            <h1 className="text-xl text-start font-semibold capitalize mb-1">email</h1>
+            <h1 className="text-xl text-start font-semibold capitalize mb-1">username</h1>
             <input
               className="w-full h-10 ring-2 rounded-sm bg-slate-100 ring-red-600 outline-none p-2"
               type="emai"
-              name="email"
+              name="username"
               onChange={(e) => {
                 handleChange(e);
               }}
-              value={data.email}
-              placeholder="email"
+              value={data.username}
+              placeholder="username"
             />
           </div>
           <div>
@@ -54,7 +76,7 @@ const Login = () => {
           <button className="btn-login bg-red-600  transition  delay-150 duration-300 ease-in-out   w-full   max-w-xs min-w-fit py-2 mt-10   text-white font-semibold rounded-sm hover:">LOGIN</button>
         </div>
       </div>
-    </section>
+    </form>
   );
 };
 

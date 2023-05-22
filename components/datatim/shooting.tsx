@@ -2,7 +2,7 @@ import React from "react";
 
 const shooting = () => {
   return (
-    <div className="lg:max-w-md w-full bg-white mt-16 lg:mt-0  rounded-lg px-6 py-4  ">
+    <div className="lg:max-w-lg md:max-w-md w-full bg-white mt-16 lg:mt-0  rounded-lg px-6 py-4  ">
       <h1 className="mb-6 text-[20px] font-semibold">Shooting</h1>
         <div className="flex justify-between mb-4">
           <h1 className="font-semibold">Total shots</h1>

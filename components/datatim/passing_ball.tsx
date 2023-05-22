@@ -75,7 +75,7 @@ const ChartPasses = () => {
 
 const passing_ball = () => {
   return (
-    <div className="max-w-4xl w-full  bg-white  rounded-lg px-6 py-4 ">
+    <div className="max-w-4xl w-full lg:max-w-5xl bg-white  rounded-lg px-6 py-4 ">
     <div className="mb-6 text-[20px] font-semibold">
       Passing & Ball Position{" "}
     </div>

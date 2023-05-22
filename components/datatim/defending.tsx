@@ -16,7 +16,7 @@ const iwon = (valueiwon / maxiwon) * 100;
 
 const defending = () => {
   return (
-      <div className="max-w-4xl w-full bg-white  rounded-lg px-6 py-4 ">
+      <div className="max-w-4xl lg:max-w-5xl w-full bg-white  rounded-lg px-6 py-4 ">
     <div className="mb-6 text-[20px] font-semibold">Defending</div>
 
     <div className=" w-full max-md:mb-4 ">
@@ -28,7 +28,7 @@ const defending = () => {
           </div>
           <p className="font-bold text-base">25</p>
         </div>
-        <div className="w-full md:max-w-[226px] ">
+        <div className="w-full md:max-w-[226px] lg:max-w-sm">
           {/* range tracking */}
           <label
             htmlFor="range"
@@ -57,7 +57,7 @@ const defending = () => {
           </div>
           <p className="font-bold text-base">25</p>
         </div>
-        <div className="w-full md:max-w-[226px] ">
+        <div className="w-full md:max-w-[226px] lg:max-w-sm">
           {/* range tracking */}
           <label
             htmlFor="range"
@@ -86,7 +86,7 @@ const defending = () => {
           </div>
           <p className="font-bold text-base">25</p>
         </div>
-        <div className="w-full md:max-w-[226px] ">
+        <div className="w-full md:max-w-[226px] lg:max-w-sm ">
           {/* range tracking */}
           <label
             htmlFor="range"
@@ -115,7 +115,7 @@ const defending = () => {
           </div>
           <p className="font-bold text-base">25</p>
         </div>
-        <div className="w-full md:max-w-[226px] ">
+        <div className="w-full md:max-w-[226px] lg:max-w-sm ">
           {/* range tracking */}
           <label
             htmlFor="range"
