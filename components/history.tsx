@@ -12,15 +12,14 @@ type PageProps = {
   };
 };
 
-async function getData() {
-  const res = await fetch("http://localhost:4002/api/v1/match/", {
+async function getData(params: String) {
+  const res = await fetch("http://localhost:4002/api/v1/match/c/" + params, {
     cache: "no-store",
     next: {
       revalidate: 10,
     },
     headers: {
-      Authentication:
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsImlhdCI6MTY4MzM3NDk5MywiZXhwIjoxNjgzMzg1NzkzfQ.hqLAUaJbFsfLY_p0BivmTdFiBvFE8NQmVaOK__q5ilM",
+      Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsImlhdCI6MTY4MzM3NDk5MywiZXhwIjoxNjgzMzg1NzkzfQ.hqLAUaJbFsfLY_p0BivmTdFiBvFE8NQmVaOK__q5ilM",
     },
   });
   if (!res.ok) {
@@ -30,7 +29,7 @@ async function getData() {
 }
 
 async function History({ params: query }: PageProps) {
-  let data = await getData();
+  let data = await getData(query.team);
 
   return (
     <div className=" mb-6 w-full">
@@ -66,30 +65,24 @@ async function History({ params: query }: PageProps) {
             </tr>
           </thead>
           <tbody className="font-semibold capitalize">
-            <tr>
-              <td className=" py-2">1</td>
-              <td className=" py-2">2022-01-01</td>
-              <td className=" py-2">Chelsea vs. Arsenal</td>
-              <td className=" py-2">balai kota malang cup 2023</td>
-              <td className=" py-2">2-1</td>
-              <td className=" py-2">
-                <Link href={`/main/${query.category}/${query.team}/${query.detail}/league`}>
-                  <BsThreeDotsVertical />
-                </Link>
-              </td>
-            </tr>
-            <tr>
-              <td className=" py-2">2</td>
-              <td className=" py-2">2022-01-02</td>
-              <td className=" py-2">Real Madrid vs. Barca</td>
-              <td className=" py-2">La Liga</td>
-              <td className=" py-2">3-2</td>
-              <td className=" py-2">
-                <Link href={`/main/${query.category}/${query.team}/${query.detail}/league`}>
-                  <BsThreeDotsVertical />
-                </Link>
-              </td>
-            </tr>
+            {data.data.map((params: any, index: number) => {
+              return (
+                <tr key={index}>
+                  <td className=" py-2">1</td>
+                  <td className=" py-2">{params.match_date}</td>
+                  <td className=" py-2">
+                    {params.club.club_name} vs {params.opponent_name}
+                  </td>
+                  <td className=" py-2">{params.league_name}</td>
+                  <td className=" py-2">2-1</td>
+                  <td className=" py-2">
+                    <Link href={`/main/${query.category}/${query.team}/${query.detail}/` + params.uuid}>
+                      <BsThreeDotsVertical />
+                    </Link>
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>

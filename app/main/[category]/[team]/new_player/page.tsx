@@ -2,7 +2,8 @@ import AddPlayer from "@/components/client/addPlayer";
 import React from "react";
 type PageProps = {
   params: {
-    query: string;
+    team: string;
+    category: string;
   };
 };
 export default function page({ params: query }: PageProps) {

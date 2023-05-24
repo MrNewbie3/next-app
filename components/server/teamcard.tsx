@@ -10,12 +10,12 @@ type PageProps = {
 
 async function getData(params: String) {
   const res = await fetch("http://localhost:4002/api/v1/club/" + params, {
+    headers: {
+      Authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH}`,
+    },
     cache: "no-store",
     next: {
       revalidate: 10,
-    },
-    headers: {
-      Authentication: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY4Mjg3MDMzNiwiZXhwIjoxNjgyODgxMTM2fQ.7Ip3UXTm966u3F5IKZVW8hnsF4I1swm3Dx1AhN_RN4M",
     },
   });
   if (!res.ok) {
@@ -38,7 +38,7 @@ async function TeamCard({ params: query }: PageProps) {
 
         <div className="card flex max-lg:flex-col  justify-between mt-8 ">
           <div className="flex w-3/4 gap-4">
-            <Image src={"/images/team_img.png"} width={"128"} height={"150"} alt="" className="object-cover rounded-2xl w-[128px] h-auto "></Image>
+            <Image src={data.data.club_image} width={"128"} height={"150"} alt="" className="object-cover rounded-2xl w-[128px] h-auto "></Image>
             <div>
               <h1 className="font-semibold mt-8 text-[#9d9d9d] text-base">sepak bola</h1>
               <h1 className="font-bold capitalize mt-1 text-2xl text-gray-900">{data.data.club_shortname}</h1>

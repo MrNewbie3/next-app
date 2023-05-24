@@ -10,8 +10,12 @@ type PageProps = {
 
 async function getData(params: string) {
   const res = await fetch("http://localhost:4002/api/v1/club/c/" + params, {
+    headers: {
+      Authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH}`,
+    },
     cache: "no-store",
   });
+
   if (!res) {
     return "Error";
   }
@@ -21,6 +25,8 @@ async function getData(params: string) {
 
 export default async function page({ params: { category } }: PageProps) {
   const data = await getData(category);
+  console.log(data);
+
   return (
     <div className="w-full px-8">
       {data.data.length < 1 ? (

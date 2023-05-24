@@ -5,7 +5,10 @@ import { blob } from "stream/consumers";
 // to: @lakyulakyu
 // remind me to repair file input form @MrNewbie3
 type PageProps = {
-  params: { query: string };
+  params: {
+    team: any;
+    category: any;
+  };
 };
 function AddPlayer({ params: query }: PageProps) {
   const router = useRouter();
@@ -18,9 +21,10 @@ function AddPlayer({ params: query }: PageProps) {
     date_of_birth: "",
     height: "",
     weight: "",
-    username: "marties 2",
+    username: "kkafi09",
     password: "rahasia123",
     photo_player: null,
+    position: "",
     // @ts-ignore
     clubId: query.team,
   });
@@ -28,16 +32,14 @@ function AddPlayer({ params: query }: PageProps) {
     e.preventDefault();
     const getClubID = await fetch("http://localhost:4002/api/v1/club/" + data.clubId, {
       headers: {
-        Authentication: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImlhdCI6MTY4MjkwNDM5MCwiZXhwIjoxNjgyOTE1MTkwfQ.OE-PDGMS6u4km8ZDyvtPmyNv2jef2oYdkaDpbFrIVzY",
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH}`,
       },
     });
     const response = await getClubID.json();
-    if (!response.ok) {
-      console.log(response);
+    if (!response.success) {
+      console.log(response.message);
     }
     // @ts-ignore
-    setData({ clubId: parseInt(response.data.id) });
-
     const dataForm = new FormData();
     dataForm.append("fullname", data.fullname);
     dataForm.append("nickname", data.nickname);
@@ -50,9 +52,10 @@ function AddPlayer({ params: query }: PageProps) {
     dataForm.append("height", data.height);
     dataForm.append("weight", data.weight);
     dataForm.append("username", data.username);
+    dataForm.append("position", data.position);
     dataForm.append("password", data.password);
     // @ts-ignore
-    dataForm.append("clubId", data.clubId);
+    dataForm.append("clubId", response.data.id);
     alert("oke");
 
     const post = await fetch("http://localhost:4002/api/v1/player/", {
@@ -60,13 +63,13 @@ function AddPlayer({ params: query }: PageProps) {
       body: dataForm,
 
       headers: {
-        Authentication: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImlhdCI6MTY4MjkwNDM5MCwiZXhwIjoxNjgyOTE1MTkwfQ.OE-PDGMS6u4km8ZDyvtPmyNv2jef2oYdkaDpbFrIVzY",
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH}`,
       },
     });
     const res = await post.json();
 
-    window.location.reload();
-    if (!res.ok) console.log(res);
+    if (!res.success) console.log(res.message);
+    return router.push(`/main/${query.category}/${query.team}`);
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -84,18 +87,13 @@ function AddPlayer({ params: query }: PageProps) {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    // @ts-ignore
-    router.push(`/${query.category}/${query.team}`);
-  };
   return (
     <>
       <div className="bg-white w-full  rounded-xl px-10 py-10">
         <button
           className="bg-[#137403] px-4 py-2 text-white mb-10 rounded-lg"
           onClick={() => {
-            router.back();
+            router.push(`/main/${query.category}/${query.team}`);
           }}
         >
           Kembali
@@ -238,6 +236,22 @@ function AddPlayer({ params: query }: PageProps) {
                   }}
                   placeholder="e.g 58"
                   value={data.weight}
+                  className=" bg-[#F2F3F7]  h-10 border-none w-full focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
+                />
+              </div>
+              <div className="flex flex-col justify-start mt-4 text-sm">
+                <label htmlFor="label" className="uppercase opensans font-bold ">
+                  position
+                  <span className="text-[#D00D00]">*</span>
+                </label>
+                <input
+                  type="text"
+                  name="position"
+                  onChange={(e) => {
+                    handleChange(e);
+                  }}
+                  placeholder="e.g 58"
+                  value={data.position}
                   className=" bg-[#F2F3F7]  h-10 border-none w-full focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
                 />
               </div>

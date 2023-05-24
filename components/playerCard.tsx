@@ -12,21 +12,9 @@ type PageProps = {
 };
 
 async function getData(params: String) {
-  const data = await fetch("http://localhost:4002/api/v1/player/d/" + params, {
+  const data = await fetch("http://localhost:4002/api/v1/player/" + params, {
     headers: {
-      Authorization: "Bearer ",
-    },
-  });
-  if (!data.ok) {
-    return console.log(data.json());
-  }
-  return data.json();
-}
-
-async function getCat(params: String) {
-  const data = await fetch("http://localhost:4002/api/v1/category/" + params, {
-    headers: {
-      Authorization: "Bearer ",
+      Authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH}`,
     },
   });
   if (!data.ok) {
@@ -37,7 +25,6 @@ async function getCat(params: String) {
 
 async function PlayerCard({ params: query }: PageProps) {
   const data = await getData(query.id_player);
-  const category = await getCat(query.category);
 
   return (
     <>
@@ -45,10 +32,11 @@ async function PlayerCard({ params: query }: PageProps) {
         <div className="head flex justify-between  items-center ">
           <Link href={`/main/${query.category}/${query.team}/player`}>
             <h1 className="capitalize font-semibold flex opensans text-xs text-gray-600">
-              {category.data.category_name}
+              player
               <span className="flex items-center">
                 <GrFormNext />
-                player <GrFormNext />
+                {data.data.position}
+                <GrFormNext />
               </span>
               <span className="text-black"> {data.data.nickname}</span>
             </h1>

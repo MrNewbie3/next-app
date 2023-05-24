@@ -16,7 +16,7 @@ function PlayerPick({ params: player }: PageProps) {
   const [playerData, setPlayer] = useState({ nickname: null, fullname: null, number_of_player: null });
   useEffect(() => {
     instance
-      .get("player/d/" + player.player)
+      .get("player/" + player.player)
       .then((result: any) => {
         setPlayer(result.data.data);
         setData({ ...data, playerId: result.data.data.id });

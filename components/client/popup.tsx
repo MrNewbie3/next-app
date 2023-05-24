@@ -19,13 +19,13 @@ function Popup() {
       body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
-        Authentication:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY4MjgxNDM2OCwiZXhwIjoxNjgyODI1MTY4fQ.LXEWQSJJ4v8F0KQLBqOeS-k8DDLAQhC-H4SaztUNeaU",
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH}`,
       },
     });
+
     const res = await post.json();
+    if (!res.success) return console.log(res);
     window.location.reload();
-    if (!res.ok) console.log(res);
   }
 
   return (
@@ -49,10 +49,7 @@ function Popup() {
               }
               className=" bg-[#F2F3F7] h-10 border-none focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
             />
-            <button
-              className="bg-[#D00D00] rounded-lg opensans-bold h-10  text-white mt-6 "
-              type="submit"
-            >
+            <button className="bg-[#D00D00] rounded-lg opensans-bold h-10  text-white mt-6 " type="submit">
               Simpan
             </button>
           </form>

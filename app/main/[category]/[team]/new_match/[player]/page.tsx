@@ -8,8 +8,6 @@ type PageProps = {
   };
 };
 export default function PlayePage({ params: player }: PageProps) {
-  console.log(player);
-
   return (
     <div>
       {/* @ts-ignore */}

@@ -19,6 +19,7 @@ function PlayerList({ params: query }: PageProps) {
     const playerData = JSON.parse(localStorage.getItem("data_player"));
     const match = JSON.parse(localStorage.getItem("match"));
     const matchData = { ...match, detailMatch: playerData };
+
     instance
       .post("/match", matchData)
       .then((result: Object) => {
@@ -33,7 +34,7 @@ function PlayerList({ params: query }: PageProps) {
 
   useEffect(() => {
     instance
-      .get("player/" + query.team)
+      .get("club/p/" + query.team)
       .then((result: any) => {
         setData(result.data);
       })
@@ -46,10 +47,8 @@ function PlayerList({ params: query }: PageProps) {
     <>
       <div className="bg-white w-full  rounded-xl py-10">
         <div className="mb-8">
-          <select name="" id="" className="bg-transparent font-semibold focus:outline-none ">
-            <option value="" disabled selected>
-              Search By Position
-            </option>
+          <select name="" id="" defaultValue="Search By Position" className="bg-transparent font-semibold focus:outline-none ">
+            <option disabled>Search By Position</option>
             <option value="list1">jenis 1</option>
             <option value="list2">jenis 2</option>
             <option value="list3">jenis 3</option>

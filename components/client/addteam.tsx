@@ -20,33 +20,36 @@ function AddTeam({ params }: Props) {
     end_season: "",
     userId: 1,
     categoryId: 1,
-    logo: "",
+    club_image: null,
   });
   async function postData(e: React.FormEvent) {
+    const formData = new FormData();
     e.preventDefault();
+    for (const key in data) {
+      // @ts-ignore
+      formData.append(key, data[key]);
+      console.log(key + " : " + formData.getAll(key));
+    }
+
     const post = await fetch("http://localhost:4002/api/v1/club", {
       method: "POST",
-      body: JSON.stringify(data),
+      body: formData,
       headers: {
-        "Content-Type": "application/json",
-        Authentication:
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY4Mjg3NTc5OCwiZXhwIjoxNjgyODg2NTk4fQ.AzHS-AMvEoHHgxaQ0FyEIODRHjNSeMTCOyrcPE95cd",
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH}`,
       },
     });
     const res = await post.json();
-    console.log(res);
 
-    window.location.reload();
+    // window.location.reload();
     if (!res.ok) console.log(res);
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setData((state) => ({
-      ...state,
-      [name]: value,
-    }));
-    console.log(data);
+    const { name, value, files } = e.target;
+    setData({
+      ...data,
+      [name]: files ? files[0] : value,
+    });
   };
 
   const router = useRouter();
@@ -61,18 +64,14 @@ function AddTeam({ params }: Props) {
         <div>
           <h1 className="opensans font-bold text-xl">Tambah Tim </h1>
           <h4 className="font-semibold">
-            Lengkapi data di bawah,jika ada ({" "}
-            <span className="text-[#D00D00]">* </span>) maka wajib diisi{" "}
+            Lengkapi data di bawah,jika ada ( <span className="text-[#D00D00]">* </span>) maka wajib diisi{" "}
           </h4>
         </div>
 
         <div className=" input_file_div mt-10 uper flex w-full lg:gap-5    max-lg:flex-col ">
           <div className="w-full">
             <div className="  flex flex-col  justify-start mt-4">
-              <label
-                htmlFor="label"
-                className=" opensans font-bold uppercase text-sm"
-              >
+              <label htmlFor="label" className=" opensans font-bold uppercase text-sm">
                 Nama Asli <span className="text-[#D00D00]">*</span>
               </label>
               <input
@@ -88,10 +87,7 @@ function AddTeam({ params }: Props) {
             </div>
 
             <div className="flex flex-col justify-start mt-4">
-              <label
-                htmlFor="label"
-                className="opensans font-bold uppercase text-sm"
-              >
+              <label htmlFor="label" className="opensans font-bold uppercase text-sm">
                 Nama Julukan <span className="text-[#D00D00]">*</span>
               </label>
               <input
@@ -106,10 +102,7 @@ function AddTeam({ params }: Props) {
               />
             </div>
             <div className="flex flex-col justify-start mt-4">
-              <label
-                htmlFor="label"
-                className="opensans font-bold uppercase text-sm"
-              >
+              <label htmlFor="label" className="opensans font-bold uppercase text-sm">
                 Nama Lain
               </label>
               <input
@@ -124,10 +117,7 @@ function AddTeam({ params }: Props) {
               />
             </div>
             <div className="flex flex-col justify-start mt-4">
-              <label
-                htmlFor="label"
-                className="opensans font-bold uppercase text-sm"
-              >
+              <label htmlFor="label" className="opensans font-bold uppercase text-sm">
                 Asal <span className="text-[#D00D00]">*</span>
               </label>
               <input
@@ -144,10 +134,7 @@ function AddTeam({ params }: Props) {
           </div>
           <div className="w-full ">
             <div className="flex flex-col justify-start mt-4">
-              <label
-                htmlFor="label"
-                className="opensans font-bold uppercase text-sm"
-              >
+              <label htmlFor="label" className="opensans font-bold uppercase text-sm">
                 Tanggal Berdiri <span className="text-[#D00D00]">*</span>
               </label>
               <input
@@ -161,10 +148,7 @@ function AddTeam({ params }: Props) {
               />
             </div>
             <div className="flex flex-col justify-start mt-4">
-              <label
-                htmlFor="label"
-                className="opensans font-bold uppercase text-sm"
-              >
+              <label htmlFor="label" className="opensans font-bold uppercase text-sm">
                 season dimulai <span className="text-[#D00D00]">*</span>
               </label>
               <input
@@ -178,10 +162,7 @@ function AddTeam({ params }: Props) {
               />
             </div>
             <div className="flex flex-col justify-start mt-4">
-              <label
-                htmlFor="label"
-                className="opensans font-bold uppercase text-sm"
-              >
+              <label htmlFor="label" className="opensans font-bold uppercase text-sm">
                 season berakhir <span className="text-[#D00D00]">*</span>
               </label>
               <input
@@ -195,26 +176,22 @@ function AddTeam({ params }: Props) {
               />
             </div>
             <div className="flex flex-col justify-start mt-4">
-              <label
-                htmlFor="label"
-                className="opensans font-bold uppercase text-sm"
-              >
-                logo tim <span className="text-[#D00D00]">*</span>
+              <label htmlFor="label" className="opensans font-bold uppercase text-sm">
+                club_image tim <span className="text-[#D00D00]">*</span>
               </label>
               <input
                 type="file"
-                value={data.logo}
-                onChange={(e) => {}}
-                name={"logo"}
+                // @ts-ignore
+                onChange={(e) => {
+                  handleChange(e);
+                }}
+                name={"club_image"}
                 className=" block w-full max-w-2xl outline-none file:h-full file:bg-[#dddddd] file:border-none file:w-[118px] h-10 mt-2 text-gray-900 border rounded-lg cursor-pointer bg-[#F2F3F7] focus:outline-none  "
               />
             </div>
           </div>
         </div>
-        <button
-          type="submit"
-          className="bg-[#D00D00] h-10 rounded-lg mt-10 text-white opensans w-full"
-        >
+        <button type="submit" className="bg-[#D00D00] h-10 rounded-lg mt-10 text-white opensans w-full">
           Submit
         </button>
       </div>

@@ -1,9 +1,11 @@
 "use client";
-import Logo from "../Assets/logo_stapa.png";
+import { login, logout } from "@/hooks/action";
 import { redirect, useRouter } from "next/navigation";
 import React, { useState } from "react";
+import { connect } from "react-redux";
 
-const Login = () => {
+const Login = ({ login }: any) => {
+  const router = useRouter();
   const [data, setData] = useState({
     username: "",
     password: "",
@@ -19,9 +21,10 @@ const Login = () => {
     });
     const res = await post.json();
     if (!res.success) return console.log(res);
-    window.location.reload();
     alert("berhasil login");
-    return localStorage.setItem("login", JSON.stringify(res));
+    login(res);
+    localStorage.setItem("login", JSON.stringify(res));
+    router.push("/main");
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,7 +34,7 @@ const Login = () => {
       [name]: value,
     }));
   };
-  const router = useRouter();
+
   return (
     <form
       onSubmit={(e) => {
@@ -80,4 +83,15 @@ const Login = () => {
   );
 };
 
-export default Login;
+const mapStateToProps = (state: any) => ({
+  status: state.status,
+  token: state.token,
+  data: state.data,
+});
+
+const mapDispatchToProps = {
+  login,
+  logout,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
