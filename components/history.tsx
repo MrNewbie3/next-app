@@ -8,7 +8,6 @@ type PageProps = {
     detail: any;
     team: any;
     category: any;
-    query: string;
   };
 };
 
@@ -19,7 +18,8 @@ async function getData(params: String) {
       revalidate: 10,
     },
     headers: {
-      Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsImlhdCI6MTY4MzM3NDk5MywiZXhwIjoxNjgzMzg1NzkzfQ.hqLAUaJbFsfLY_p0BivmTdFiBvFE8NQmVaOK__q5ilM",
+      Authorization:
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsImlhdCI6MTY4MzM3NDk5MywiZXhwIjoxNjgzMzg1NzkzfQ.hqLAUaJbFsfLY_p0BivmTdFiBvFE8NQmVaOK__q5ilM",
     },
   });
   if (!res.ok) {
@@ -76,7 +76,12 @@ async function History({ params: query }: PageProps) {
                   <td className=" py-2">{params.league_name}</td>
                   <td className=" py-2">2-1</td>
                   <td className=" py-2">
-                    <Link href={`/main/${query.category}/${query.team}/${query.detail}/` + params.uuid}>
+                    <Link
+                      href={
+                        `/main/${query.category}/${query.team}/${query.detail}/` +
+                        params.uuid
+                      }
+                    >
                       <BsThreeDotsVertical />
                     </Link>
                   </td>

@@ -3,7 +3,7 @@ import MakeSchedule from "./makeschedule";
 import DatePicker from "./client/dates";
 
 type PageProps = {
-  params: { query: string };
+  params: { category: string; team: string };
 };
 
 function ExerciseTime({ params: query }: PageProps) {

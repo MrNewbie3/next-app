@@ -25,12 +25,14 @@ async function getData(params: string) {
 
 export default async function page({ params: { category } }: PageProps) {
   const data = await getData(category);
-  console.log(data);
 
   return (
     <div className="w-full px-8">
       {data.data.length < 1 ? (
-        <Link href={`main/${category}/new_team`} className="flex pl-7 gap-4 items-center bg-white font-semibold py-2 w-[170px] rounded-md ">
+        <Link
+          href={`main/${category}/new_team`}
+          className="flex pl-7 gap-4 items-center bg-white font-semibold py-2 w-[170px] rounded-md "
+        >
           <span className="text-[#D00D00]">
             <FaPlus />
           </span>
@@ -40,12 +42,19 @@ export default async function page({ params: { category } }: PageProps) {
         <div className="wrapper flex flex-row gap-x-8">
           {data.data.map((data: any) => {
             return (
-              <Link key={data.id} href={`/main/${category}/${data.uuid}`} className=" px-7 text-center bg-white font-semibold py-2 w-fit rounded-md ">
+              <Link
+                key={data.id}
+                href={`/main/${category}/${data.uuid}`}
+                className=" px-7 text-center bg-white font-semibold py-2 w-fit rounded-md "
+              >
                 {data.club_shortname}
               </Link>
             );
           })}
-          <Link href={`/main/${category}/new_team`} className="flex pl-7 gap-4 items-center bg-white font-semibold py-2 w-[170px] rounded-md ">
+          <Link
+            href={`/main/${category}/new_team`}
+            className="flex pl-7 gap-4 items-center bg-white font-semibold py-2 w-[170px] rounded-md "
+          >
             <span className="text-[#D00D00]">
               <FaPlus />
             </span>

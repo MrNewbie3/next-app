@@ -1,14 +1,13 @@
 const initialState = {
   status: Boolean,
   token: String,
-  data: Object,
+  data: null,
 };
 
 const reducer = (state = initialState, { type, payload }: any) => {
   switch (type) {
     case "LOGIN":
-      console.log(state);
-      return { ...state, status: true, token: payload.data.token, data: payload.data.user };
+      return { ...state, status: payload.success, token: payload.data.token, data: payload.data.user };
     case "LOGOUT":
       return { ...state, status: false, token: null, data: null };
 

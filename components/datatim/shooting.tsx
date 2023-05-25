@@ -22,7 +22,7 @@ const Shooting = (props: PageProps) => {
       </div>
       <div className="flex justify-between">
         <h1 className="font-semibold">Corner kick</h1>
-        <p className="font-bold text-base">25</p>
+        <p className="font-bold text-base">{}</p>
       </div>
     </div>
   );

@@ -9,7 +9,6 @@ type PageProps = {
   params: {
     team: any;
     category: any;
-    query: string;
   };
 };
 
@@ -38,10 +37,14 @@ async function MakeMatch({ params: query }: PageProps) {
               <div className="flex text-xs font-semibold  ">
                 <p>{new Date().toLocaleDateString()}</p>
               </div>
-              <h1 className="text-xl font-bold ">Belum pernah bertanding season ini!</h1>
+              <h1 className="text-xl font-bold ">
+                Belum pernah bertanding season ini!
+              </h1>
             </div>
             <Link href={`/main/${query.category}/${query.team}/new_match`}>
-              <button className="hover:bg-[#D00D00] bg-white ring-1 capitalize font-semibold ring-[#D00D00] text-[#D00D00] px-4 rounded-lg h-9 hover:text-white active:bg-[#D00D00] active:text-white   ">Add Match</button>
+              <button className="hover:bg-[#D00D00] bg-white ring-1 capitalize font-semibold ring-[#D00D00] text-[#D00D00] px-4 rounded-lg h-9 hover:text-white active:bg-[#D00D00] active:text-white   ">
+                Add Match
+              </button>
             </Link>
           </div>
         ) : (
@@ -52,11 +55,14 @@ async function MakeMatch({ params: query }: PageProps) {
                   <p>{dataTim.data[dataTim.data.length - 1].match_date}</p>
                 </div>
                 <h1 className="text-xl font-bold uppercase ">
-                  {dataTim.data[dataTim.data.length - 1].club.club_name} vs {dataTim.data[dataTim.data.length - 1].opponent_name}
+                  {dataTim.data[dataTim.data.length - 1].club.club_name} vs{" "}
+                  {dataTim.data[dataTim.data.length - 1].opponent_name}
                 </h1>
               </div>
               <Link href={`/main/${query.category}/${query.team}/new_match`}>
-                <button className="hover:bg-[#D00D00] bg-white ring-1 capitalize font-semibold ring-[#D00D00] text-[#D00D00] px-4 rounded-lg h-9 hover:text-white active:bg-[#D00D00] active:text-white   ">Add Match</button>
+                <button className="hover:bg-[#D00D00] bg-white ring-1 capitalize font-semibold ring-[#D00D00] text-[#D00D00] px-4 rounded-lg h-9 hover:text-white active:bg-[#D00D00] active:text-white   ">
+                  Add Match
+                </button>
               </Link>
             </div>
             <div className="flex max-lg:flex-col gap-5 mt-5">
