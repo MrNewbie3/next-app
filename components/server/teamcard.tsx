@@ -43,7 +43,7 @@ async function TeamCard({ params: query }: PageProps) {
         <div className="card flex max-lg:flex-col  justify-between mt-8 ">
           <div className="flex w-3/4 gap-4">
             <Image
-              src={data.data.club_image}
+              src={data.data.club_image || ""}
               width={"128"}
               height={"150"}
               alt=""
@@ -61,9 +61,10 @@ async function TeamCard({ params: query }: PageProps) {
           <div className="data_tim w-full uppercase grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-8 gap-6 font-semibold">
             <div>
               <label className="text-xs font-bold">nama asli</label>
-              <p className=" capitalize bg-white h-10 w-full  p-2 rounded-lg">
-                {data.data.club_name}
-              </p>
+              <input
+                className=" capitalize bg-white h-10 w-full  p-2 rounded-lg"
+                defaultValue={data.data.club_name}
+              />
             </div>
             <div>
               <label className="text-xs font-bold">tanggal berdiri</label>

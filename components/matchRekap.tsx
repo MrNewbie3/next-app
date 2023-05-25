@@ -44,12 +44,12 @@ async function MatchRekap({ params: query }: PageProps) {
         </button>
       </div>
       <div className="flex max-lg:flex-col gap-5">
-        <Shooting data={undefined} />
-        <Passing_ball data={undefined} />
+        <Shooting data={getClub} />
+        <Passing_ball data={getClub} />
       </div>
       <div className="lg:flex gap-5  mt-6">
-        <Defending data={undefined} />
-        <Fouls data={undefined} />
+        <Defending data={getClub} />
+        <Fouls data={getClub} />
       </div>
     </div>
   );

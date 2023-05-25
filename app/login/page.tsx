@@ -111,5 +111,5 @@ const mapDispatchToProps = {
   login,
   logout,
 };
-
+// @ts-ignore
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
