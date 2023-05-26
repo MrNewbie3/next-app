@@ -19,6 +19,8 @@ export default function GeneralMatch({ params: detail }: PageProps) {
     match_date: "",
     clubId: null,
     detailMatch: 0,
+    opponent_score: 0,
+    score: 0,
   });
 
   async function postData(e: React.FormEvent) {
@@ -34,7 +36,7 @@ export default function GeneralMatch({ params: detail }: PageProps) {
     const { name, value } = e.target;
     setData((prevState) => ({
       ...prevState,
-      [name]: value,
+      [name]: name.toLowerCase() === "opponent_score" || name.toLowerCase() === "score" ? Number(value) : value,
     }));
   };
 
@@ -89,6 +91,36 @@ export default function GeneralMatch({ params: detail }: PageProps) {
                     handleChange(e);
                   }}
                   value={data.league_name}
+                  className=" bg-[#F2F3F7] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
+                />
+              </div>
+              <div className="flex flex-col justify-start mt-4">
+                <label htmlFor="label" className=" uppercase  opensans font-bold ">
+                  skor <span className="text-[#D00D00]">*</span>
+                </label>
+                <input
+                  type="number"
+                  name="score"
+                  placeholder="e.g Red Devil"
+                  onChange={(e) => {
+                    handleChange(e);
+                  }}
+                  value={data.score}
+                  className=" bg-[#F2F3F7] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
+                />
+              </div>
+              <div className="flex flex-col justify-start mt-4">
+                <label htmlFor="label" className=" uppercase  opensans font-bold ">
+                  skor lawan <span className="text-[#D00D00]">*</span>
+                </label>
+                <input
+                  type="number"
+                  name="opponent_score"
+                  placeholder="e.g Red Devil"
+                  onChange={(e) => {
+                    handleChange(e);
+                  }}
+                  value={data.opponent_score}
                   className=" bg-[#F2F3F7] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
                 />
               </div>

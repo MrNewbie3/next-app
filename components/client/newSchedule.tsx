@@ -13,7 +13,7 @@ function TambahLatihan({ params: query }: PageProps) {
     description_exercise: "",
     category: "",
     intensity: "",
-    date: "",
+    date_exercise: "",
     time_exercise: "",
     repetition: "",
     number_player: "",
@@ -81,13 +81,10 @@ function TambahLatihan({ params: query }: PageProps) {
         <div className="bg-white w-full rounded-xl px-10 py-10">
           <div className=" flex gap-4"></div>
           <div>
-            <h1 className="opensans font-bold text-xl">
-              Tambah program latihan
-            </h1>
+            <h1 className="opensans font-bold text-xl">Tambah program latihan</h1>
             <div>
               <h4 className="font-semibold">
-                Lengkapi data di bawah,jika ada ({" "}
-                <span className="text-[#D00D00]">* </span>) maka wajib diisi{" "}
+                Lengkapi data di bawah,jika ada ( <span className="text-[#D00D00]">* </span>) maka wajib diisi{" "}
               </h4>
             </div>
           </div>
@@ -95,10 +92,7 @@ function TambahLatihan({ params: query }: PageProps) {
           <div className=" input_file_div mt-10 grid grid-cols-1 md:grid-cols-2 gap-5   max-md:flex-col ">
             <div>
               <div className="flex flex-col justify-start mt-4 text-sm ">
-                <label
-                  htmlFor="label"
-                  className="uppercase opensans font-bold "
-                >
+                <label htmlFor="label" className="uppercase opensans font-bold ">
                   Jenis latihan<span className="text-[#D00D00]">*</span>
                 </label>
                 <select
@@ -120,10 +114,7 @@ function TambahLatihan({ params: query }: PageProps) {
               </div>
 
               <div className="flex flex-col justify-start mt-4 text-sm">
-                <label
-                  htmlFor="label"
-                  className=" uppercase  opensans font-bold "
-                >
+                <label htmlFor="label" className=" uppercase  opensans font-bold ">
                   Nama Latihan<span className="text-[#D00D00]">*</span>
                 </label>
                 <input
@@ -138,10 +129,7 @@ function TambahLatihan({ params: query }: PageProps) {
                 />
               </div>
               <div className="flex flex-col justify-start mt-4 text-sm">
-                <label
-                  htmlFor="label"
-                  className=" uppercase opensans font-bold "
-                >
+                <label htmlFor="label" className=" uppercase opensans font-bold ">
                   Tanggal latihan <span className="text-[#D00D00]">*</span>
                 </label>
                 <input
@@ -151,15 +139,12 @@ function TambahLatihan({ params: query }: PageProps) {
                     handleChange(e);
                   }}
                   placeholder="e.g MU "
-                  value={data.date}
+                  value={data.date_exercise}
                   className=" bg-[#F2F3F7] h-10 border-none w-full focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
                 />
               </div>
               <div className="flex flex-col justify-start mt-4 text-sm ">
-                <label
-                  htmlFor="label"
-                  className="uppercase opensans font-bold "
-                >
+                <label htmlFor="label" className="uppercase opensans font-bold ">
                   Kategori<span className="text-[#D00D00]">*</span>
                 </label>
                 <select
@@ -180,10 +165,7 @@ function TambahLatihan({ params: query }: PageProps) {
                 </select>
               </div>
               <div className="flex flex-col justify-start mt-4 text-sm ">
-                <label
-                  htmlFor="label"
-                  className="uppercase opensans font-bold "
-                >
+                <label htmlFor="label" className="uppercase opensans font-bold ">
                   intensitas<span className="text-[#D00D00]">*</span>
                 </label>
                 <select
@@ -202,10 +184,7 @@ function TambahLatihan({ params: query }: PageProps) {
                 </select>
               </div>
               <div className="flex flex-col justify-start mt-4 text-sm">
-                <label
-                  htmlFor="label"
-                  className=" uppercase  opensans font-bold "
-                >
+                <label htmlFor="label" className=" uppercase  opensans font-bold ">
                   Durasi (menit)<span className="text-[#D00D00]">*</span>
                 </label>
                 <input
@@ -222,10 +201,7 @@ function TambahLatihan({ params: query }: PageProps) {
             </div>
             <div>
               <div className="flex flex-col justify-start mt-4 text-sm">
-                <label
-                  htmlFor="label"
-                  className="uppercase opensans font-bold "
-                >
+                <label htmlFor="label" className="uppercase opensans font-bold ">
                   deskripsi<span className="text-[#D00D00]">*</span>
                 </label>
                 <textarea
@@ -238,10 +214,7 @@ function TambahLatihan({ params: query }: PageProps) {
                 ></textarea>
               </div>
               <div className="flex flex-col justify-start mt-3 text-sm">
-                <label
-                  htmlFor="label"
-                  className="uppercase opensans font-bold "
-                >
+                <label htmlFor="label" className="uppercase opensans font-bold ">
                   jurnal repitisi <span className="text-[#D00D00]">*</span>
                 </label>
                 <input
@@ -256,10 +229,7 @@ function TambahLatihan({ params: query }: PageProps) {
                 />
               </div>
               <div className="flex flex-col justify-start mt-3 text-sm">
-                <label
-                  htmlFor="label"
-                  className="uppercase opensans font-bold "
-                >
+                <label htmlFor="label" className="uppercase opensans font-bold ">
                   jumlah pemain<span className="text-[#D00D00]">*</span>
                 </label>
                 <input
@@ -275,10 +245,7 @@ function TambahLatihan({ params: query }: PageProps) {
               </div>
 
               <div className="flex flex-col justify-start mt-4 text-sm  ">
-                <label
-                  htmlFor="label"
-                  className="uppercase opensans font-bold "
-                >
+                <label htmlFor="label" className="uppercase opensans font-bold ">
                   foto latihan<span className="text-[#D00D00]">*</span>
                 </label>
                 <input
@@ -292,10 +259,7 @@ function TambahLatihan({ params: query }: PageProps) {
               </div>
             </div>
           </div>
-          <button
-            type="submit"
-            className="bg-[#D00D00] h-10 rounded-lg mt-10 text-white opensans w-full"
-          >
+          <button type="submit" className="bg-[#D00D00] h-10 rounded-lg mt-10 text-white opensans w-full">
             Simpan
           </button>
         </div>

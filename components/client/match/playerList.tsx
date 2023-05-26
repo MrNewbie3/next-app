@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import instance from "@/config/axios";
+import { useRouter } from "next/navigation";
 
 type PageProps = {
   params: {
@@ -11,21 +12,20 @@ type PageProps = {
 };
 
 function PlayerList({ params: query }: PageProps) {
+  const router = useRouter();
   const [data, setData] = useState({ data: { players: [] } });
-  // @ts-ignore
-  const selectedPlayer = JSON.parse(localStorage.getItem("data_player"));
-
   const importData = () => {
+    // @ts-ignore
     const playerData = JSON.parse(localStorage.getItem("data_player"));
+    // @ts-ignore
     const match = JSON.parse(localStorage.getItem("match"));
     const matchData = { ...match, detailMatch: playerData };
-
     instance
       .post("/match", matchData)
       .then((result: Object) => {
-        console.log(result);
         localStorage.removeItem("data_player");
         localStorage.removeItem("match");
+        router.push("/main");
       })
       .catch((err: Object) => {
         console.log(err);
