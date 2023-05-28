@@ -1,4 +1,6 @@
 "use client";
+
+import { cookies } from "next/headers";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
@@ -14,12 +16,14 @@ function Popup() {
 
   async function postData(e: React.FormEvent) {
     e.preventDefault();
+    const cookieStore = cookies();
+
     const post = await fetch("http://localhost:4002/api/v1/category", {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH}`,
+        Authorization: `Bearer ${cookieStore.get("token")?.value}`,
       },
     });
 

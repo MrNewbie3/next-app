@@ -1,3 +1,4 @@
+import { cookies } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -12,9 +13,11 @@ type PageProps = {
 };
 
 async function getData(params: String) {
+  const cookieStore = cookies();
+
   const data = await fetch("http://localhost:4002/api/v1/player/" + params, {
     headers: {
-      Authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH}`,
+      Authorization: `Bearer ${cookieStore.get("token")?.value}`,
     },
   });
   if (!data.ok) {

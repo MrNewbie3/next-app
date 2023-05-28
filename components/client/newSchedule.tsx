@@ -1,4 +1,5 @@
 "use client";
+import { cookies } from "next/headers";
 import { redirect, useRouter } from "next/navigation";
 import React, { useState } from "react";
 type PageProps = {
@@ -44,23 +45,27 @@ function TambahLatihan({ params: query }: PageProps) {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const cookieStore = cookies();
+
     let formData = new FormData();
     for (const key in data) {
       // @ts-ignore
       formData.append(key, data[key]);
     }
-    const res = await fetch("http://localhost:4002/api/v1/periodesasion/", {
+    const post = await fetch("http://localhost:4002/api/v1/periodesasion/", {
       method: "POST",
       body: formData,
       headers: {
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH}`,
+        Authorization: `Bearer ${cookieStore.get("token")?.value}`,
       },
     });
-    if (!res.status) {
-      return res.json();
+    const res = await post.json();
+    if (!res.success) {
+      return res;
     }
-    alert("sukses menyimpan data");
+    console.log(res);
 
+    alert("sukses menyimpan data");
     return router.push(`/main/${query.category}/${query.team}`);
   };
   return (
@@ -134,7 +139,7 @@ function TambahLatihan({ params: query }: PageProps) {
                 </label>
                 <input
                   type="date"
-                  name="date"
+                  name="date_exercise"
                   onChange={(e) => {
                     handleChange(e);
                   }}

@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -13,7 +14,7 @@ function Navbar() {
         <div className="flex justify-between items-center font-medium gap-2">
           <img className="rounded-full h-10  w-10 object-cover " src="https://w7.pngwing.com/pngs/99/33/png-transparent-apple-logo-mac-os-heart-logo-computer-wallpaper.png" alt="" />
           <div className="flex gap-2 items-center">
-            <div className="capitalize font-semibold text-base">nama ku persija</div>
+            <div className="capitalize font-semibold text-base">{JSON.parse(localStorage.getItem("login")).data.user}</div>
             <div className="">
               <AiFillCaretDown />
             </div>

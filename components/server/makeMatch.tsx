@@ -83,7 +83,9 @@ async function getData(params: String) {
 
 async function MakeMatch({ params: query }: PageProps) {
   const dataTim = await getData(query.team);
-  if (dataShots.totalPasses === null) {
+  console.log();
+
+  if (dataShots.totalPasses === null && dataTim.data.length > 1) {
     dataShots.Corner_kick = parseInt(dataTim.data[dataTim.data.length - 1].corner_kick_position);
     dataTim.data[dataTim.data.length - 1].DetailMatch.map((e: any) => {
       for (const key in e) {

@@ -1,3 +1,4 @@
+import { cookies } from "next/headers";
 import Link from "next/link";
 import React from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
@@ -5,30 +6,54 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import { IoMdArrowDropdown } from "react-icons/io";
 type PageProps = {
   params: {
-    detail: any;
-    team: any;
-    category: any;
+    detail: string;
+    team: string;
+    category: string;
+    detail_player: string;
+    id_player: string;
   };
 };
+const getData = async (params: string) => {
+  const cookieStore = cookies();
 
-async function getData(params: String) {
-  const res = await fetch("http://localhost:4002/api/v1/match/c/" + params, {
-    cache: "no-store",
-    next: {
-      revalidate: 10,
-    },
+  const data = await fetch("http://localhost:4002/api/v1/match/c/" + params, {
     headers: {
-      Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsImlhdCI6MTY4MzM3NDk5MywiZXhwIjoxNjgzMzg1NzkzfQ.hqLAUaJbFsfLY_p0BivmTdFiBvFE8NQmVaOK__q5ilM",
+      Authorization: `Bearer ${cookieStore.get("token")?.value}`,
     },
+    cache: "no-cache",
   });
-  if (!res.ok) {
-    throw new Error("Failed to fetch data = " + res.statusText);
+  const res = await data.json();
+  if (!res.success) {
+    throw new Error("error: " + res.message);
   }
-  return res.json();
-}
+  return res;
+};
 
-function HistoryPlayer({ params: query }: PageProps) {
-  //   let data = await getData(query.team);
+const getPlayers = async (params: string) => {
+  const cookieStore = cookies();
+
+  const data = await fetch("http://localhost:4002/api/v1/player/" + params, {
+    headers: {
+      Authorization: `Bearer ${cookieStore.get("token")?.value}`,
+    },
+    cache: "no-cache",
+  });
+  const res = await data.json();
+  if (!res.success) {
+    throw new Error("error: " + res.message);
+  }
+  return res;
+};
+
+async function HistoryPlayer({ params: query }: PageProps) {
+  const data = await getData(query.team);
+  const dataPlayer = await getPlayers(query.id_player);
+  let value: any = [];
+  data.data.map((params: any) => {
+    params.DetailMatch.find((data: any) => {
+      return data.playerId === dataPlayer.data.id ? value.push(params) : 0;
+    });
+  });
 
   return (
     <div className=" mb-6 w-full">
@@ -67,7 +92,7 @@ function HistoryPlayer({ params: query }: PageProps) {
             </tr>
           </thead>
           <tbody className="font-semibold capitalize">
-            {/* {data.data.map((params: any, index: number) => {
+            {value.map((params: any, index: number) => {
               return (
                 <tr key={index}>
                   <td className=" py-2">{index + 1}</td>
@@ -80,13 +105,13 @@ function HistoryPlayer({ params: query }: PageProps) {
                     {params.score} - {params.opponent_score}
                   </td>
                   <td className=" py-2">
-                    <a href={`/main/${query.category}/${query.team}/${query.detail}/` + params.uuid}>
+                    <a href={`/main/${query.category}/${query.team}/player_detail/${query.id_player}/history/` + params.uuid}>
                       <BsThreeDotsVertical />
                     </a>
                   </td>
                 </tr>
               );
-            })} */}
+            })}
           </tbody>
         </table>
       </div>

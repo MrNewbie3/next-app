@@ -1,5 +1,4 @@
 import React from "react";
-import PlayerPage from "@/components/playerPage";
 import HistoryPlayer from "@/components/HistoryPlayer";
 import PlayerLastMatch from "@/components/server/playerLastMatch";
 import PlayerSeason from "@/components/server/playerSeason";

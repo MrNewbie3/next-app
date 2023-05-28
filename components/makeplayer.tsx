@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import ListPlayer from "./client/listPlayer";
+import { cookies } from "next/headers";
 type PageProps = {
   params: {
     category: string;
@@ -10,9 +11,11 @@ type PageProps = {
 };
 
 async function getData(params: String) {
+  const cookieStore = cookies();
+
   const res = await fetch("http://localhost:4002/api/v1/club/" + params, {
     headers: {
-      Authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH}`,
+      Authorization: `Bearer ${cookieStore.get("token")?.value}`,
     },
     cache: "no-store",
     next: {

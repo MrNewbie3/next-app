@@ -9,13 +9,22 @@ type PageProps = {
 };
 
 function MakeSchedule({ params: query }: PageProps) {
+  const currentDate = new Date(); // Current date
+  const options = {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  };
+  // @ts-ignore
+  const formatter = new Intl.DateTimeFormat("id-ID", options);
+  const formattedDate = formatter.format(currentDate);
   return (
     <>
       <div className="flex justify-between  mx-0 w-full items-center ">
         <div className="h-16 max-w-[650px] px-10 py-2 w-[650px] rounded-lg drop-shadow-md  bg-white">
           <div className="flex text-xs font-semibold capitalize ">
             <p>
-              Hari ini <span className="text-[#D00D00] font-semibold">2 februari 2023</span>
+              Hari ini <span className="text-[#D00D00] font-semibold">{formattedDate}</span>
             </p>
           </div>
           <h1 className="text-xl font-bold ">MOKLET&apos;S Player</h1>

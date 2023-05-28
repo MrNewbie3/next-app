@@ -4,6 +4,7 @@ import Shooting from "./datatim/shooting";
 import Passing_ball from "./datatim/passing_ball";
 import Fouls from "./datatim/fouls";
 import Defending from "./datatim/defending";
+import { cookies } from "next/headers";
 type PageProps = {
   params: {
     category: string;
@@ -68,9 +69,11 @@ const dataFouls: DataFouls = {
   yellow_card: null,
 };
 const getClubData = async (params: string) => {
+  const cookieStore = cookies();
+
   const data = await fetch("http://localhost:4002/api/v1/match/c/" + params, {
     headers: {
-      Authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH}`,
+      Authorization: `Bearer ${cookieStore.get("token")?.value}`,
     },
     cache: "reload",
   });
@@ -81,9 +84,11 @@ const getClubData = async (params: string) => {
   return res;
 };
 const getClubDataPerMatch = async (params: string) => {
+  const cookieStore = cookies();
+
   const data = await fetch("http://localhost:4002/api/v1/match/" + params, {
     headers: {
-      Authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH}`,
+      Authorization: `Bearer ${cookieStore.get("token")?.value}`,
     },
     cache: "reload",
   });
@@ -98,7 +103,7 @@ async function MatchRekap({ params: query }: PageProps) {
   // @ts-ignore
   const rawData = query.league === undefined ? await getClubData(query.team) : await getClubDataPerMatch(query.league);
   const getClub = query.league === undefined ? rawData : { ...rawData, data: [rawData.data] };
-  if (dataShots.totalPasses === null) {
+  if (dataShots.totalPasses === null && getClub.data.length > 1) {
     getClub.data.map((e: any) => {
       // @ts-ignore
       dataShots.Corner_kick += parseInt(e.corner_kick_position);
@@ -148,32 +153,38 @@ async function MatchRekap({ params: query }: PageProps) {
   }
 
   return (
-    <div className=" pb-20 ">
-      <div className="flex justify-between w-full mb-6 items-center ">
-        <div className="h-16 max-w-[650px] px-10 py-2 w-[650px] rounded-lg drop-shadow-md  bg-white">
-          <div className="flex text-xs font-semibold  ">
-            <p>
-              {getClub.data[0].club.start_season} - {getClub.data[0].club.end_season}
-            </p>
-          </div>
-          <h1 className="text-xl font-bold ">{getClub.data[0].club.club_name}</h1>
-        </div>
+    <div className="">
+      {getClub.data.length < 1 ? (
+        <></>
+      ) : (
+        <div className=" pb-20 ">
+          <div className="flex justify-between w-full mb-6 items-center ">
+            <div className="h-16 max-w-[650px] px-10 py-2 w-[650px] rounded-lg drop-shadow-md  bg-white">
+              <div className="flex text-xs font-semibold  ">
+                <p>
+                  {getClub.data[0].club.start_season} - {getClub.data[0].club.end_season}
+                </p>
+              </div>
+              <h1 className="text-xl font-bold ">{getClub.data[0].club.club_name}</h1>
+            </div>
 
-        <button className="hover:bg-[#D00D00] flex items-center gap-2 bg-white ring-1 capitalize font-semibold ring-[#D00D00] text-[#D00D00] px-4 rounded-lg h-9 hover:text-white active:bg-[#D00D00] active:text-white   ">
-          2023/2024 <IoMdArrowDropdown />
-        </button>
-      </div>
-      <div className="flex max-lg:flex-col gap-5 mt-5">
-        <Shooting data={dataShots} />
-        {/* @ts-ignore */}
-        <Passing_ball data={dataPass} />
-      </div>
-      <div className="lg:flex gap-5  mt-6">
-        {/* @ts-ignore */}
-        <Defending data={dataDefend} />
-        {/* @ts-ignore */}
-        <Fouls data={dataFouls} />
-      </div>
+            <button className="hover:bg-[#D00D00] flex items-center gap-2 bg-white ring-1 capitalize font-semibold ring-[#D00D00] text-[#D00D00] px-4 rounded-lg h-9 hover:text-white active:bg-[#D00D00] active:text-white   ">
+              2023/2024 <IoMdArrowDropdown />
+            </button>
+          </div>
+          <div className="flex max-lg:flex-col gap-5 mt-5">
+            <Shooting data={dataShots} />
+            {/* @ts-ignore */}
+            <Passing_ball data={dataPass} />
+          </div>
+          <div className="lg:flex gap-5  mt-6">
+            {/* @ts-ignore */}
+            <Defending data={dataDefend} />
+            {/* @ts-ignore */}
+            <Fouls data={dataFouls} />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

@@ -11,7 +11,7 @@ import { createStore, applyMiddleware } from "redux";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { PersistGate } from "redux-persist/integration/react";
-// @ts-ignore
+import UserAuth from "@/components/client/user_auth";
 
 const persistConfig = {
   key: "root",
@@ -21,17 +21,14 @@ const persistedReducer = persistReducer(persistConfig, reducer);
 
 const store = createStore(persistedReducer, applyMiddleware(thunk));
 const persistor = persistStore(store);
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <head></head>
       <body className="bg-light-grey ">
         <Provider store={store}>
           <PersistGate loading={null} persistor={persistor}>
+            <UserAuth />
             {children}
           </PersistGate>
         </Provider>

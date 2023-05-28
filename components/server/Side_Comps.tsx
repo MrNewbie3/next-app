@@ -1,14 +1,16 @@
+import { getAuthTokenServer } from "@/config/cookie";
+import { NextApiRequest, NextApiResponse } from "next";
 import Link from "next/link";
 import React from "react";
 import { MdSportsSoccer } from "react-icons/md";
 
-async function getData() {
+async function getData(params: NextApiRequest) {
   const res = await fetch("http://localhost:4002/api/v1/category", {
     cache: "no-store",
     next: {
       revalidate: 10,
     },
-    headers: { Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY4Mjg3MDMzNiwiZXhwIjoxNjgyODgxMTM2fQ.7Ip3UXTm966u3F5IKZVW8hnsF4I1swm3Dx1AhN_RN4M" },
+    // headers: { Authorization: `Bearer ${getAuthTokenServer(params)}` },
   });
   if (!res.ok) {
     throw new Error("Failed to fetch data = " + res.statusText);
@@ -16,8 +18,13 @@ async function getData() {
   return res.json();
 }
 
-export default async function Side_Comps() {
-  let data = await getData();
+type PageProps = {
+  req: NextApiRequest;
+  res: NextApiResponse;
+};
+
+export default async function Side_Comps({ req, res }: PageProps) {
+  let data = await getData(req);
 
   return (
     <>

@@ -1,8 +1,7 @@
 "use client";
 
+import { cookies } from "next/headers";
 import { useRouter } from "next/navigation";
-// to: @lakyulakyu
-// file upload still not working, remind me later @MrNewbie3
 
 import React, { useState } from "react";
 
@@ -18,8 +17,8 @@ function AddTeam({ params }: Props) {
     club_established: "",
     start_season: "",
     end_season: "",
-    userId: 1,
-    categoryId: 1,
+    userId: "4eb0ba3b-454b-4aec-9543-a376b87b0075",
+    categoryId: params,
     club_image: null,
   });
   async function postData(e: React.FormEvent) {
@@ -31,11 +30,12 @@ function AddTeam({ params }: Props) {
       console.log(key + " : " + formData.getAll(key));
     }
 
+    const cookieStore = cookies();
     const post = await fetch("http://localhost:4002/api/v1/club", {
       method: "POST",
       body: formData,
       headers: {
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH}`,
+        Authorization: `Bearer ${cookieStore.get("token")?.value}`,
       },
     });
     const res = await post.json();

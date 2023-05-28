@@ -1,4 +1,6 @@
 "use client";
+import { getAuthTokenClient } from "@/config/cookie";
+import { cookies } from "next/headers";
 import { redirect, useRouter } from "next/navigation";
 import React, { Suspense, useState } from "react";
 import { blob } from "stream/consumers";
@@ -11,6 +13,8 @@ type PageProps = {
   };
 };
 function AddPlayer({ params: query }: PageProps) {
+  const token = getAuthTokenClient();
+  const value = token;
   const router = useRouter();
   const [data, setData] = useState({
     fullname: "",
@@ -30,9 +34,10 @@ function AddPlayer({ params: query }: PageProps) {
   });
   async function postData(e: React.FormEvent) {
     e.preventDefault();
+
     const getClubID = await fetch("http://localhost:4002/api/v1/club/" + data.clubId, {
       headers: {
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH}`,
+        Authorization: `Bearer ${value}`,
       },
     });
     const response = await getClubID.json();
@@ -55,15 +60,15 @@ function AddPlayer({ params: query }: PageProps) {
     dataForm.append("position", data.position);
     dataForm.append("password", data.password);
     // @ts-ignore
-    dataForm.append("clubId", response.data.id);
+    dataForm.append("clubId", response.data.uuid);
     alert("oke");
 
-    const post = await fetch("http://localhost:4002/api/v1/player/", {
+    const post = await fetch("http://localhost:4002/api/v1/player", {
       method: "POST",
       body: dataForm,
 
       headers: {
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH}`,
+        Authorization: `Bearer ${token}`,
       },
     });
     const res = await post.json();

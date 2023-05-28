@@ -1,13 +1,13 @@
+import GeneralMatch from "../dataplayer/general";
 import Goalkeping from "../dataplayer/goalkeping";
 import Passing_ball from "../dataplayer/passing_ball";
 import Saves from "../dataplayer/saves";
 import Fouls from "../dataplayer/fouls";
 import Defending from "../dataplayer/defending";
-import General from "../dataplayer/general";
 import { cookies } from "next/headers";
 type PageProps = {
   params: {
-    detail: string;
+    detail_match: string;
     team: string;
     category: string;
     detail_player: string;
@@ -54,7 +54,7 @@ const defend = {
 const getData = async (params: string) => {
   const cookieStore = cookies();
 
-  const data = await fetch("http://localhost:4002/api/v1/match/c/" + params, {
+  const data = await fetch("http://localhost:4002/api/v1/match/" + params, {
     headers: {
       Authorization: `Bearer ${cookieStore.get("token")?.value}`,
     },
@@ -83,14 +83,12 @@ const getPlayers = async (params: string) => {
   return res;
 };
 
-export default async function PlayerSeason({ params: query }: PageProps) {
-  const datas = await getData(query.team);
+export default async function PlayerSingleMatch({ params: query }: PageProps) {
+  const datas = await getData(query.detail_match);
   const dataPlayer = await getPlayers(query.id_player);
   let data: any = [];
-  datas.data.map((e: any) => {
-    e.DetailMatch.filter((params: any) => {
-      return params.playerId === dataPlayer.data.id ? data.push(params) : 0;
-    });
+  datas.data.DetailMatch.find((datas: any) => {
+    return datas.playerId === dataPlayer.data.id ? data.push(datas) : 0;
   });
   if (general.minutes === null) {
     data.map((e: any) => {
@@ -190,7 +188,7 @@ export default async function PlayerSeason({ params: query }: PageProps) {
       <div className="lg:flex gap-6">
         <div className="w-full max-w-7xl">
           <div className="flex max-md:flex-col w-full gap-5 mt-6">
-            <General data={general} />
+            <GeneralMatch data={general} />
             <Goalkeping data={goalkeeping} />
           </div>
           <div className="max-w-4xl w-full mt-6 bg-white  rounded-lg px-6 py-4 ">

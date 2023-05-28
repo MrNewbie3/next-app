@@ -1,9 +1,14 @@
 "use client";
+
 import { login, logout } from "@/hooks/action";
-import { redirect, useRouter } from "next/navigation";
+import { getAuthTokenClient, setAuthToken } from "../../config/cookie";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { connect } from "react-redux";
 
+if (localStorage.getItem("login") === undefined) {
+  localStorage.setItem("login", JSON.stringify({ data: { token: null } }));
+}
 const Login = ({ status, token, data, login }: any) => {
   const router = useRouter();
   if (status && data !== null) {
@@ -23,11 +28,13 @@ const Login = ({ status, token, data, login }: any) => {
       },
     });
     const res = await post.json();
-    if (!res.success) return console.log(res);
+    if (!res.success) return alert(res.message);
     login(res);
     localStorage.setItem("login", JSON.stringify(res));
+    localStorage.setItem("token", JSON.stringify(res.data.token));
     if (res.success) {
       alert("berhasil login");
+      setAuthToken(res.data.token);
       return router.push("/main");
     }
   }

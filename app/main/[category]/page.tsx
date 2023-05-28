@@ -1,17 +1,24 @@
+import { getAuthTokenServer } from "@/config/cookie";
+import { cookies } from "next/headers";
 import Link from "next/link";
+import { NextRequest } from "next/server";
+import { version } from "punycode";
 import React from "react";
 import { FaPlus } from "react-icons/fa";
 
-type PageProps = {
+interface PageProps {
+  req: NextRequest;
+  cookies: string;
   params: {
     category: string;
   };
-};
+}
 
-async function getData(params: string) {
-  const res = await fetch("http://localhost:4002/api/v1/club/c/" + params, {
+async function getData(category: string) {
+  const cookieStore = cookies();
+  const res = await fetch("http://localhost:4002/api/v1/club/c/" + category, {
     headers: {
-      Authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH}`,
+      Authorization: `Bearer ${cookieStore.get("token")?.value}`,
     },
     cache: "no-store",
   });
@@ -23,16 +30,13 @@ async function getData(params: string) {
   return res.json();
 }
 
-export default async function page({ params: { category } }: PageProps) {
-  const data = await getData(category);
+export default async function Page({ params, req }: PageProps) {
+  const data = await getData(params.category);
 
   return (
     <div className="w-full px-8">
       {data.data.length < 1 ? (
-        <Link
-          href={`main/${category}/new_team`}
-          className="flex pl-7 gap-4 items-center bg-white font-semibold py-2 w-[170px] rounded-md "
-        >
+        <Link href={`main/${params.category}/new_team`} className="flex pl-7 gap-4 items-center bg-white font-semibold py-2 w-[170px] rounded-md ">
           <span className="text-[#D00D00]">
             <FaPlus />
           </span>
@@ -42,19 +46,12 @@ export default async function page({ params: { category } }: PageProps) {
         <div className="wrapper flex flex-row gap-x-8">
           {data.data.map((data: any) => {
             return (
-              <Link
-                key={data.id}
-                href={`/main/${category}/${data.uuid}`}
-                className=" px-7 text-center bg-white font-semibold py-2 w-fit rounded-md "
-              >
+              <Link key={data.id} href={`/main/${params.category}/${data.uuid}`} className=" px-7 text-center bg-white font-semibold py-2 w-fit rounded-md ">
                 {data.club_shortname}
               </Link>
             );
           })}
-          <Link
-            href={`/main/${category}/new_team`}
-            className="flex pl-7 gap-4 items-center bg-white font-semibold py-2 w-[170px] rounded-md "
-          >
+          <Link href={`/main/${params.category}/new_team`} className="flex pl-7 gap-4 items-center bg-white font-semibold py-2 w-[170px] rounded-md ">
             <span className="text-[#D00D00]">
               <FaPlus />
             </span>

@@ -1,7 +1,6 @@
 "use client";
-import axios from "../../config/axios";
+import { instance } from "../../config/axios";
 import Link from "next/link";
-import Image from "next/image";
 import React, { useEffect, useState } from "react";
 type PageProps = {
   params: {
@@ -14,17 +13,15 @@ type PageProps = {
 function ListPlayer({ params: query }: PageProps) {
   let [data, setData] = useState({ success: null, data: { players: [] } });
   useEffect(() => {
-    if (data.success === null) {
-      axios
-        .get("club/p/" + query.team)
-        .then((datas: any) => {
-          setData(datas.data);
-        })
-        .catch((err: any) => {
-          console.log(err);
-        });
-    }
-  });
+    instance
+      .get("club/p/" + query.team)
+      .then((datas: any) => {
+        setData(datas.data);
+      })
+      .catch((err: any) => {
+        console.log(err);
+      });
+  }, []);
 
   return (
     <div>
