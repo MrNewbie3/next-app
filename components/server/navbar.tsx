@@ -25,6 +25,6 @@ function Navbar() {
       </nav>
     </>
   );
-}k
+}
 
 export default Navbar;

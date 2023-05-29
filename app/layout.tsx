@@ -22,7 +22,7 @@ const persistedReducer = persistReducer(persistConfig, reducer);
 const store = createStore(persistedReducer, applyMiddleware(thunk));
 const persistor = persistStore(store);
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const data = typeof window !== undefined ? localStorage.getItem("login") : undefined;
+  const data = typeof window != "undefined" ? localStorage.getItem("login") : undefined;
 
   return (
     <html lang="en">
