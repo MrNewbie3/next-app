@@ -1,12 +1,6 @@
 "use client";
-import General from "./dataplayer/general";
-import Goalkeping from "./dataplayer/goalkeping";
-import Passing_ball from "./dataplayer/passing_ball";
-import Saves from "./dataplayer/saves";
-import Fouls from "./dataplayer/fouls";
-import Defending from "./dataplayer/defending";
+
 import { Tab } from "@headlessui/react";
-import PlayerPage from "./playerPage";
 import HistoryPlayer from "./HistoryPlayer";
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(" ");
@@ -33,18 +27,17 @@ function PlayerData({ params: query }: PageProps) {
           <Tab className={({ selected }) => classNames(!selected ? "transition-all capitalize  duration-300 ease-out" : "bg-[#D00D00] capitalize  text-white px-4 py-1 focus:outline-none rounded-lg")}>measurement</Tab>
         </Tab.List>
         <Tab.Panels>
+          <Tab.Panel>{/* <PlayerPage /> */}</Tab.Panel>
+          <Tab.Panel>{/* <PlayerPage /> */}</Tab.Panel>
           <Tab.Panel>
-            <PlayerPage />
-          </Tab.Panel>
-          <Tab.Panel>
-            <PlayerPage />
-          </Tab.Panel>
-          <Tab.Panel>
+            {/* @ts-ignore */}
             <HistoryPlayer params={query} />
           </Tab.Panel>
           <Tab.Panel>
+            {/* @ts-ignore */}
             <HistoryPlayer params={query} />
           </Tab.Panel>
+
           <Tab.Panel></Tab.Panel>
         </Tab.Panels>
       </Tab.Group>

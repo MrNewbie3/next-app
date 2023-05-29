@@ -5,8 +5,6 @@ import React from "react";
 import { FaPlus } from "react-icons/fa";
 
 interface PageProps {
-  req: NextRequest;
-  cookies: string;
   params: {
     category: string;
   };
@@ -28,7 +26,7 @@ async function getData(category: string) {
   return res.json();
 }
 
-export default async function Page({ params, req }: PageProps) {
+export default async function Page({ params }: PageProps) {
   const data = await getData(params.category);
 
   return (

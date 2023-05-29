@@ -4,6 +4,7 @@ import Link from "next/link";
 import React from "react";
 import { AiFillCaretDown } from "react-icons/ai";
 function Navbar() {
+  // @ts-ignore
   const data = JSON.parse(localStorage.getItem("login"));
   const user = data.data.user;
 
@@ -24,6 +25,6 @@ function Navbar() {
       </nav>
     </>
   );
-}
+}k
 
 export default Navbar;

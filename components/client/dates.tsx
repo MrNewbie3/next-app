@@ -21,6 +21,7 @@ const DatePicker = () => {
       dates.push(
         <div key={i} className={` w-full border-t-4 text-4xl bg-grey font-bold justify-start `}>
           {format(date, "dd")}
+          {/* @ts-ignore */}
           {new Date(Date.now()).getDate() == format(date, "dd") ? "1" : "2"}
         </div>
       );
