@@ -12,6 +12,7 @@ import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { PersistGate } from "redux-persist/integration/react";
 import UserAuth from "@/components/client/user_auth";
+import { useEffect } from "react";
 
 const persistConfig = {
   key: "root",
@@ -23,6 +24,9 @@ const store = createStore(persistedReducer, applyMiddleware(thunk));
 const persistor = persistStore(store);
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const data = typeof window != "undefined" ? localStorage.getItem("login") : undefined;
+  useEffect(() => {
+    data === undefined ? localStorage.setItem("login", JSON.stringify({ data: { token: null } })) : "";
+  }, []);
 
   return (
     <html lang="en">

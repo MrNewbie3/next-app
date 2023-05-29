@@ -6,9 +6,6 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { connect } from "react-redux";
 
-if (localStorage.getItem("login") === undefined) {
-  localStorage.setItem("login", JSON.stringify({ data: { token: null } }));
-}
 const Login = ({ status, token, data, login }: any) => {
   const router = useRouter();
   if (status && data !== null) {
