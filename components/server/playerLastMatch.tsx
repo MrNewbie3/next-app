@@ -53,7 +53,7 @@ const defend = {
 
 const getData = async (params: string) => {
   const cookieStore = cookies();
-  const data = await fetch("http://localhost:4002/api/v1/match/c/" + params, {
+  const data = await fetch("https://api-stapa-app.vercel.app/api/v1/match/c/" + params, {
     headers: {
       Authorization: `Bearer ${cookieStore.get("token")?.value}`,
     },
@@ -68,7 +68,7 @@ const getData = async (params: string) => {
 
 const getPlayers = async (params: string) => {
   const cookieStore = cookies();
-  const data = await fetch("http://localhost:4002/api/v1/player/" + params, {
+  const data = await fetch("https://api-stapa-app.vercel.app/api/v1/player/" + params, {
     headers: {
       Authorization: `Bearer ${cookieStore.get("token")?.value}`,
     },
@@ -90,7 +90,8 @@ export default async function PlayerLastMatch({ params: query }: PageProps) {
       return params.playerId === dataPlayer.data.id ? data.push(params) : 0;
     });
   }
-  if (general.minutes === null && datas.data.length < 1) {
+
+  if (general.minutes === null && datas.data.length > 0) {
     data.map((e: any) => {
       for (const key in e) {
         if (key.includes("minute_played")) {

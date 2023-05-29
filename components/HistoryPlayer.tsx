@@ -16,7 +16,7 @@ type PageProps = {
 const getData = async (params: string) => {
   const cookieStore = cookies();
 
-  const data = await fetch("http://localhost:4002/api/v1/match/c/" + params, {
+  const data = await fetch("https://api-stapa-app.vercel.app/api/v1/match/c/" + params, {
     headers: {
       Authorization: `Bearer ${cookieStore.get("token")?.value}`,
     },
@@ -32,7 +32,7 @@ const getData = async (params: string) => {
 const getPlayers = async (params: string) => {
   const cookieStore = cookies();
 
-  const data = await fetch("http://localhost:4002/api/v1/player/" + params, {
+  const data = await fetch("https://api-stapa-app.vercel.app/api/v1/player/" + params, {
     headers: {
       Authorization: `Bearer ${cookieStore.get("token")?.value}`,
     },

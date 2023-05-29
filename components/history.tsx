@@ -12,7 +12,7 @@ type PageProps = {
 };
 
 async function getData(params: String) {
-  const res = await fetch("http://localhost:4002/api/v1/match/c/" + params, {
+  const res = await fetch("https://api-stapa-app.vercel.app/api/v1/match/c/" + params, {
     cache: "no-store",
     next: {
       revalidate: 10,
@@ -46,7 +46,7 @@ async function History({ params: query }: PageProps) {
                     {data.data[0].club.start_season} - {data.data[0].club.end_season}
                   </p>
                 </div>
-                <h1 className="text-xl font-bold "> {data.data[0].club.club_name}</h1>
+                <h1 className="text-xl font-bold uppercase"> {data.data[0].club.club_name}'s match history</h1>
               </div>
 
               <button className="hover:bg-[#D00D00] flex items-center gap-2 bg-white ring-1 capitalize font-semibold ring-[#D00D00] text-[#D00D00] px-4 rounded-lg h-9 hover:text-white active:bg-[#D00D00] active:text-white   ">

@@ -5,7 +5,7 @@ import React from "react";
 import { MdSportsSoccer } from "react-icons/md";
 
 async function getData(params: NextApiRequest) {
-  const res = await fetch("http://localhost:4002/api/v1/category", {
+  const res = await fetch("https://api-stapa-app.vercel.app/api/v1/category", {
     cache: "no-store",
     next: {
       revalidate: 10,

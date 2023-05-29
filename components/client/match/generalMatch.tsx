@@ -1,5 +1,5 @@
 "use client";
-import instance from "@/config/axios";
+import { instance } from "@/config/axios";
 import React, { useEffect, useState } from "react";
 
 type PageProps = {

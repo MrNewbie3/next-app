@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(" ");
 }
-const arr = ["player", "last match", "season stats", "history", "periodisasi"];
+const arr = ["player", "last match", "season stats", "history", "periodisasi", "crew"];
 type PageProps = {
   params: {
     team: String;

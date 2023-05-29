@@ -71,7 +71,7 @@ const dataFouls: DataFouls = {
 const getClubData = async (params: string) => {
   const cookieStore = cookies();
 
-  const data = await fetch("http://localhost:4002/api/v1/match/c/" + params, {
+  const data = await fetch("https://api-stapa-app.vercel.app/api/v1/match/c/" + params, {
     headers: {
       Authorization: `Bearer ${cookieStore.get("token")?.value}`,
     },
@@ -86,7 +86,7 @@ const getClubData = async (params: string) => {
 const getClubDataPerMatch = async (params: string) => {
   const cookieStore = cookies();
 
-  const data = await fetch("http://localhost:4002/api/v1/match/" + params, {
+  const data = await fetch("https://api-stapa-app.vercel.app/api/v1/match/" + params, {
     headers: {
       Authorization: `Bearer ${cookieStore.get("token")?.value}`,
     },
@@ -102,8 +102,9 @@ const getClubDataPerMatch = async (params: string) => {
 async function MatchRekap({ params: query }: PageProps) {
   // @ts-ignore
   const rawData = query.league === undefined ? await getClubData(query.team) : await getClubDataPerMatch(query.league);
+
   const getClub = query.league === undefined ? rawData : { ...rawData, data: [rawData.data] };
-  if (dataShots.totalPasses === null && getClub.data.length > 1) {
+  if (dataShots.totalPasses === null && getClub.data.length >= 1) {
     getClub.data.map((e: any) => {
       // @ts-ignore
       dataShots.Corner_kick += parseInt(e.corner_kick_position);
@@ -165,7 +166,7 @@ async function MatchRekap({ params: query }: PageProps) {
                   {getClub.data[0].club.start_season} - {getClub.data[0].club.end_season}
                 </p>
               </div>
-              <h1 className="text-xl font-bold ">{getClub.data[0].club.club_name}</h1>
+              <h1 className="text-xl font-bold uppercase">{getClub.data[0].club.club_name}'s season stats</h1>
             </div>
 
             <button className="hover:bg-[#D00D00] flex items-center gap-2 bg-white ring-1 capitalize font-semibold ring-[#D00D00] text-[#D00D00] px-4 rounded-lg h-9 hover:text-white active:bg-[#D00D00] active:text-white   ">

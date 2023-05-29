@@ -1,5 +1,6 @@
 "use client";
 
+import { getAuthTokenClient } from "@/config/cookie";
 import { cookies } from "next/headers";
 import { useRouter } from "next/navigation";
 
@@ -17,31 +18,48 @@ function AddTeam({ params }: Props) {
     club_established: "",
     start_season: "",
     end_season: "",
-    userId: "4eb0ba3b-454b-4aec-9543-a376b87b0075",
+    userId: "",
     categoryId: params,
     club_image: null,
   });
+
+  const cookieStore = getAuthTokenClient();
+  async function getUserId() {
+    const user = await fetch("https://api-stapa-app.vercel.app/api/v1/user/auth", {
+      headers: { Authorization: `Bearer ${cookieStore}` },
+    });
+    const response = await user.json();
+    if (!response.success) {
+      return alert(response.message);
+    }
+    setData((prevState) => ({
+      ...prevState,
+      userId: response.data.uuid,
+    }));
+  }
+  const router = useRouter();
   async function postData(e: React.FormEvent) {
-    const formData = new FormData();
     e.preventDefault();
+    const formData = new FormData();
+    await getUserId();
     for (const key in data) {
       // @ts-ignore
       formData.append(key, data[key]);
-      console.log(key + " : " + formData.getAll(key));
     }
+    console.log(data);
 
-    const cookieStore = cookies();
-    const post = await fetch("http://localhost:4002/api/v1/club", {
+    const post = await fetch("https://api-stapa-app.vercel.app/api/v1/club", {
       method: "POST",
       body: formData,
       headers: {
-        Authorization: `Bearer ${cookieStore.get("token")?.value}`,
+        Authorization: `Bearer ${cookieStore}`,
       },
     });
     const res = await post.json();
 
-    // window.location.reload();
-    if (!res.ok) console.log(res);
+    if (!res.success) return alert(res.message);
+    window.location.reload();
+    return router.push(`/main/${params}`);
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -51,8 +69,6 @@ function AddTeam({ params }: Props) {
       [name]: files ? files[0] : value,
     });
   };
-
-  const router = useRouter();
 
   return (
     <form
@@ -177,7 +193,7 @@ function AddTeam({ params }: Props) {
             </div>
             <div className="flex flex-col justify-start mt-4">
               <label htmlFor="label" className="opensans font-bold uppercase text-sm">
-                club_image tim <span className="text-[#D00D00]">*</span>
+                club image tim <span className="text-[#D00D00]">maks 2mb photo file*</span>
               </label>
               <input
                 type="file"

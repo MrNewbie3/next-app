@@ -1,5 +1,5 @@
 "use client";
-import instance from "@/config/axios";
+import { instance } from "@/config/axios";
 import { Tab } from "@headlessui/react";
 import { format, getTime, parseISO } from "date-fns";
 import Link from "next/link";
@@ -21,7 +21,7 @@ function PraticeTime({ params: query }: PageProps) {
   let history: any = [];
   useEffect(() => {
     instance
-      .get("/periodesasion")
+      .get("/periodisasi")
       .then((result: any) => {
         setData(result.data.data);
       })
@@ -29,7 +29,6 @@ function PraticeTime({ params: query }: PageProps) {
         throw new Error(err);
       });
   }, []);
-  console.log(data);
 
   if (data !== null) {
     // @ts-ignore

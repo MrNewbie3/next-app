@@ -19,7 +19,7 @@ function ListPlayer({ params: query }: PageProps) {
         setData(datas.data);
       })
       .catch((err: any) => {
-        console.log(err);
+        throw new Error(err);
       });
   }, []);
 
@@ -30,14 +30,6 @@ function ListPlayer({ params: query }: PageProps) {
         ""
       ) : (
         <div className="bg-white w-full  rounded-xl py-10">
-          <div className="mb-8">
-            <select name="" id="" defaultValue={"Search By Position"} className="bg-transparent  focus:outline-none ">
-              <option value="list1">jenis 1</option>
-              <option value="list2">jenis 2</option>
-              <option value="list3">jenis 3</option>
-            </select>
-          </div>
-
           <div className="grid grid-cols-1 lg:grid-cols-2  gap-5">
             {/* @ts-ignore */}
             {data.data.players.map((value: any, index: number) => {
@@ -48,7 +40,7 @@ function ListPlayer({ params: query }: PageProps) {
                       <h1 className="text-3xl font-bold  text-[#D00D00]">{value.number_of_player}</h1>
                       <div className="gap-5 items-center h-12 w- flex">
                         <div>
-                          <p className="text-xs text-gray-400">golkiper</p>
+                          <p className="text-xs text-gray-400">{value.position}</p>
                           <h2 className="text-md font-semibold   ">{value.fullname}</h2>
                         </div>
                       </div>

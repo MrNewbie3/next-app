@@ -27,7 +27,7 @@ function MakeSchedule({ params: query }: PageProps) {
               Hari ini <span className="text-[#D00D00] font-semibold">{formattedDate}</span>
             </p>
           </div>
-          <h1 className="text-xl font-bold ">MOKLET&apos;S Player</h1>
+          <h1 className="text-xl font-bold uppercase">Jadwal latihan</h1>
         </div>
         <div className="flex justify-between gap-8">
           <Link href={`/main/${query.category}/${query.team}/schedule/`}>

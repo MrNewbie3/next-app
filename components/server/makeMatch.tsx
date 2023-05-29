@@ -68,7 +68,7 @@ const dataFouls: DataFouls = {
 };
 
 async function getData(params: String) {
-  const res = await fetch("http://localhost:4002/api/v1/match/c/" + params, {
+  const res = await fetch("https://api-stapa-app.vercel.app/api/v1/match/c/" + params, {
     cache: "no-store",
     next: {
       revalidate: 10,

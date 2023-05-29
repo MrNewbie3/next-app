@@ -20,7 +20,7 @@ const Login = ({ status, token, data, login }: any) => {
   });
   async function postData(e: React.FormEvent) {
     e.preventDefault();
-    const post = await fetch("http://localhost:4002/api/v1/user/login", {
+    const post = await fetch("https://api-stapa-app.vercel.app/api/v1/user/login", {
       method: "POST",
       body: JSON.stringify(datas),
       headers: {
@@ -29,7 +29,7 @@ const Login = ({ status, token, data, login }: any) => {
     });
     const res = await post.json();
     if (!res.success) return alert(res.message);
-    login(res);
+    await login(res);
     localStorage.setItem("login", JSON.stringify(res));
     localStorage.setItem("token", JSON.stringify(res.data.token));
     if (res.success) {

@@ -9,7 +9,6 @@ import Navbar from "../../components/server/navbar";
 import "../globals.css";
 import Sidebar from "../../components/client/sidebar";
 import Side_Comps from "../../components/server/Side_Comps";
-import UserAuth from "@/components/client/user_auth";
 export const metadata = {
   title: "STAPA",
   description: "For better performance stats",
@@ -19,7 +18,6 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <UserAuth></UserAuth>
       <Navbar />
       <div className="flex flex-row  ">
         <Sidebar>

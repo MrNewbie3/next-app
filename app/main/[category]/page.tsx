@@ -1,8 +1,6 @@
-import { getAuthTokenServer } from "@/config/cookie";
 import { cookies } from "next/headers";
 import Link from "next/link";
 import { NextRequest } from "next/server";
-import { version } from "punycode";
 import React from "react";
 import { FaPlus } from "react-icons/fa";
 
@@ -16,7 +14,7 @@ interface PageProps {
 
 async function getData(category: string) {
   const cookieStore = cookies();
-  const res = await fetch("http://localhost:4002/api/v1/club/c/" + category, {
+  const res = await fetch("https://api-stapa-app.vercel.app/api/v1/club/c/" + category, {
     headers: {
       Authorization: `Bearer ${cookieStore.get("token")?.value}`,
     },

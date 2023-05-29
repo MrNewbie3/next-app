@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import instance from "@/config/axios";
+import { instance } from "@/config/axios";
 import { useRouter } from "next/navigation";
 
 type PageProps = {

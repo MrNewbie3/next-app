@@ -52,7 +52,7 @@ function TambahLatihan({ params: query }: PageProps) {
       // @ts-ignore
       formData.append(key, data[key]);
     }
-    const post = await fetch("http://localhost:4002/api/v1/periodesasion/", {
+    const post = await fetch("https://api-stapa-app.vercel.app/api/v1/periodesasion/", {
       method: "POST",
       body: formData,
       headers: {

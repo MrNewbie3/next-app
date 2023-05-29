@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { GrFormNext } from "react-icons/gr";
 import React, { useState, useEffect } from "react";
-import instance from "@/config/axios";
+import { instance } from "@/config/axios";
 
 type PageProps = {
   params: {
@@ -52,6 +52,11 @@ function PlayerPick({ params: player }: PageProps) {
     through_balls: "",
     assists: "",
     playerId: null,
+    heading: "",
+    offside: "",
+    goal_kick: "",
+    throw_in: "",
+    free_kick: "",
   });
   async function postData(e: React.FormEvent) {
     e.preventDefault();
@@ -177,6 +182,81 @@ function PlayerPick({ params: player }: PageProps) {
                       handleChange(e);
                     }}
                     value={data.yellow_cards}
+                    className=" bg-[#F2F3F7] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
+                  />
+                </div>
+                <div className="  flex flex-col justify-start mt-4">
+                  <label htmlFor="label" className=" uppercase  opensans font-bold text-sm ">
+                    heading<span className="text-[#D00D00]">*</span>
+                  </label>
+                  <input
+                    type="number"
+                    name="heading"
+                    placeholder="e.g 90"
+                    onChange={(e) => {
+                      handleChange(e);
+                    }}
+                    value={data.heading}
+                    className=" bg-[#F2F3F7] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
+                  />
+                </div>
+                <div className="  flex flex-col justify-start mt-4">
+                  <label htmlFor="label" className=" uppercase  opensans font-bold text-sm ">
+                    offside<span className="text-[#D00D00]">*</span>
+                  </label>
+                  <input
+                    type="number"
+                    name="offside"
+                    placeholder="e.g 90"
+                    onChange={(e) => {
+                      handleChange(e);
+                    }}
+                    value={data.offside}
+                    className=" bg-[#F2F3F7] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
+                  />
+                </div>
+                <div className="  flex flex-col justify-start mt-4">
+                  <label htmlFor="label" className=" uppercase  opensans font-bold text-sm ">
+                    goal kick<span className="text-[#D00D00]">*</span>
+                  </label>
+                  <input
+                    type="number"
+                    name="goal_kick"
+                    placeholder="e.g 90"
+                    onChange={(e) => {
+                      handleChange(e);
+                    }}
+                    value={data.goal_kick}
+                    className=" bg-[#F2F3F7] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
+                  />
+                </div>
+                <div className="  flex flex-col justify-start mt-4">
+                  <label htmlFor="label" className=" uppercase  opensans font-bold text-sm ">
+                    throw in<span className="text-[#D00D00]">*</span>
+                  </label>
+                  <input
+                    type="number"
+                    name="throw_in"
+                    placeholder="e.g 90"
+                    onChange={(e) => {
+                      handleChange(e);
+                    }}
+                    value={data.throw_in}
+                    className=" bg-[#F2F3F7] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
+                  />
+                </div>
+                <div className="  flex flex-col justify-start mt-4">
+                  <label htmlFor="label" className=" uppercase  opensans font-bold text-sm ">
+                    free kick<span className="text-[#D00D00]">*</span>
+                  </label>
+                  <input
+                    type="number"
+                    name="free_kick"
+                    placeholder="e.g 90"
+                    onChange={(e) => {
+                      handleChange(e);
+                    }}
+                    value={data.free_kick}
                     className=" bg-[#F2F3F7] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
                   />
                 </div>

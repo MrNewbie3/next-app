@@ -33,13 +33,12 @@ export default function PlayerMatchDetail() {
 
   async function postData(e: React.FormEvent) {
     e.preventDefault();
-    const post = await fetch("http://localhost:4002/api/v1/match/d/", {
+    const post = await fetch("https://api-stapa-app.vercel.app/api/v1/match/d/", {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
-        Authentication:
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY4Mjg3NTc5OCwiZXhwIjoxNjgyODg2NTk4fQ.AzHS-AMvEoHHgxaQ0FyEIODRHjNSeMTCOyrcPE95cd",
+        Authentication: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY4Mjg3NTc5OCwiZXhwIjoxNjgyODg2NTk4fQ.AzHS-AMvEoHHgxaQ0FyEIODRHjNSeMTCOyrcPE95cd",
       },
     });
     const res = await post.json();
@@ -67,10 +66,7 @@ export default function PlayerMatchDetail() {
         <h1 className="font-bold text-lg">General</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 ">
           <div className="  flex flex-col justify-start mt-4">
-            <label
-              htmlFor="label"
-              className=" uppercase  opensans font-bold text-sm "
-            >
+            <label htmlFor="label" className=" uppercase  opensans font-bold text-sm ">
               Minutes played<span className="text-[#D00D00]">*</span>
             </label>
             <input
@@ -86,10 +82,7 @@ export default function PlayerMatchDetail() {
           </div>
 
           <div className="  flex flex-col justify-start mt-4">
-            <label
-              htmlFor="label"
-              className=" uppercase  opensans font-bold text-sm "
-            >
+            <label htmlFor="label" className=" uppercase  opensans font-bold text-sm ">
               Red card<span className="text-[#D00D00]">*</span>
             </label>
             <input
@@ -105,10 +98,7 @@ export default function PlayerMatchDetail() {
           </div>
 
           <div className="  flex flex-col justify-start mt-4">
-            <label
-              htmlFor="label"
-              className=" uppercase  opensans font-bold text-sm "
-            >
+            <label htmlFor="label" className=" uppercase  opensans font-bold text-sm ">
               fouls<span className="text-[#D00D00]">*</span>
             </label>
             <input
@@ -123,10 +113,7 @@ export default function PlayerMatchDetail() {
             />
           </div>
           <div className="  flex flex-col justify-start mt-4">
-            <label
-              htmlFor="label"
-              className=" uppercase  opensans font-bold text-sm "
-            >
+            <label htmlFor="label" className=" uppercase  opensans font-bold text-sm ">
               yellow card<span className="text-[#D00D00]">*</span>
             </label>
             <input
@@ -145,10 +132,7 @@ export default function PlayerMatchDetail() {
         <h1 className="font-bold text-lg mt-8">Goalkeeping</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div className="  flex flex-col justify-start mt-4">
-            <label
-              htmlFor="label"
-              className=" uppercase  opensans font-bold text-sm "
-            >
+            <label htmlFor="label" className=" uppercase  opensans font-bold text-sm ">
               total saves<span className="text-[#D00D00]">*</span>
             </label>
             <input
@@ -164,10 +148,7 @@ export default function PlayerMatchDetail() {
           </div>
 
           <div className="  flex flex-col justify-start mt-4">
-            <label
-              htmlFor="label"
-              className=" uppercase  opensans font-bold text-sm "
-            >
+            <label htmlFor="label" className=" uppercase  opensans font-bold text-sm ">
               goal conceded<span className="text-[#D00D00]">*</span>
             </label>
             <input
@@ -183,10 +164,7 @@ export default function PlayerMatchDetail() {
           </div>
 
           <div className="  flex flex-col justify-start mt-4">
-            <label
-              htmlFor="label"
-              className=" uppercase  opensans font-bold text-sm "
-            >
+            <label htmlFor="label" className=" uppercase  opensans font-bold text-sm ">
               punced_saves<span className="text-[#D00D00]">*</span>
             </label>
             <input
@@ -205,10 +183,7 @@ export default function PlayerMatchDetail() {
         <h1 className="font-bold text-lg mt-8">Saves</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div className="  flex flex-col justify-start mt-4">
-            <label
-              htmlFor="label"
-              className=" uppercase  opensans font-bold text-sm "
-            >
+            <label htmlFor="label" className=" uppercase  opensans font-bold text-sm ">
               inside the box<span className="text-[#D00D00]">*</span>
             </label>
             <input
@@ -224,10 +199,7 @@ export default function PlayerMatchDetail() {
           </div>
 
           <div className="  flex flex-col justify-start mt-4">
-            <label
-              htmlFor="label"
-              className=" uppercase  opensans font-bold text-sm "
-            >
+            <label htmlFor="label" className=" uppercase  opensans font-bold text-sm ">
               save caught<span className="text-[#D00D00]">*</span>
             </label>
             <input
@@ -243,10 +215,7 @@ export default function PlayerMatchDetail() {
           </div>
 
           <div className="  flex flex-col justify-start mt-4">
-            <label
-              htmlFor="label"
-              className=" uppercase  opensans font-bold text-sm "
-            >
+            <label htmlFor="label" className=" uppercase  opensans font-bold text-sm ">
               outside the box<span className="text-[#D00D00]">*</span>
             </label>
             <input
@@ -262,10 +231,7 @@ export default function PlayerMatchDetail() {
           </div>
 
           <div className="  flex flex-col justify-start mt-4">
-            <label
-              htmlFor="label"
-              className=" uppercase  opensans font-bold text-sm "
-            >
+            <label htmlFor="label" className=" uppercase  opensans font-bold text-sm ">
               save parried<span className="text-[#D00D00]">*</span>
             </label>
             <input
@@ -284,10 +250,7 @@ export default function PlayerMatchDetail() {
         <h1 className="font-bold text-lg mt-8">Passing</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div className="  flex flex-col justify-start mt-4">
-            <label
-              htmlFor="label"
-              className=" uppercase  opensans font-bold text-sm "
-            >
+            <label htmlFor="label" className=" uppercase  opensans font-bold text-sm ">
               succesful Passing<span className="text-[#D00D00]">*</span>
             </label>
             <input
@@ -303,10 +266,7 @@ export default function PlayerMatchDetail() {
           </div>
 
           <div className="  flex flex-col justify-start mt-4">
-            <label
-              htmlFor="label"
-              className=" uppercase  opensans font-bold text-sm "
-            >
+            <label htmlFor="label" className=" uppercase  opensans font-bold text-sm ">
               succesful final third Passes
               <span className="text-[#D00D00]">*</span>
             </label>
@@ -323,10 +283,7 @@ export default function PlayerMatchDetail() {
           </div>
 
           <div className="  flex flex-col justify-start mt-4">
-            <label
-              htmlFor="label"
-              className=" uppercase  opensans font-bold text-sm "
-            >
+            <label htmlFor="label" className=" uppercase  opensans font-bold text-sm ">
               unsuccesful passes<span className="text-[#D00D00]">*</span>
             </label>
             <input
@@ -342,10 +299,7 @@ export default function PlayerMatchDetail() {
           </div>
 
           <div className="  flex flex-col justify-start mt-4">
-            <label
-              htmlFor="label"
-              className=" uppercase  opensans font-bold text-sm "
-            >
+            <label htmlFor="label" className=" uppercase  opensans font-bold text-sm ">
               unsuccesful final third passes
               <span className="text-[#D00D00]">*</span>
             </label>
@@ -365,10 +319,7 @@ export default function PlayerMatchDetail() {
         <h1 className="font-bold text-lg mt-8">Defending</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div className="  flex flex-col justify-start mt-4">
-            <label
-              htmlFor="label"
-              className=" uppercase  opensans font-bold text-sm "
-            >
+            <label htmlFor="label" className=" uppercase  opensans font-bold text-sm ">
               takle won<span className="text-[#D00D00]">*</span>
             </label>
             <input
@@ -384,10 +335,7 @@ export default function PlayerMatchDetail() {
           </div>
 
           <div className="  flex flex-col justify-start mt-4">
-            <label
-              htmlFor="label"
-              className=" uppercase  opensans font-bold text-sm "
-            >
+            <label htmlFor="label" className=" uppercase  opensans font-bold text-sm ">
               50-50s won<span className="text-[#D00D00]">*</span>
             </label>
             <input
@@ -403,10 +351,7 @@ export default function PlayerMatchDetail() {
           </div>
 
           <div className="  flex flex-col justify-start mt-4">
-            <label
-              htmlFor="label"
-              className=" uppercase  opensans font-bold text-sm "
-            >
+            <label htmlFor="label" className=" uppercase  opensans font-bold text-sm ">
               duel won<span className="text-[#D00D00]">*</span>
             </label>
             <input
@@ -422,10 +367,7 @@ export default function PlayerMatchDetail() {
           </div>
 
           <div className="  flex flex-col justify-start mt-4">
-            <label
-              htmlFor="label"
-              className=" uppercase  opensans font-bold text-sm "
-            >
+            <label htmlFor="label" className=" uppercase  opensans font-bold text-sm ">
               interceptions won<span className="text-[#D00D00]">*</span>
             </label>
             <input
@@ -444,10 +386,7 @@ export default function PlayerMatchDetail() {
         <h1 className="font-bold text-lg mt-8">Attacking</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div className="  flex flex-col justify-start mt-4">
-            <label
-              htmlFor="label"
-              className=" uppercase  opensans font-bold text-sm "
-            >
+            <label htmlFor="label" className=" uppercase  opensans font-bold text-sm ">
               touches in oppo box<span className="text-[#D00D00]">*</span>
             </label>
             <input
@@ -463,10 +402,7 @@ export default function PlayerMatchDetail() {
           </div>
 
           <div className="  flex flex-col justify-start mt-4">
-            <label
-              htmlFor="label"
-              className=" uppercase  opensans font-bold text-sm "
-            >
+            <label htmlFor="label" className=" uppercase  opensans font-bold text-sm ">
               forward passes<span className="text-[#D00D00]">*</span>
             </label>
             <input
@@ -482,10 +418,7 @@ export default function PlayerMatchDetail() {
           </div>
 
           <div className="  flex flex-col justify-start mt-4">
-            <label
-              htmlFor="label"
-              className=" uppercase  opensans font-bold text-sm "
-            >
+            <label htmlFor="label" className=" uppercase  opensans font-bold text-sm ">
               change created<span className="text-[#D00D00]">*</span>
             </label>
             <input
@@ -501,10 +434,7 @@ export default function PlayerMatchDetail() {
           </div>
 
           <div className="  flex flex-col justify-start mt-4">
-            <label
-              htmlFor="label"
-              className=" uppercase  opensans font-bold text-sm "
-            >
+            <label htmlFor="label" className=" uppercase  opensans font-bold text-sm ">
               throught-balls<span className="text-[#D00D00]">*</span>
             </label>
             <input
@@ -519,10 +449,7 @@ export default function PlayerMatchDetail() {
             />
           </div>
           <div className="  flex flex-col justify-start mt-4">
-            <label
-              htmlFor="label"
-              className=" uppercase  opensans font-bold text-sm "
-            >
+            <label htmlFor="label" className=" uppercase  opensans font-bold text-sm ">
               assist<span className="text-[#D00D00]">*</span>
             </label>
             <input
@@ -537,13 +464,8 @@ export default function PlayerMatchDetail() {
             />
           </div>
         </div>
-        <button className="bg-[#D00D00] h-10 rounded-lg mt-10 text-white opensans w-full">
-          Simpan
-        </button>
+        <button className="bg-[#D00D00] h-10 rounded-lg mt-10 text-white opensans w-full">Simpan</button>
       </div>
-
-
-      
     </form>
   );
 }

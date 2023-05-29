@@ -35,14 +35,14 @@ function AddPlayer({ params: query }: PageProps) {
   async function postData(e: React.FormEvent) {
     e.preventDefault();
 
-    const getClubID = await fetch("http://localhost:4002/api/v1/club/" + data.clubId, {
+    const getClubID = await fetch("https://api-stapa-app.vercel.app/api/v1/club/" + data.clubId, {
       headers: {
         Authorization: `Bearer ${value}`,
       },
     });
     const response = await getClubID.json();
     if (!response.success) {
-      console.log(response.message);
+      return alert(response.message);
     }
     // @ts-ignore
     const dataForm = new FormData();
@@ -61,9 +61,8 @@ function AddPlayer({ params: query }: PageProps) {
     dataForm.append("password", data.password);
     // @ts-ignore
     dataForm.append("clubId", response.data.uuid);
-    alert("oke");
 
-    const post = await fetch("http://localhost:4002/api/v1/player", {
+    const post = await fetch("https://api-stapa-app.vercel.app/api/v1/player", {
       method: "POST",
       body: dataForm,
 
@@ -73,10 +72,19 @@ function AddPlayer({ params: query }: PageProps) {
     });
     const res = await post.json();
 
-    if (!res.success) console.log(res.message);
+    if (!res.success) {
+      return alert(res.message);
+    }
+    alert("oke");
     return router.push(`/main/${query.category}/${query.team}`);
   }
-
+  const handleChangeSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setData({
+      ...data,
+      [name]: value,
+    });
+  };
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, files } = e.target;
     setData({
@@ -249,7 +257,31 @@ function AddPlayer({ params: query }: PageProps) {
                   position
                   <span className="text-[#D00D00]">*</span>
                 </label>
-                <input
+                <select
+                  defaultValue={""}
+                  name="position"
+                  id=""
+                  onChange={(e) => {
+                    handleChangeSelect(e);
+                  }}
+                  className=" bg-[#F2F3F7] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
+                >
+                  <option value="">Pilih posisi</option>
+                  <option value="CF">CF</option>
+                  <option value="SS">SS</option>
+                  <option value="RW">RW</option>
+                  <option value="LW">LW</option>
+                  <option value="AMF">AMF</option>
+                  <option value="CMF">CMF</option>
+                  <option value="MF">MF</option>
+                  <option value="DMF">DMF</option>
+                  <option value="WB">WB</option>
+                  <option value="RB">RB</option>
+                  <option value="LB">LB</option>
+                  <option value="CB">CB</option>
+                  <option value="GK">GK</option>
+                </select>
+                {/* <input
                   type="text"
                   name="position"
                   onChange={(e) => {
@@ -258,7 +290,7 @@ function AddPlayer({ params: query }: PageProps) {
                   placeholder="e.g 58"
                   value={data.position}
                   className=" bg-[#F2F3F7]  h-10 border-none w-full focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
-                />
+                /> */}
               </div>
               <div className="flex flex-col justify-start mt-4 text-sm  ">
                 <label htmlFor="label" className="uppercase opensans font-bold ">

@@ -15,6 +15,7 @@ function UserAuth({ logout, login }: any) {
       })
       .catch((err: any) => {
         if (err.response.status === 401) {
+          window.location.reload();
           localStorage.setItem("login", JSON.stringify({ data: { token: null } }));
           logout();
           //   @ts-ignore
@@ -29,7 +30,6 @@ function UserAuth({ logout, login }: any) {
   return (
     <div className="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-60 z-[999]">
       <div className="flex items-center mb-4">
-        <p className="text-white text-lg font-semibold tracking-wide animate-fade-in mx-5">Authenticating user</p>
         <div className="h-4 w-4 bg-white rounded-full mr-1 animate-bounce"></div>
         <div className="h-4 w-4 bg-white rounded-full mr-1 animate-bounce"></div>
         <div className="h-4 w-4 bg-white rounded-full mr-1 animate-bounce"></div>

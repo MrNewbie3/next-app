@@ -5,7 +5,7 @@ import Shooting from "./datatim/shooting";
 import Passing_ball from "./datatim/passing_ball";
 import Fouls from "./datatim/fouls";
 import Defending from "./datatim/defending";
-import instance from "@/config/axios";
+import { instance } from "@/config/axios";
 type PageProps = {
   params: {
     category: string;
@@ -76,7 +76,7 @@ function HistoryDetails({ params: query }: PageProps) {
   useEffect(() => {
     if (rawData.data === null) {
       instance
-        .get("http://localhost:4002/api/v1/match/" + query.league)
+        .get("https://api-stapa-app.vercel.app/api/v1/match/" + query.league)
         .then((result: any) => {
           setRawData(result.data.data);
         })

@@ -15,7 +15,7 @@ type PageProps = {
 async function getData(params: String) {
   const cookieStore = cookies();
 
-  const data = await fetch("http://localhost:4002/api/v1/player/" + params, {
+  const data = await fetch("https://api-stapa-app.vercel.app/api/v1/player/" + params, {
     headers: {
       Authorization: `Bearer ${cookieStore.get("token")?.value}`,
     },
@@ -70,7 +70,7 @@ async function PlayerCard({ params: query }: PageProps) {
             </div>
             <div>
               <label className="text-xs font-bold">posisi</label>
-              <p className=" capitalize bg-white h-10 w-full p-2 rounded-lg font-semibold">GoalKeeper</p>
+              <p className=" capitalize bg-white h-10 w-full p-2 rounded-lg font-semibold">{data.data.position}</p>
             </div>
             <div>
               <label className="text-xs font-bold">Tempat Lahir</label>
