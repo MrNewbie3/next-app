@@ -15,7 +15,6 @@ function UserAuth({ logout, login }: any) {
       })
       .catch((err: any) => {
         if (err.response.status === 401) {
-          window.location.reload();
           localStorage.setItem("login", JSON.stringify({ data: { token: null } }));
           logout();
           //   @ts-ignore
