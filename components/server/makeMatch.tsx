@@ -85,7 +85,7 @@ async function MakeMatch({ params: query }: PageProps) {
   const dataTim = await getData(query.team);
   console.log();
 
-  if (dataShots.totalPasses === null && dataTim.data.length > 1) {
+  if (dataShots.totalPasses === null && dataTim.data.length > 0) {
     dataShots.Corner_kick = parseInt(dataTim.data[dataTim.data.length - 1].corner_kick_position);
     dataTim.data[dataTim.data.length - 1].DetailMatch.map((e: any) => {
       for (const key in e) {
@@ -126,6 +126,9 @@ async function MakeMatch({ params: query }: PageProps) {
         }
         if (key.includes("yellow_cards")) {
           dataFouls.yellow_card += e[key];
+        }
+        if (key.includes("offside")) {
+          dataFouls.offside += e[key];
         }
       }
     });
