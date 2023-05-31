@@ -19,7 +19,7 @@ function Popup() {
   async function postData(e: React.FormEvent) {
     e.preventDefault();
 
-    const post = await fetch("https://api-stapa-app.vercel.app/api/v1/category", {
+    const post = await fetch(`${process.env.NEXT_PUBLIC_URL}/category`, {
       method: "POST",
       body: JSON.stringify(data),
       headers: {

@@ -76,7 +76,7 @@ function HistoryDetails({ params: query }: PageProps) {
   useEffect(() => {
     if (rawData.data === null) {
       instance
-        .get("https://api-stapa-app.vercel.app/api/v1/match/" + query.league)
+        .get(`${process.env.NEXT_PUBLIC_URL}/match/` + query.league)
         .then((result: any) => {
           setRawData(result.data.data);
         })

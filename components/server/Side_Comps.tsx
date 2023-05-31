@@ -1,16 +1,18 @@
 import { getAuthTokenServer } from "@/config/cookie";
 import { NextApiRequest, NextApiResponse } from "next";
+import { cookies } from "next/headers";
 import Link from "next/link";
 import React from "react";
 import { MdSportsSoccer } from "react-icons/md";
 
-async function getData(params: NextApiRequest) {
-  const res = await fetch("https://api-stapa-app.vercel.app/api/v1/category", {
+async function getData() {
+  const cookieStore = cookies();
+  const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/category`, {
     cache: "no-store",
     next: {
       revalidate: 10,
     },
-    // headers: { Authorization: `Bearer ${getAuthTokenServer(params)}` },
+    headers: { Authorization: `Bearer ${cookieStore.get("token")?.value}` },
   });
   if (!res.ok) {
     throw new Error("Failed to fetch data = " + res.statusText);
@@ -24,7 +26,7 @@ type PageProps = {
 };
 
 export default async function Side_Comps({ req, res }: PageProps) {
-  let data = await getData(req);
+  let data = await getData();
 
   return (
     <>

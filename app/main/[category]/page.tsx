@@ -12,7 +12,7 @@ interface PageProps {
 
 async function getData(category: string) {
   const cookieStore = cookies();
-  const res = await fetch("https://api-stapa-app.vercel.app/api/v1/club/c/" + category, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/club/c/` + category, {
     headers: {
       Authorization: `Bearer ${cookieStore.get("token")?.value}`,
     },

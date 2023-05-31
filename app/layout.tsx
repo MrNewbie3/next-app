@@ -33,7 +33,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head></head>
       <body className="bg-light-grey ">
         <Provider store={store}>
-          {data !== undefined ? <UserAuth></UserAuth> : ""}
+          {data !== undefined ? <UserAuth></UserAuth> : <></>}
           <PersistGate loading={null} persistor={persistor}>
             {children}
           </PersistGate>

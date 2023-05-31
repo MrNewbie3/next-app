@@ -14,7 +14,7 @@ type PageProps = {
   };
 };
 export default function page({ params: query }: PageProps) {
-  const navigation = ["player", "last match", "season stats", "history", "periodisasi", "crew"];
+  const navigation = ["player", "last match", "season stats", "history", "periodisasi", "staff"];
   const pages = [
     // @ts-ignore
     <MakePlayer params={query} key={1} />,

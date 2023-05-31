@@ -12,7 +12,7 @@ type PageProps = {
     category: any;
   };
 };
-function AddPlayer({ params: query }: PageProps) {
+function AddCrew({ params: query }: PageProps) {
   const token = getAuthTokenClient();
   const value = token;
   const router = useRouter();
@@ -25,11 +25,11 @@ function AddPlayer({ params: query }: PageProps) {
     date_of_birth: "",
     height: "",
     weight: "",
-    role: "PLAYER",
     username: "",
     password: "",
     photo_player: null,
     position: "",
+    role: "",
     akta_player: null,
     ijazah_player: null,
     clubId: query.team,
@@ -68,10 +68,10 @@ function AddPlayer({ params: query }: PageProps) {
     dataForm.append("place_of_birth", data.place_of_birth);
     dataForm.append("date_of_birth", data.date_of_birth);
     dataForm.append("height", data.height);
+    dataForm.append("role", data.role);
     dataForm.append("weight", data.weight);
     dataForm.append("username", result.data.username);
     dataForm.append("position", data.position);
-    dataForm.append("role", data.role);
     dataForm.append("password", result.data.password);
     // @ts-ignore
     dataForm.append("akta_player", data.akta_player);
@@ -161,36 +161,6 @@ function AddPlayer({ params: query }: PageProps) {
               </div>
 
               <div className="flex flex-col justify-start mt-4 text-sm">
-                <label htmlFor="label" className=" uppercase  opensans font-bold ">
-                  Nama tampilan <span className="text-[#D00D00]">*</span>
-                </label>
-                <input
-                  type="text"
-                  name="nickname"
-                  onChange={(e) => {
-                    handleChange(e);
-                  }}
-                  placeholder="e.g Red Devil"
-                  value={data.nickname}
-                  className=" bg-[#F2F3F7] h-10 border-none w-full focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
-                />
-              </div>
-              <div className="flex flex-col justify-start mt-4 text-sm">
-                <label htmlFor="label" className=" uppercase opensans font-bold ">
-                  nomor punggung
-                </label>
-                <input
-                  type="number"
-                  name="number_of_player"
-                  onChange={(e) => {
-                    handleChange(e);
-                  }}
-                  placeholder="e.g 58"
-                  value={data.number_of_player}
-                  className=" bg-[#F2F3F7]  h-10 border-none w-full focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
-                />
-              </div>
-              <div className="flex flex-col justify-start mt-4 text-sm">
                 <label htmlFor="label" className="uppercase opensans font-bold ">
                   jenis kelamin <span className="text-[#D00D00]">*</span>
                 </label>
@@ -237,8 +207,6 @@ function AddPlayer({ params: query }: PageProps) {
                   className=" bg-[#F2F3F7] h-10 border-none w-full focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
                 />
               </div>
-            </div>
-            <div className="w-full">
               <div className="flex flex-col justify-start mt-4 text-sm">
                 <label htmlFor="label" className="uppercase opensans font-bold ">
                   tinggi badan <span className="lowercase text-xs">(cm)</span> <span className="text-[#D00D00]">*</span>
@@ -254,6 +222,8 @@ function AddPlayer({ params: query }: PageProps) {
                   className=" bg-[#F2F3F7] h-10 border-none w-full focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
                 />
               </div>
+            </div>
+            <div className="w-full">
               <div className="flex flex-col justify-start mt-4 text-sm">
                 <label htmlFor="label" className="uppercase opensans font-bold ">
                   berat badan <span className="lowercase text-xs">(Kg)</span>
@@ -272,47 +242,33 @@ function AddPlayer({ params: query }: PageProps) {
               </div>
               <div className="flex flex-col justify-start mt-4 text-sm">
                 <label htmlFor="label" className="uppercase opensans font-bold ">
-                  position
+                  role
                   <span className="text-[#D00D00]">*</span>
                 </label>
                 <select
                   defaultValue={""}
-                  name="position"
+                  name="role"
                   id=""
                   onChange={(e) => {
                     handleChangeSelect(e);
                   }}
                   className=" bg-[#F2F3F7] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
                 >
-                  <option value="">Pilih posisi</option>
-                  <option value="CF">CF</option>
-                  <option value="SS">SS</option>
-                  <option value="RW">RW</option>
-                  <option value="LW">LW</option>
-                  <option value="AMF">AMF</option>
-                  <option value="CMF">CMF</option>
-                  <option value="MF">MF</option>
-                  <option value="DMF">DMF</option>
-                  <option value="WB">WB</option>
-                  <option value="RB">RB</option>
-                  <option value="LB">LB</option>
-                  <option value="CB">CB</option>
-                  <option value="GK">GK</option>
+                  <option value="">Pilih role</option>
+                  MANAGER ASISTEN PELATIH_FISIK PELATIH_KIPER DOKTER FISIOTERAPI MASASE KITMAN
+                  <option value="MANAGER">MANAGER</option>
+                  <option value="ASISTEN">ASISTEN</option>
+                  <option value="PELATIH_FISIK">PELATIHFISIK</option>
+                  <option value="PELATIH_KIPER">PELATIH KIPER</option>
+                  <option value="DOKTER">DOKTER</option>
+                  <option value="FISIOTERAPI">FISIOTERAPI</option>
+                  <option value="MASASE">MASASE</option>
+                  <option value="KITMAN">KITMAN</option>
                 </select>
-                {/* <input
-                  type="text"
-                  name="position"
-                  onChange={(e) => {
-                    handleChange(e);
-                  }}
-                  placeholder="e.g 58"
-                  value={data.position}
-                  className=" bg-[#F2F3F7]  h-10 border-none w-full focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
-                /> */}
               </div>
               <div className="flex flex-col justify-start mt-4 text-sm  ">
                 <label htmlFor="label" className="uppercase opensans font-bold ">
-                  foto pemain <span className="text-[#D00D00]">*</span>
+                  foto pelatih <span className="text-[#D00D00]">*</span>
                 </label>
                 <input
                   type="file"
@@ -326,7 +282,7 @@ function AddPlayer({ params: query }: PageProps) {
               </div>
               <div className="flex flex-col justify-start mt-4 text-sm  ">
                 <label htmlFor="label" className="uppercase opensans font-bold ">
-                  ijazah pemain <span className="text-[#D00D00]">*</span>
+                  ijazah pelatih <span className="text-[#D00D00]">*</span>
                 </label>
                 <input
                   type="file"
@@ -340,7 +296,7 @@ function AddPlayer({ params: query }: PageProps) {
               </div>
               <div className="flex flex-col justify-start mt-4 text-sm  ">
                 <label htmlFor="label" className="uppercase opensans font-bold ">
-                  akta pemain <span className="text-[#D00D00]">*</span>
+                  akta pelatih <span className="text-[#D00D00]">*</span>
                 </label>
                 <input
                   type="file"
@@ -363,4 +319,4 @@ function AddPlayer({ params: query }: PageProps) {
   );
 }
 
-export default AddPlayer;
+export default AddCrew;

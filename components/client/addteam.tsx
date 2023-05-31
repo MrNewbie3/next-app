@@ -25,7 +25,7 @@ function AddTeam({ params }: Props) {
 
   const cookieStore = getAuthTokenClient();
   async function getUserId() {
-    const user = await fetch("https://api-stapa-app.vercel.app/api/v1/user/auth", {
+    const user = await fetch(`${process.env.NEXT_PUBLIC_URL}/user/auth`, {
       headers: { Authorization: `Bearer ${cookieStore}` },
     });
     const response = await user.json();
@@ -48,7 +48,7 @@ function AddTeam({ params }: Props) {
     }
     console.log(data);
 
-    const post = await fetch("https://api-stapa-app.vercel.app/api/v1/club", {
+    const post = await fetch(`${process.env.NEXT_PUBLIC_URL}/club`, {
       method: "POST",
       body: formData,
       headers: {

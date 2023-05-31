@@ -54,7 +54,7 @@ const defend = {
 const getData = async (params: string) => {
   const cookieStore = cookies();
 
-  const data = await fetch("https://api-stapa-app.vercel.app/api/v1/match/" + params, {
+  const data = await fetch(`${process.env.NEXT_PUBLIC_URL}/match/` + params, {
     headers: {
       Authorization: `Bearer ${cookieStore.get("token")?.value}`,
     },
@@ -70,7 +70,7 @@ const getData = async (params: string) => {
 const getPlayers = async (params: string) => {
   const cookieStore = cookies();
 
-  const data = await fetch("https://api-stapa-app.vercel.app/api/v1/player/" + params, {
+  const data = await fetch(`${process.env.NEXT_PUBLIC_URL}/player/` + params, {
     headers: {
       Authorization: `Bearer ${cookieStore.get("token")?.value}`,
     },

@@ -4,6 +4,7 @@ import Shooting from "../datatim/shooting";
 import Passing_ball from "../datatim/passing_ball";
 import Fouls from "../datatim/fouls";
 import Defending from "../datatim/defending";
+import { cookies } from "next/headers";
 
 type PageProps = {
   params: {
@@ -68,12 +69,13 @@ const dataFouls: DataFouls = {
 };
 
 async function getData(params: String) {
-  const res = await fetch("https://api-stapa-app.vercel.app/api/v1/match/c/" + params, {
+  const auth = cookies();
+  const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/match/c/` + params, {
     cache: "no-store",
     next: {
       revalidate: 10,
     },
-    headers: { Authorization: `Bearer ${process.env.AUTH}` },
+    headers: { Authorization: `Bearer ${auth.get("token")?.value}` },
   });
   if (!res.ok) {
     throw new Error("Failed to fetch data = " + res.statusText);
@@ -83,7 +85,6 @@ async function getData(params: String) {
 
 async function MakeMatch({ params: query }: PageProps) {
   const dataTim = await getData(query.team);
-  console.log();
 
   if (dataShots.totalPasses === null && dataTim.data.length > 0) {
     dataShots.Corner_kick = parseInt(dataTim.data[dataTim.data.length - 1].corner_kick_position);

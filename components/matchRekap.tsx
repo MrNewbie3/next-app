@@ -71,7 +71,7 @@ const dataFouls: DataFouls = {
 const getClubData = async (params: string) => {
   const cookieStore = cookies();
 
-  const data = await fetch("https://api-stapa-app.vercel.app/api/v1/match/c/" + params, {
+  const data = await fetch(`${process.env.NEXT_PUBLIC_URL}/match/c/` + params, {
     headers: {
       Authorization: `Bearer ${cookieStore.get("token")?.value}`,
     },
@@ -86,7 +86,7 @@ const getClubData = async (params: string) => {
 const getClubDataPerMatch = async (params: string) => {
   const cookieStore = cookies();
 
-  const data = await fetch("https://api-stapa-app.vercel.app/api/v1/match/" + params, {
+  const data = await fetch(`${process.env.NEXT_PUBLIC_URL}/match/` + params, {
     headers: {
       Authorization: `Bearer ${cookieStore.get("token")?.value}`,
     },

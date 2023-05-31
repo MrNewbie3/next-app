@@ -1,4 +1,4 @@
-import AddPlayer from "@/components/client/addPlayer";
+import AddCrew from "@/components/client/addCrew";
 import React from "react";
 type PageProps = {
   params: {
@@ -9,7 +9,7 @@ type PageProps = {
 export default function page({ params: query }: PageProps) {
   return (
     <div className="w-full">
-      <AddPlayer params={query} />
+      <AddCrew params={query} />
     </div>
   );
 }

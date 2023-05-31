@@ -13,7 +13,7 @@ type PageProps = {
 async function getData(params: String) {
   const cookieStore = cookies();
 
-  const res = await fetch("https://api-stapa-app.vercel.app/api/v1/club/" + params, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/club/` + params, {
     headers: {
       Authorization: `Bearer ${cookieStore.get("token")?.value}`,
     },

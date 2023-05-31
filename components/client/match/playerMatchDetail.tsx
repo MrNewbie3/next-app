@@ -1,4 +1,5 @@
 "use client";
+import { getAuthTokenClient } from "@/config/cookie";
 import React, { useState } from "react";
 
 export default function PlayerMatchDetail() {
@@ -32,13 +33,14 @@ export default function PlayerMatchDetail() {
   });
 
   async function postData(e: React.FormEvent) {
+    const auth = getAuthTokenClient();
     e.preventDefault();
-    const post = await fetch("https://api-stapa-app.vercel.app/api/v1/match/d/", {
+    const post = await fetch(`${process.env.NEXT_PUBLIC_URL}/match/d/`, {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
-        Authentication: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY4Mjg3NTc5OCwiZXhwIjoxNjgyODg2NTk4fQ.AzHS-AMvEoHHgxaQ0FyEIODRHjNSeMTCOyrcPE95cd",
+        Authentication: `Bearer ${auth}`,
       },
     });
     const res = await post.json();

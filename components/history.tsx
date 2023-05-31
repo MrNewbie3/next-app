@@ -12,7 +12,7 @@ type PageProps = {
 };
 
 async function getData(params: String) {
-  const res = await fetch("https://api-stapa-app.vercel.app/api/v1/match/c/" + params, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/match/c/` + params, {
     cache: "no-store",
     next: {
       revalidate: 10,

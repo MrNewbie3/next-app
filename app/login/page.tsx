@@ -17,7 +17,7 @@ const Login = ({ status, token, data, login }: any) => {
   });
   async function postData(e: React.FormEvent) {
     e.preventDefault();
-    const post = await fetch("https://api-stapa-app.vercel.app/api/v1/user/login", {
+    const post = await fetch(`${process.env.NEXT_PUBLIC_URL}/user/login`, {
       method: "POST",
       body: JSON.stringify(datas),
       headers: {

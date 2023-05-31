@@ -2,6 +2,7 @@ import Link from "next/link";
 import React from "react";
 import ListPlayer from "./client/listPlayer";
 import { cookies } from "next/headers";
+import ListStaff from "./client/liststaff";
 type PageProps = {
   params: {
     category: string;
@@ -13,7 +14,7 @@ type PageProps = {
 async function getData(params: String) {
   const cookieStore = cookies();
 
-  const res = await fetch("https://api-stapa-app.vercel.app/api/v1/club/" + params, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/club/` + params, {
     headers: {
       Authorization: `Bearer ${cookieStore.get("token")?.value}`,
     },
@@ -46,7 +47,7 @@ async function Crew({ params: query }: PageProps) {
       </div>
       <div className="px-8 mt-6 bg-white rounded-xl">
         {/* @ts-ignore */}
-        <ListPlayer params={query} />
+        <ListStaff params={query} />
       </div>
     </>
   );
