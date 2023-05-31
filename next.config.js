@@ -4,7 +4,7 @@ const nextConfig = {
     appDir: true,
   },
   env: {
-    NEXT_PUBLIC_URL: process.env.NEXT_PUBLIC_URL,
+    NEXT_PUBLIC_URL: "https://api-stapa-app.vercel.app/api/v1",
   },
   images: {
     remotePatterns: [
