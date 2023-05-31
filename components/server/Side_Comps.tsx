@@ -1,4 +1,3 @@
-import { getAuthTokenServer } from "@/config/cookie";
 import { NextApiRequest, NextApiResponse } from "next";
 import { cookies } from "next/headers";
 import Link from "next/link";
