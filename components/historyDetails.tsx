@@ -88,7 +88,7 @@ function HistoryDetails({ params: query }: PageProps) {
 
   if (rawData.data !== null) {
     const getClub = { data: [rawData] };
-    if (dataShots.totalPasses === null) {
+    if (dataShots.totalPasses === null && getClub.data.length > 0) {
       getClub.data.map((e: any) => {
         // @ts-ignore
         dataShots.Corner_kick += parseInt(e.corner_kick_position);
