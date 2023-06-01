@@ -32,7 +32,7 @@ function Navbar() {
     <>
       <nav className="flex flex-row justify-between  items-center h-24 drop-shadow-xl px-10 bg-[#F2F3F7] mb-6 w-full">
         <Link href={"/"}>
-          <Image className="bg-sky-100 font-bold " alt="stapa-logo.png" src="/images/STAPA.png " height={29} width={85}></Image>
+          <p className="text-lg uppercase font-bold">lmss</p>
         </Link>
         <div className="flex justify-between items-center font-medium gap-2">
           <div className="flex gap-2 items-center">
