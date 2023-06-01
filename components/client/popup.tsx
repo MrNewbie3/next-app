@@ -21,20 +21,20 @@ function Popup() {
   } = useForm<FormData>({ resolver: yupResolver(schema) });
 
   const cookieStore = getAuthTokenClient();
-  const [data, setData] = useState({});
 
   async function postData(e: FormData) {
-    setData(e);
+    console.log(e);
+
     const post = await fetch(`${process.env.NEXT_PUBLIC_URL}/category`, {
       method: "POST",
-      body: JSON.stringify(data),
+      body: JSON.stringify(e),
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${cookieStore}`,
       },
     });
     const res = await post.json();
-    if (!res.success) return alert(res);
+    if (!res.success) return alert(res.message);
     return typeof window != undefined ? window.location.reload() : undefined;
   }
 

@@ -62,12 +62,14 @@ function PlayerPick({ params: player }: PageProps) {
     e.preventDefault();
     if (localStorage.getItem("data_player") === null) {
       alert("data berhasil disimpan");
-      return localStorage.setItem("data_player", JSON.stringify(data));
+      return localStorage.setItem("data_player", JSON.stringify([data]));
     }
     // @ts-ignore
     const jsonData = JSON.parse(localStorage.getItem("data_player"));
     alert("data berhasil disimpan");
-    return localStorage.setItem("data_player", JSON.stringify([{ ...jsonData }, data]));
+    const exist = jsonData[0];
+
+    return localStorage.setItem("data_player", JSON.stringify([{ ...exist }, data]));
 
     // window.location.reload();
   }

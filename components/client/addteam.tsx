@@ -18,35 +18,22 @@ function AddTeam({ params }: Props) {
     club_established: "",
     start_season: "",
     end_season: "",
-    userId: "",
+    // @ts-ignore
+    userId: JSON.parse(localStorage.getItem("login")).data.user.uuid,
     categoryId: params,
     club_image: null,
   });
 
   const cookieStore = getAuthTokenClient();
-  async function getUserId() {
-    const user = await fetch(`${process.env.NEXT_PUBLIC_URL}/user/auth`, {
-      headers: { Authorization: `Bearer ${cookieStore}` },
-    });
-    const response = await user.json();
-    if (!response.success) {
-      return alert(response.message);
-    }
-    setData((prevState) => ({
-      ...prevState,
-      userId: response.data.uuid,
-    }));
-  }
+
   const router = useRouter();
   async function postData(e: React.FormEvent) {
     e.preventDefault();
     const formData = new FormData();
-    await getUserId();
     for (const key in data) {
       // @ts-ignore
       formData.append(key, data[key]);
     }
-    console.log(data);
 
     const post = await fetch(`${process.env.NEXT_PUBLIC_URL}/club`, {
       method: "POST",

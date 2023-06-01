@@ -16,7 +16,16 @@ function ListPlayer({ params: query }: PageProps) {
     instance
       .get("club/p/" + query.team)
       .then((datas: any) => {
-        setData(datas.data);
+        const res = datas.data.data.players.filter((e: any) => {
+          return e.role === "PLAYER" ? e : "";
+        });
+
+        // @ts-ignore
+        setData((prevstate) => ({
+          ...prevstate,
+          success: true,
+          data: { players: res },
+        }));
       })
       .catch((err: any) => {
         throw new Error(err);

@@ -46,7 +46,12 @@ async function getDataPlayer(params: String) {
 async function TeamCard({ params: query }: PageProps) {
   let data = await getData(query.team);
   let dataPlayer = await getDataPlayer(query.team);
-
+  const player = dataPlayer.data.players.filter((e: any) => {
+    return e.role === "PLAYER" ? e : "";
+  });
+  const staff = dataPlayer.data.players.filter((e: any) => {
+    return e.role !== "PLAYER" ? e : "";
+  });
   return (
     <>
       {data.success ? "" : (data = [])}
@@ -85,11 +90,11 @@ async function TeamCard({ params: query }: PageProps) {
             </div>
             <div>
               <label className="text-xs font-bold">jumlah pemain</label>
-              <p className=" capitalize bg-white h-10 w-full  p-2 rounded-lg">{dataPlayer.data.players.length}</p>
+              <p className=" capitalize bg-white h-10 w-full  p-2 rounded-lg">{player.length}</p>
             </div>{" "}
             <div>
               <label className="text-xs font-bold">jumlah staf</label>
-              <p className=" capitalize bg-white h-10 w-full  p-2 rounded-lg">0</p>
+              <p className=" capitalize bg-white h-10 w-full  p-2 rounded-lg">{staff.length}</p>
             </div>
             <div>
               <label className="text-xs font-bold">jumlah trofi</label>

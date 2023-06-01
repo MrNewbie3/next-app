@@ -17,7 +17,7 @@ function ListStaff({ params: query }: PageProps) {
       .get("club/p/" + query.team)
       .then((datas: any) => {
         const res = datas.data.data.players.filter((e: any) => {
-          return e.position !== "Swing" ? e : "";
+          return e.role !== "PLAYER" ? e : "";
         });
         // @ts-ignore
         setData((prevstate) => ({
@@ -42,13 +42,13 @@ function ListStaff({ params: query }: PageProps) {
             {/* @ts-ignore */}
             {data.data.players.map((value: any, index: number) => {
               return (
-                <Link key={index} href={query.detail === "player" ? `/main/${query.category}/${query.team}/player_detail/${value.uuid}` : `/main/${query.category}/${query.team}/new_match/${value.uuid}`}>
+                <Link key={index} href={""}>
                   <div className="flex flex-col w-full capitalize">
                     <div className="bg-[#F2F3F7] py-2 rounded-lg flex gap-5 px-8 w-full items-center  ">
                       <h1 className="text-3xl font-bold  text-[#D00D00]">{value.number_of_player}</h1>
                       <div className="gap-5 items-center h-12 w- flex">
                         <div>
-                          <p className="text-xs text-gray-400">{value.position}</p>
+                          <p className="text-xs text-gray-400">{value.role}</p>
                           <h2 className="text-md font-semibold   ">{value.fullname}</h2>
                         </div>
                       </div>
