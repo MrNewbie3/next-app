@@ -5,8 +5,25 @@ import { getAuthTokenClient, setAuthToken } from "../../config/cookie";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
 const Login = ({ status, token, data, login }: any) => {
+  const schema = yup
+    .object({
+      username: yup.string().required(),
+      password: yup.string().required(),
+    })
+    .required();
+  type FormData = yup.InferType<typeof schema>;
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>({
+    resolver: yupResolver(schema),
+  });
   const router = useRouter();
   if (status && data !== null) {
     return router.push("/main");
@@ -15,8 +32,10 @@ const Login = ({ status, token, data, login }: any) => {
     username: "",
     password: "",
   });
-  async function postData(e: React.FormEvent) {
-    e.preventDefault();
+  async function postData(e: any) {
+    const { username, password } = e;
+    setData({ username, password });
+
     const post = await fetch(`${process.env.NEXT_PUBLIC_URL}/user/login`, {
       method: "POST",
       body: JSON.stringify(datas),
@@ -36,21 +55,9 @@ const Login = ({ status, token, data, login }: any) => {
     }
   }
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setData((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-  };
-
   return (
     <>
-      <form
-        onSubmit={(e) => {
-          postData(e);
-        }}
-      >
+      <form onSubmit={handleSubmit(postData)}>
         <div className="flex justify-center  bg-white items-center  h-screen w-screen text-slate-600">
           {" "}
           <div className=" w-full px-6 py-10  bg-slate-100  text-center max-w-sm min-w-fit">
@@ -60,27 +67,31 @@ const Login = ({ status, token, data, login }: any) => {
               <h1 className="text-xl text-start font-semibold capitalize mb-1">username</h1>
               <input
                 className="w-full h-10 ring-2 rounded-sm bg-slate-100 ring-red-600 outline-none p-2"
-                type="emai"
-                name="username"
-                onChange={(e) => {
-                  handleChange(e);
-                }}
-                value={datas.username}
+                type="text"
+                // name="username"
+                // onChange={(e) => {
+                //   handleChange(e);
+                // }}
+                // value={datas.username}
+                {...register("username")}
                 placeholder="username"
               />
+              <p className="text-red-600 text-sm text-start">{errors.username?.message}</p>
             </div>
-            <div>
+            <div className="mb-10">
               <h1 className="text-xl text-start font-semibold capitalize mb-1">password</h1>
               <input
-                className="w-full h-10 ring-2 mb-10 bg-slate-100 rounded-sm ring-red-600 outline-none p-2"
+                className="w-full h-10 ring-2  bg-slate-100 rounded-sm ring-red-600 outline-none p-2"
                 type="password"
-                name="password"
-                onChange={(e) => {
-                  handleChange(e);
-                }}
-                value={datas.password}
+                // name="password"
+                // onChange={(e) => {
+                //   handleChange(e);
+                // }}
+                // value={datas.password}
+                {...register("password")}
                 placeholder="password"
               />
+              <p className="text-red-600 text-sm text-start">{errors.password?.message}</p>
             </div>
             {/* <p className="text-end text-sky-500 mt-1">
               <NavLink to="/forgotPass">lupa password?</NavLink>
