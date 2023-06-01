@@ -1,24 +1,30 @@
 "use client";
 
 import { getAuthTokenClient } from "@/config/cookie";
-import { cookies } from "next/headers";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
-
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
 function Popup() {
+  const schema = yup
+    .object({
+      category_name: yup.string().required("kategori tidak boleh kosong"),
+    })
+    .required();
+  type FormData = yup.InferType<typeof schema>;
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>({ resolver: yupResolver(schema) });
+
   const cookieStore = getAuthTokenClient();
   const [data, setData] = useState({});
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setData((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-  };
 
-  async function postData(e: React.FormEvent) {
-    e.preventDefault();
-
+  async function postData(e: FormData) {
+    setData(e);
     const post = await fetch(`${process.env.NEXT_PUBLIC_URL}/category`, {
       method: "POST",
       body: JSON.stringify(data),
@@ -27,10 +33,9 @@ function Popup() {
         Authorization: `Bearer ${cookieStore}`,
       },
     });
-
     const res = await post.json();
     if (!res.success) return alert(res);
-    // window.location.reload();
+    return typeof window != undefined ? window.location.reload() : undefined;
   }
 
   return (
@@ -39,21 +44,9 @@ function Popup() {
         <div className="bg-white mt-20 p-8 h-64 w-[400px] rounded-xl flex flex-col">
           <h1 className="font-semibold mb-8 text-lg">Tambah kategori</h1>
           <h2 className="font-bold text-xs opensans-bold">NAMA KATEGORI</h2>
-          <form className="flex flex-col" onSubmit={postData}>
-            <input
-              type="text"
-              id="category_name"
-              onChange={(e) => {
-                handleChange(e);
-              }}
-              name="category_name"
-              placeholder="e.g Sepak Bola"
-              value={
-                // @ts-ignore
-                data.category_name || ""
-              }
-              className=" bg-[#F2F3F7] h-10 border-none focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
-            />
+          <form className="flex flex-col" onSubmit={handleSubmit(postData)}>
+            <input type="text" {...register("category_name")} placeholder="e.g Sepak Bola" className=" bg-[#F2F3F7] h-10 border-none focus:outline-none  p-2 mt-2 rounded-lg font-semibold " />
+            <p className="text-red-600">{errors.category_name?.message}</p>
             <button className="bg-[#D00D00] rounded-lg opensans-bold h-10  text-white mt-6 " type="submit">
               Simpan
             </button>
