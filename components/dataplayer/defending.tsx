@@ -1,4 +1,6 @@
+"use client";
 import React from "react";
+import ProgressBar from "@ramonak/react-progress-bar";
 
 type PageProps = {
   data: any;
@@ -38,7 +40,7 @@ const defending = (props: PageProps) => {
             </label>
             {/* range */}
             <div className="w-full bg-gray-200  rounded-full h-2.5  ">
-              <div className="bg-red-600 h-2.5 rounded-full " style={{ width: `${percent}%` }}></div>
+              <ProgressBar completed={percent} maxCompleted={100} bgColor="rgb(208,13,0)" barContainerClassName="bg-grey-200 rounded-full" animateOnRender customLabel=" " height="10px"></ProgressBar>
             </div>
           </div>
         </div>
@@ -61,7 +63,7 @@ const defending = (props: PageProps) => {
             </label>
             {/* range */}
             <div className="w-full bg-gray-200  rounded-full h-2.5  ">
-              <div className="bg-red-600 h-2.5 rounded-full " style={{ width: `${percent4}%` }}></div>
+              <ProgressBar completed={percent4} maxCompleted={100} bgColor="rgb(208,13,0)" barContainerClassName="bg-grey-200 rounded-full" animateOnRender customLabel=" " height="10px"></ProgressBar>
             </div>
           </div>
         </div>
@@ -84,7 +86,7 @@ const defending = (props: PageProps) => {
             </label>
             {/* range */}
             <div className="w-full bg-gray-200  rounded-full h-2.5  ">
-              <div className="bg-red-600 h-2.5 rounded-full " style={{ width: `${percent2}%` }}></div>
+              <ProgressBar completed={percent2} maxCompleted={100} bgColor="rgb(208,13,0)" barContainerClassName="bg-grey-200 rounded-full" animateOnRender customLabel=" " height="10px"></ProgressBar>
             </div>
           </div>
         </div>
@@ -107,7 +109,7 @@ const defending = (props: PageProps) => {
             </label>
             {/* range */}
             <div className="w-full bg-gray-200  rounded-full h-2.5  ">
-              <div className="bg-red-600 h-2.5 rounded-full " style={{ width: `${percent3}%` }}></div>
+              <ProgressBar completed={percent3} maxCompleted={100} bgColor="rgb(208,13,0)" barContainerClassName="bg-grey-200 rounded-full" animateOnRender customLabel=" " height="10px"></ProgressBar>
             </div>
           </div>
         </div>

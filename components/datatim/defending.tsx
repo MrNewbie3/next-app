@@ -1,3 +1,5 @@
+"use client";
+import ProgressBar from "@ramonak/react-progress-bar";
 import React from "react";
 
 type PageProps = {
@@ -39,8 +41,9 @@ const defending = (props: PageProps) => {
               <h1>/{maxtackle}</h1>
             </label>
             {/* range */}
+
             <div className="w-full bg-gray-200  rounded-full h-2.5  ">
-              <div className="bg-red-600 h-2.5 rounded-full " style={{ width: `${tackle_wons}%` }}></div>
+              <ProgressBar completed={tackle_wons} maxCompleted={100} bgColor="rgb(208,13,0)" barContainerClassName="bg-grey-200 rounded-full" animateOnRender customLabel=" " height="10px"></ProgressBar>
             </div>
           </div>
         </div>
@@ -63,7 +66,7 @@ const defending = (props: PageProps) => {
             </label>
             {/* range */}
             <div className="w-full bg-gray-200  rounded-full h-2.5  ">
-              <div className="bg-red-600 h-2.5 rounded-full " style={{ width: `${duel_wons}%` }}></div>
+              <ProgressBar completed={duel_wons} maxCompleted={100} bgColor="rgb(208,13,0)" barContainerClassName="bg-grey-200 rounded-full" animateOnRender customLabel=" " height="10px"></ProgressBar>
             </div>
           </div>
         </div>
@@ -86,7 +89,7 @@ const defending = (props: PageProps) => {
             </label>
             {/* range */}
             <div className="w-full bg-gray-200  rounded-full h-2.5  ">
-              <div className="bg-red-600 h-2.5 rounded-full " style={{ width: `${swon}%` }}></div>
+              <ProgressBar completed={swon} maxCompleted={100} bgColor="rgb(208,13,0)" barContainerClassName="bg-grey-200 rounded-full" animateOnRender customLabel=" " height="10px"></ProgressBar>
             </div>
           </div>
         </div>
@@ -109,7 +112,7 @@ const defending = (props: PageProps) => {
             </label>
             {/* range */}
             <div className="w-full bg-gray-200  rounded-full h-2.5  ">
-              <div className="bg-red-600 h-2.5 rounded-full " style={{ width: `${iwon}%` }}></div>
+              <ProgressBar completed={iwon} maxCompleted={100} bgColor="rgb(208,13,0)" barContainerClassName="bg-grey-200 rounded-full" animateOnRender customLabel=" " height="10px"></ProgressBar>
             </div>
           </div>
         </div>
