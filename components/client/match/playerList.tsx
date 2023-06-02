@@ -36,7 +36,11 @@ function PlayerList({ params: query }: PageProps) {
     instance
       .get("club/p/" + query.team)
       .then((result: any) => {
-        setData(result.data);
+        const res = result.data.data.players.filter((e: any) => {
+          return e.role === "PLAYER" ? e : "";
+        });
+        // @ts-ignore
+        setData({ data: { players: res } });
       })
       .catch((err: any) => {
         console.log(err);
@@ -46,14 +50,6 @@ function PlayerList({ params: query }: PageProps) {
   return (
     <>
       <div className="bg-white w-full  rounded-xl py-10">
-        <div className="mb-8">
-          <select name="" id="" defaultValue="Search By Position" className="bg-transparent font-semibold focus:outline-none ">
-            <option disabled>Search By Position</option>
-            <option value="list1">jenis 1</option>
-            <option value="list2">jenis 2</option>
-            <option value="list3">jenis 3</option>
-          </select>
-        </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 w-full gap-5">
           {data.data.players.length > 0 &&
             data.data.players.map((value: any) => {
