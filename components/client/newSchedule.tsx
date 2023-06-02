@@ -1,4 +1,5 @@
 "use client";
+import { getAuthTokenClient } from "@/config/cookie";
 import { cookies } from "next/headers";
 import { redirect, useRouter } from "next/navigation";
 import React, { useState } from "react";
@@ -45,18 +46,18 @@ function TambahLatihan({ params: query }: PageProps) {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const cookieStore = cookies();
+    const cookieStore = getAuthTokenClient();
 
     let formData = new FormData();
     for (const key in data) {
       // @ts-ignore
       formData.append(key, data[key]);
     }
-    const post = await fetch(`${process.env.NEXT_PUBLIC_URL}/periodesasion/`, {
+    const post = await fetch(`${process.env.NEXT_PUBLIC_URL}/periodisasi/`, {
       method: "POST",
       body: formData,
       headers: {
-        Authorization: `Bearer ${cookieStore.get("token")?.value}`,
+        Authorization: `Bearer ${cookieStore}`,
       },
     });
     const res = await post.json();
@@ -113,6 +114,7 @@ function TambahLatihan({ params: query }: PageProps) {
                     Pilih Jenis Latihan
                   </option>
                   <option value="Taktik">Taktik</option>
+                  <option value="Taktik">Teknik</option>
                   <option value="Fitnes">Fitnes</option>
                   <option value="Fisik">Fisik</option>
                 </select>
