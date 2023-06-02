@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { instance } from "@/config/axios";
 
 const arr = ["player", "last match", "season stats", "history", "periodisasi", "staff"];
-const notSuperAdmin = ["player"];
+const notSuperAdmin = ["player", "staff"];
 type PageProps = {
   params: {
     team: String;

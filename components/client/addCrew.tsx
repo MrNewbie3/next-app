@@ -1,9 +1,7 @@
 "use client";
 import { getAuthTokenClient } from "@/config/cookie";
-import { cookies } from "next/headers";
-import { redirect, useRouter } from "next/navigation";
-import React, { Suspense, useState } from "react";
-import { blob } from "stream/consumers";
+import { useRouter } from "next/navigation";
+import React, { useState } from "react";
 // to: @lakyulakyu
 // remind me to repair file input form @MrNewbie3
 type PageProps = {
@@ -31,6 +29,7 @@ function AddCrew({ params: query }: PageProps) {
     position: "",
     role: "",
     akta_player: null,
+    license_player: null,
     ijazah_player: null,
     clubId: query.team,
   });
@@ -77,6 +76,8 @@ function AddCrew({ params: query }: PageProps) {
     dataForm.append("akta_player", data.akta_player);
     // @ts-ignore
     dataForm.append("ijazah_player", data.ijazah_player);
+    // @ts-ignore
+    dataForm.append("license_player", data.ijazah_player);
     // @ts-ignore
     dataForm.append("clubId", response.data.uuid);
 
@@ -130,7 +131,7 @@ function AddCrew({ params: query }: PageProps) {
           Kembali
         </button>
         <div>
-          <h1 className="opensans font-bold text-xl">Tambah Player </h1>
+          <h1 className="opensans font-bold text-xl">Tambah Staff</h1>
           <h4 className="font-semibold">
             Lengkapi data di bawah,jika ada ( <span className="text-[#D00D00]">* </span>) maka wajib diisi
           </h4>
@@ -255,7 +256,6 @@ function AddCrew({ params: query }: PageProps) {
                   className=" bg-[#F2F3F7] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
                 >
                   <option value="">Pilih role</option>
-                  MANAGER ASISTEN PELATIH_FISIK PELATIH_KIPER DOKTER FISIOTERAPI MASASE KITMAN
                   <option value="MANAGER">MANAGER</option>
                   <option value="ASISTEN">ASISTEN</option>
                   <option value="PELATIH_FISIK">PELATIHFISIK</option>
@@ -268,7 +268,7 @@ function AddCrew({ params: query }: PageProps) {
               </div>
               <div className="flex flex-col justify-start mt-4 text-sm  ">
                 <label htmlFor="label" className="uppercase opensans font-bold ">
-                  foto pelatih <span className="text-[#D00D00]">*</span>
+                  foto pelatih <span className="text-[#D00D00] uppercase">maks 2mb file foto *</span>
                 </label>
                 <input
                   type="file"
@@ -280,9 +280,24 @@ function AddCrew({ params: query }: PageProps) {
                   className=" block w-full outline-none file:h-full file:bg-[#dddddd] file:border-none file:w-[118px] h-10 mt-2 text-gray-900 border rounded-lg cursor-pointer bg-[#F2F3F7] focus:outline-none  "
                 />
               </div>
+
               <div className="flex flex-col justify-start mt-4 text-sm  ">
                 <label htmlFor="label" className="uppercase opensans font-bold ">
-                  ijazah pelatih <span className="text-[#D00D00]">*</span>
+                  lisensi pelatih <span className="text-[#D00D00] uppercase">maks 2mb file foto *</span>
+                </label>
+                <input
+                  type="file"
+                  name="license_player"
+                  onChange={(e) => {
+                    // @ts-ignore
+                    handleChange(e);
+                  }}
+                  className=" block w-full outline-none file:h-full file:bg-[#dddddd] file:border-none file:w-[118px] h-10 mt-2 text-gray-900 border rounded-lg cursor-pointer bg-[#F2F3F7] focus:outline-none  "
+                />
+              </div>
+              <div className="flex flex-col justify-start mt-4 text-sm  ">
+                <label htmlFor="label" className="uppercase opensans font-bold ">
+                  ijazah pelatih <span className="text-[#D00D00] uppercase">maks 2mb file foto *</span>
                 </label>
                 <input
                   type="file"
@@ -296,7 +311,7 @@ function AddCrew({ params: query }: PageProps) {
               </div>
               <div className="flex flex-col justify-start mt-4 text-sm  ">
                 <label htmlFor="label" className="uppercase opensans font-bold ">
-                  akta pelatih <span className="text-[#D00D00]">*</span>
+                  akta pelatih <span className="text-[#D00D00] uppercase">maks 2mb file foto *</span>
                 </label>
                 <input
                   type="file"

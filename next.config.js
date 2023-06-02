@@ -4,7 +4,7 @@ const nextConfig = {
     appDir: true,
   },
   env: {
-    NEXT_PUBLIC_URL: "http://api.mokletscience.com/api/v1",
+    NEXT_PUBLIC_URL: "http://localhost:4002/api/v1",
   },
   images: {
     remotePatterns: [

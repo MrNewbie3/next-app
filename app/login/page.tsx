@@ -10,6 +10,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
 const Login = ({ status, token, data, login }: any) => {
+  const router = useRouter();
   const schema = yup
     .object({
       username: yup.string().required(),
@@ -24,21 +25,15 @@ const Login = ({ status, token, data, login }: any) => {
   } = useForm<FormData>({
     resolver: yupResolver(schema),
   });
-  const router = useRouter();
   if (status && data !== null) {
     return router.push("/main");
   }
-  const [datas, setData] = useState({
-    username: "",
-    password: "",
-  });
+
   async function postData(e: any) {
     const { username, password } = e;
-    setData({ username, password });
-
     const post = await fetch(`${process.env.NEXT_PUBLIC_URL}/user/login`, {
       method: "POST",
-      body: JSON.stringify(datas),
+      body: JSON.stringify({ username, password }),
       headers: {
         "Content-Type": "application/json",
       },
@@ -48,11 +43,9 @@ const Login = ({ status, token, data, login }: any) => {
     await login(res);
     localStorage.setItem("login", JSON.stringify(res));
     localStorage.setItem("token", JSON.stringify(res.data.token));
-    if (res.success) {
-      alert("berhasil login");
-      setAuthToken(res.data.token);
-      return router.push("/main");
-    }
+    alert("berhasil login");
+    setAuthToken(res.data.token);
+    return router.push("/main");
   }
 
   return (

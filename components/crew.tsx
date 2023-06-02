@@ -39,10 +39,10 @@ async function Crew({ params: query }: PageProps) {
           <div className="flex text-xs font-semibold  ">
             <p>{data.data.club_established}</p>
           </div>
-          <h1 className="text-xl font-bold uppercase">{data.data.club_name}'s crew</h1>
+          <h1 className="text-xl font-bold uppercase">{data.data.club_name}'s staff</h1>
         </div>
         <Link href={`/main/${query.category}/${query.team}/new_crew`}>
-          <button className="hover:bg-[#D00D00] bg-white ring-1 capitalize font-semibold ring-[#D00D00] text-[#D00D00] px-8 rounded-lg h-9 hover:text-white active:bg-[#D00D00] active:text-white   "> Add crew</button>
+          <button className="hover:bg-[#D00D00] bg-white ring-1 capitalize font-semibold ring-[#D00D00] text-[#D00D00] px-8 rounded-lg h-9 hover:text-white active:bg-[#D00D00] active:text-white   "> Add staff</button>
         </Link>
       </div>
       <div className="px-8 mt-6 bg-white rounded-xl">
