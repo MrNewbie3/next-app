@@ -87,11 +87,12 @@ function AddCrew({ params: query }: PageProps) {
 
       headers: {
         Authorization: `Bearer ${token}`,
+        "Access-Control-Allow-Origin": "no-cors",
       },
     });
     const res = await post.json();
 
-    if (!res.success) {
+    if (!res.success || !res.ok) {
       return alert(res.message);
     }
     alert("oke");

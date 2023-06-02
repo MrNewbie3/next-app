@@ -19,6 +19,7 @@ function TambahLatihan({ params: query }: PageProps) {
     time_exercise: "",
     repetition: "",
     number_player: "",
+    clubId: query.team,
     periodisasi_photo: "",
   });
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -62,7 +63,7 @@ function TambahLatihan({ params: query }: PageProps) {
     });
     const res = await post.json();
     if (!res.success) {
-      return res;
+      return alert(res.message);
     }
     console.log(res);
 
