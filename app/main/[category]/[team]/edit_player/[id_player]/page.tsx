@@ -1,8 +1,8 @@
 "use client";
+import { instance } from "@/config/axios";
 import { getAuthTokenClient } from "@/config/cookie";
-import { cookies } from "next/headers";
 import { redirect, useRouter } from "next/navigation";
-import React, { Suspense, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { blob } from "stream/consumers";
 // to: @lakyulakyu
 // remind me to repair file input form @MrNewbie3
@@ -36,6 +36,17 @@ function AddPlayer({ params: query }: PageProps) {
     clubId: query.team,
   });
 
+  useEffect(() => {
+    instance
+      .get("player/" + query.id_player)
+      .then((result: any) => {
+        setData(result.data.data);
+      })
+      .catch((err: any) => {
+        throw new Error(err.message);
+      });
+  }, []);
+
   async function postData(e: React.FormEvent) {
     e.preventDefault();
     const getAuthUser = await fetch(`${process.env.NEXT_PUBLIC_URL}/user/auth`, {
@@ -48,15 +59,6 @@ function AddPlayer({ params: query }: PageProps) {
       throw new Error(result.message);
     }
 
-    const getClubID = await fetch(`${process.env.NEXT_PUBLIC_URL}/club/` + data.clubId, {
-      headers: {
-        Authorization: `Bearer ${value}`,
-      },
-    });
-    const response = await getClubID.json();
-    if (!response.success) {
-      return alert(response.message);
-    }
     // @ts-ignore
     const dataForm = new FormData();
 
@@ -71,18 +73,17 @@ function AddPlayer({ params: query }: PageProps) {
     dataForm.append("height", data.height);
     dataForm.append("weight", data.weight);
     dataForm.append("username", result.data.username);
+    dataForm.append("password", result.data.password);
     dataForm.append("position", data.position);
     dataForm.append("role", data.role);
-    dataForm.append("password", result.data.password);
     // @ts-ignore
     dataForm.append("akta_player", data.akta_player);
     // @ts-ignore
     dataForm.append("ijazah_player", data.ijazah_player);
     // @ts-ignore
-    dataForm.append("clubId", response.data.uuid);
 
-    const post = await fetch(`${process.env.NEXT_PUBLIC_URL}/player`, {
-      method: "POST",
+    const post = await fetch(`${process.env.NEXT_PUBLIC_URL}/player/` + query.id_player, {
+      method: "PUT",
       body: dataForm,
 
       headers: {
@@ -131,7 +132,7 @@ function AddPlayer({ params: query }: PageProps) {
           Kembali
         </button>
         <div>
-          <h1 className="opensans font-bold text-xl">Tambah Player </h1>
+          <h1 className="opensans font-bold text-xl">Edit Data Player: </h1>
           <h4 className="font-semibold">
             Lengkapi data di bawah,jika ada ( <span className="text-[#D00D00]">* </span>) maka wajib diisi
           </h4>
@@ -202,7 +203,7 @@ function AddPlayer({ params: query }: PageProps) {
                   }}
                   id=""
                   className=" bg-[#F2F3F7] h-10 border-none w-full focus:outline-none p-2 mt-2 rounded-lg font-semibold "
-                  defaultValue={"Pilih jenis kelamin"}
+                  defaultValue={data.gender}
                 >
                   <option disabled>Pilih jenis kelamin</option>
                   <option value="laki-laki">Laki-laki</option>
@@ -277,7 +278,7 @@ function AddPlayer({ params: query }: PageProps) {
                   <span className="text-[#D00D00]">*</span>
                 </label>
                 <select
-                  defaultValue={""}
+                  defaultValue={data.position}
                   name="position"
                   id=""
                   onChange={(e) => {
@@ -300,16 +301,6 @@ function AddPlayer({ params: query }: PageProps) {
                   <option value="CB">CB</option>
                   <option value="GK">GK</option>
                 </select>
-                {/* <input
-                  type="text"
-                  name="position"
-                  onChange={(e) => {
-                    handleChange(e);
-                  }}
-                  placeholder="e.g 58"
-                  value={data.position}
-                  className=" bg-[#F2F3F7]  h-10 border-none w-full focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
-                /> */}
               </div>
               <div className="flex flex-col justify-start mt-4 text-sm  ">
                 <label htmlFor="label" className="uppercase opensans font-bold ">
