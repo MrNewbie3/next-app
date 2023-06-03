@@ -3,6 +3,7 @@ import { getAuthTokenClient } from "@/config/cookie";
 import { cookies } from "next/headers";
 import { redirect, useRouter } from "next/navigation";
 import React, { Suspense, useState } from "react";
+import { ClipLoader } from "react-spinners";
 import { blob } from "stream/consumers";
 // to: @lakyulakyu
 // remind me to repair file input form @MrNewbie3
@@ -13,6 +14,7 @@ type PageProps = {
   };
 };
 function AddPlayer({ params: query }: PageProps) {
+  const [loading, setLoading] = useState(false);
   const token = getAuthTokenClient();
   const value = token;
   const router = useRouter();
@@ -37,6 +39,7 @@ function AddPlayer({ params: query }: PageProps) {
 
   async function postData(e: React.FormEvent) {
     e.preventDefault();
+    setLoading(true);
     const getAuthUser = await fetch(`${process.env.NEXT_PUBLIC_URL}/user/auth`, {
       headers: {
         Authorization: `Bearer ${value}`,
@@ -91,8 +94,10 @@ function AddPlayer({ params: query }: PageProps) {
     const res = await post.json();
 
     if (!res.success) {
+      setLoading(false);
       return alert(res.message);
     }
+    setLoading(false);
     alert("oke");
     return router.push(`/main/${query.category}/${query.team}`);
   }
@@ -354,9 +359,16 @@ function AddPlayer({ params: query }: PageProps) {
               </div>
             </div>
           </div>
-          <button type="submit" className="bg-[#D00D00] h-10 rounded-lg mt-10 text-white opensans w-full">
-            Simpan
-          </button>
+          {!loading && (
+            <button type="submit" className="bg-[#D00D00] h-10 rounded-lg mt-10 text-white opensans w-full">
+              Simpan
+            </button>
+          )}
+          {loading && (
+            <button disabled className="bg-grey h-10 rounded-lg mt-10 w-full">
+              <ClipLoader color="#ffffff" size={20} />
+            </button>
+          )}
         </form>
       </div>
     </>
