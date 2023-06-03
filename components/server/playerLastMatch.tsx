@@ -85,6 +85,7 @@ export default async function PlayerLastMatch({ params: query }: PageProps) {
   const datas = await getData(query.team);
   const dataPlayer = await getPlayers(query.id_player);
   let data: any = [];
+
   if (datas.data.length) {
     datas.data[datas.data.length - 1].DetailMatch.filter((params: any) => {
       return params.playerId === dataPlayer.data.id ? data.push(params) : 0;

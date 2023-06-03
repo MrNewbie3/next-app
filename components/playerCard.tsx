@@ -49,7 +49,16 @@ async function PlayerCard({ params: query }: PageProps) {
 
         <div className="card flex w-full  max-md:flex-col gap-20 mt-8 ">
           <div className="flex w-2/4  gap-4">
-            <Image src={data.data.photo_player} width={"128"} height={"150"} alt="" className="object-cover rounded-2xl w-[150px] h-[192px] "></Image>
+            <Image
+              src={
+                data.data.photo_player ||
+                "https://static.vecteezy.com/system/resources/previews/002/534/006/original/social-media-chatting-online-blank-profile-picture-head-and-body-icon-people-standing-icon-grey-background-free-vector.jpg"
+              }
+              width={"128"}
+              height={"150"}
+              alt=""
+              className="object-cover rounded-2xl w-[150px] h-[192px] "
+            ></Image>
             <div className="">
               <h1 className="font-semibold mt-8 text-[#9d9d9d] text-base capitalize">{data.data.fullname}</h1>
               <h1 className="font-bold capitalize mt-1 text-2xl text-gray-900 ">{data.data.nickname}</h1>

@@ -32,7 +32,6 @@ const saves = (props: PageProps) => {
       },
     ],
   };
-  console.log(props);
 
   return (
     <div>

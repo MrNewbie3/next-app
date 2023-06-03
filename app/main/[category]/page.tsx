@@ -39,10 +39,10 @@ export default async function Page({ params }: PageProps) {
           Tambah
         </Link>
       ) : (
-        <div className="wrapper flex flex-row gap-x-8">
+        <div className="wrapper grid lg:grid-cols-5 md:grid-cols-3  ">
           {data.data.map((data: any) => {
             return (
-              <Link key={data.id} href={`/main/${params.category}/${data.uuid}`} className=" px-7 text-center bg-white font-semibold py-2 w-fit rounded-md ">
+              <Link key={data.id} href={`/main/${params.category}/${data.uuid}`} className=" px-7 text-center mb-5 bg-white font-semibold py-2 w-fit rounded-md ">
                 {data.club_shortname}
               </Link>
             );

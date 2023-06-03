@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useEffect } from "react";
 
 type PageProps = {
   data: any;
@@ -6,6 +7,9 @@ type PageProps = {
 
 const general = (props: PageProps) => {
   const { data } = props;
+  console.log(data);
+
+  useEffect(() => {}, [data]);
 
   return (
     <div className="md:max-w-md w-full bg-white rounded-lg px-6 py-4 ">
