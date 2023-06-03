@@ -8,9 +8,11 @@ import { connect } from "react-redux";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { ClipLoader } from "react-spinners";
 
 const Login = ({ status, token, data, login }: any) => {
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
   const schema = yup
     .object({
       username: yup.string().required(),
@@ -30,6 +32,7 @@ const Login = ({ status, token, data, login }: any) => {
   }
 
   async function postData(e: any) {
+    setLoading(true);
     const { username, password } = e;
     const post = await fetch(`${process.env.NEXT_PUBLIC_URL}/user/login`, {
       method: "POST",
@@ -39,11 +42,15 @@ const Login = ({ status, token, data, login }: any) => {
       },
     });
     const res = await post.json();
-    if (!res.success) return alert(res.message);
+    if (!res.success) {
+      setLoading(false);
+      return alert(res.message);
+    }
     await login(res);
     localStorage.setItem("login", JSON.stringify(res));
     localStorage.setItem("token", JSON.stringify(res.data.token));
     alert("berhasil login");
+    setLoading(false);
     setAuthToken(res.data.token);
     return router.push("/main");
   }
@@ -58,41 +65,24 @@ const Login = ({ status, token, data, login }: any) => {
             <h1 className="text-center text-lg font-semibold mt-2 mb-6">LOGIN</h1>
             <div className="mb-2 w-full ">
               <h1 className="text-xl text-start font-semibold capitalize mb-1">username</h1>
-              <input
-                className="w-full h-10 ring-2 rounded-sm bg-slate-100 ring-red-600 outline-none p-2"
-                type="text"
-                // name="username"
-                // onChange={(e) => {
-                //   handleChange(e);
-                // }}
-                // value={datas.username}
-                {...register("username")}
-                placeholder="username"
-              />
+              <input className="w-full h-10 ring-2 rounded-sm bg-slate-100 ring-red-600 outline-none p-2" type="text" {...register("username")} placeholder="username" />
               <p className="text-red-600 text-sm text-start">{errors.username?.message}</p>
             </div>
             <div className="mb-10">
               <h1 className="text-xl text-start font-semibold capitalize mb-1">password</h1>
-              <input
-                className="w-full h-10 ring-2  bg-slate-100 rounded-sm ring-red-600 outline-none p-2"
-                type="password"
-                // name="password"
-                // onChange={(e) => {
-                //   handleChange(e);
-                // }}
-                // value={datas.password}
-                {...register("password")}
-                placeholder="password"
-              />
+              <input className="w-full h-10 ring-2  bg-slate-100 rounded-sm ring-red-600 outline-none p-2" type="password" {...register("password")} placeholder="password" />
               <p className="text-red-600 text-sm text-start">{errors.password?.message}</p>
             </div>
-            {/* <p className="text-end text-sky-500 mt-1">
-              <NavLink to="/forgotPass">lupa password?</NavLink>
-            </p> */}
-
-            <button type="submit" className="btn-login bg-red-600  transition  delay-150 duration-300 ease-in-out   w-full   max-w-xs min-w-fit py-2 mt-10   text-white font-semibold rounded-sm hover:">
-              LOGIN
-            </button>
+            {!loading && (
+              <button type="submit" className="btn-login bg-red-600  transition  delay-150 duration-300 ease-in-out   w-full   max-w-xs min-w-fit py-2 mt-10   text-white font-semibold rounded-sm hover:">
+                LOGIN
+              </button>
+            )}
+            {loading && (
+              <button type="submit" className="btn-login bg-gray-300  transition  delay-150 duration-300 ease-in-out   w-full   max-w-xs min-w-fit py-2 mt-10   text-white font-semibold rounded-sm hover:">
+                <ClipLoader color="#000000" size={20} />
+              </button>
+            )}
           </div>
         </div>
       </form>

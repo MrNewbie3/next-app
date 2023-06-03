@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { login, logout } from "@/hooks/action";
 import { connect } from "react-redux";
 import { useRouter } from "next/navigation";
+import { PacmanLoader } from "react-spinners";
 function UserAuth({ logout, login }: any) {
   const router = useRouter();
   const [data, setData] = useState(null);
@@ -29,9 +30,7 @@ function UserAuth({ logout, login }: any) {
   return (
     <div className="absolute top-0 bottom-0 left-0 right-0 inset-0 flex flex-col items-center justify-center bg-black bg-opacity-60 z-[999]">
       <div className="flex items-center mb-4">
-        <div className="h-4 w-4 bg-white rounded-full mr-1 animate-bounce"></div>
-        <div className="h-4 w-4 bg-white rounded-full mr-1 animate-bounce"></div>
-        <div className="h-4 w-4 bg-white rounded-full mr-1 animate-bounce"></div>
+        <PacmanLoader color="#ffffff" />
       </div>
     </div>
   );
