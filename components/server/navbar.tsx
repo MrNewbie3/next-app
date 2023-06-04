@@ -23,8 +23,7 @@ function Navbar() {
   }
   function handleLogout() {
     removeAuthToken();
-    localStorage.removeItem("login");
-    localStorage.removeItem("token");
+
     setTimeout(() => {
       typeof window != undefined ? window.location.reload() : undefined;
       router.push("/login");
