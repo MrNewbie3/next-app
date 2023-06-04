@@ -20,7 +20,7 @@ function UserAuth({ logout, login }: any) {
           logout();
           //   @ts-ignore
           setData({ success: false });
-          return router.push("/login");
+          router.push("/login");
         }
       });
   }, [router]);

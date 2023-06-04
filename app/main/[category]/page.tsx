@@ -1,3 +1,4 @@
+import Authentication from "@/components/client/authentication";
 import { cookies } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
@@ -32,6 +33,7 @@ export default async function Page({ params }: PageProps) {
 
   return (
     <div className="w-full px-8">
+      <Authentication />
       {data.data.length < 1 ? (
         <Link href={`main/${params.category}/new_team`} className="flex pl-7 gap-4 items-center bg-white font-semibold py-2 w-[170px] rounded-md ">
           <span className="text-[#D00D00]">

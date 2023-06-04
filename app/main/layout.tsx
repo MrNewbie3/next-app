@@ -14,35 +14,15 @@ export const metadata = {
   icons: { icon: "" },
 };
 
-async function getUserData() {
-  const cookieStore = cookies();
-  const data = await fetch(process.env.NEXT_PUBLIC_URL + "/user/auth", {
-    headers: {
-      Authorization: `Bearer ${cookieStore.get("token")?.value}`,
-    },
-  });
-  const res = await data.json();
-  if (!res.success) {
-    throw new Error(res.message);
-  }
-  return res;
-}
-
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const dataUser = await getUserData();
-
   return (
     <>
       <Navbar />
       <div className="flex flex-row  ">
-        {dataUser.data.role !== "SUPERADMIN" ? (
-          <></>
-        ) : (
-          <Sidebar>
-            {/* @ts-ignore */}
-            <Side_Comps />
-          </Sidebar>
-        )}
+        <Sidebar>
+          {/* @ts-ignore */}
+          <Side_Comps />
+        </Sidebar>
         {children}
       </div>
     </>

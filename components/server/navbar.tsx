@@ -23,7 +23,8 @@ function Navbar() {
   }
   function handleLogout() {
     removeAuthToken();
-
+    localStorage.removeItem("token");
+    localStorage.removeItem("login");
     setTimeout(() => {
       typeof window != undefined ? window.location.reload() : undefined;
       router.push("/login");
@@ -32,7 +33,7 @@ function Navbar() {
   return (
     <>
       <nav className="flex flex-row justify-between  items-center h-24 drop-shadow-xl px-10 bg-[#F2F3F7] mb-6 w-full">
-        <Link href={"/"}>
+        <Link href={"/main"}>
           <p className="text-lg uppercase font-bold">lmss</p>
         </Link>
         <div className="flex justify-between items-center font-medium gap-2">
