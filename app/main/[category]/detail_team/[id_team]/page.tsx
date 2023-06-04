@@ -28,12 +28,21 @@ function AddTeam({ params }: Props) {
     categoryId: params,
     club_image: null,
   });
+  const [coach, setCoach] = useState([]);
   const [loading, setLoading] = useState(true);
   const [loadingSubmit, setLoadingSubmit] = useState(false);
   const cookieStore = getAuthTokenClient();
   const router = useRouter();
 
   useEffect(() => {
+    instance
+      .get("user")
+      .then((result: any) => {
+        setCoach(result.data.data);
+      })
+      .catch((err: any) => {
+        throw new Error(err);
+      });
     instance
       .get("club/" + params.id_team)
       .then((result: any) => {
@@ -78,6 +87,13 @@ function AddTeam({ params }: Props) {
     setData({
       ...data,
       [name]: files ? files[0] : value,
+    });
+  };
+  const handleChangeSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setData({
+      ...data,
+      [name]: value,
     });
   };
 
@@ -271,6 +287,33 @@ function AddTeam({ params }: Props) {
                     name={"end_season"}
                     className=" bg-[#F2F3F7]  h-10 border-none w-full max-w-2xl focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
                   />
+                </div>
+                <div className="flex flex-col justify-start mt-4">
+                  <label htmlFor="label" className="opensans font-bold uppercase text-sm">
+                    coach id <span className="text-[#D00D00]">*</span>
+                  </label>
+                  <select
+                    value={data.userId}
+                    onChange={(e) => {
+                      handleChangeSelect(e);
+                    }}
+                    name={"userId"}
+                    defaultValue={""}
+                    className=" bg-[#F2F3F7]  h-10 border-none w-full max-w-2xl focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
+                  >
+                    <option value="" disabled>
+                      select coach id
+                    </option>
+                    {coach.map((e) => {
+                      return (
+                        // @ts-ignore
+                        <option key={e.uuid} value={e.id}>
+                          {/* @ts-ignore */}
+                          {e.id}
+                        </option>
+                      );
+                    })}
+                  </select>
                 </div>
                 <div className="flex flex-col justify-start mt-4">
                   <label htmlFor="label" className="opensans font-bold uppercase text-sm">
