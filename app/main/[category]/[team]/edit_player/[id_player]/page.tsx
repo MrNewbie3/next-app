@@ -132,7 +132,7 @@ function AddPlayer({ params: query }: PageProps) {
           Kembali
         </button>
         <div>
-          <h1 className="opensans font-bold text-xl">Edit Data Player: </h1>
+          <h1 className="opensans font-bold text-xl">Edit Data Player: {data.fullname}</h1>
           <h4 className="font-semibold">
             Lengkapi data di bawah,jika ada ( <span className="text-[#D00D00]">* </span>) maka wajib diisi
           </h4>

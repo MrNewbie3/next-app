@@ -72,10 +72,9 @@ export default async function Page({ params }: PageProps) {
                   </p>
                   <div className="flex justify-end mt-4">
                     <button className="text-blue-500 hover:text-blue-700 mr-2">
-                      <FaEdit />
-                    </button>
-                    <button className="text-red-500 hover:text-red-700">
-                      <FaTrash />
+                      <Link href={`/main/${params.category}/detail_team/${data.uuid}/`} className="hover:cursor-pointer hover:underline">
+                        <FaEdit />
+                      </Link>
                     </button>
                   </div>
                 </div>
