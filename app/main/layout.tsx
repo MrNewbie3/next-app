@@ -10,7 +10,7 @@ import "../globals.css";
 import Sidebar from "../../components/client/sidebar";
 import Side_Comps from "../../components/server/Side_Comps";
 export const metadata = {
-  title: "STAPA",
+  title: "LMSS",
   description: "For better performance stats",
   icons: { icon: "" },
 };

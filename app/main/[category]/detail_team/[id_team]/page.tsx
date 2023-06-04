@@ -36,7 +36,7 @@ function AddTeam({ params }: Props) {
 
   useEffect(() => {
     instance
-      .get("user")
+      .get("user//?quantity=100")
       .then((result: any) => {
         setCoach(result.data.data);
       })
@@ -309,7 +309,7 @@ function AddTeam({ params }: Props) {
                         // @ts-ignore
                         <option key={e.uuid} value={e.id}>
                           {/* @ts-ignore */}
-                          {e.id}
+                          {e.username}
                         </option>
                       );
                     })}
