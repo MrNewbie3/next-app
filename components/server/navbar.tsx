@@ -27,8 +27,8 @@ function Navbar() {
     localStorage.removeItem("login");
     setTimeout(() => {
       typeof window != undefined ? window.location.reload() : undefined;
-      router.push("/login");
     }, 2000);
+    return router.push("/login");
   }
   return (
     <>

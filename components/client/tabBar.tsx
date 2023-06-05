@@ -33,12 +33,12 @@ function TeamDetails({ params: query }: PageProps) {
     <div className="wrapper">
       {data === null ? (
         <div className={` flex text-gray-600 font-semibold justify-around w-fit h-12 px-8 gap-x-8 items-center bg-white drop-shadow-md rounded-lg animate-pulse `}>
-          <div className="bg-gray-400 text-white px-3 py-2 rounded-md text-sm font-medium w-20" />
-          <div className="bg-gray-400 text-white px-3 py-2 rounded-md text-sm font-medium w-20" />
-          <div className="bg-gray-400 text-white px-3 py-2 rounded-md text-sm font-medium w-20" />
-          <div className="bg-gray-400 text-white px-3 py-2 rounded-md text-sm font-medium w-20" />
-          <div className="bg-gray-400 text-white px-3 py-2 rounded-md text-sm font-medium w-20" />
-          <div className="bg-gray-400 text-white px-3 py-2 rounded-md text-sm font-medium w-20" />
+          <div className="bg-gray-200 text-white px-3 py-2 rounded-md text-sm font-medium w-20" />
+          <div className="bg-gray-200 text-white px-3 py-2 rounded-md text-sm font-medium w-20" />
+          <div className="bg-gray-200 text-white px-3 py-2 rounded-md text-sm font-medium w-20" />
+          <div className="bg-gray-200 text-white px-3 py-2 rounded-md text-sm font-medium w-20" />
+          <div className="bg-gray-200 text-white px-3 py-2 rounded-md text-sm font-medium w-20" />
+          <div className="bg-gray-200 text-white px-3 py-2 rounded-md text-sm font-medium w-20" />
         </div>
       ) : (
         <div>
