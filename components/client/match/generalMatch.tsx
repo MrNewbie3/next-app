@@ -12,6 +12,9 @@ type PageProps = {
 export default function GeneralMatch({ params: detail }: PageProps) {
   const [data, setData] = useState({
     opponent_name: "",
+    referee: "",
+    match_time: 0,
+    location: "",
     league_name: "",
     ball_position: "",
     lost_ball_position: "",
@@ -141,6 +144,54 @@ export default function GeneralMatch({ params: detail }: PageProps) {
               </div>
             </div>
             <div className="w-full">
+              <div className="flex flex-col justify-start mt-4">
+                <label htmlFor="label" className="uppercase opensans font-bold ">
+                  referee
+                  <span className="text-[#D00D00]">*</span>
+                </label>
+                <input
+                  type="text"
+                  name="referee"
+                  placeholder="e.g 180"
+                  onChange={(e) => {
+                    handleChange(e);
+                  }}
+                  value={data.referee}
+                  className=" bg-[#F2F3F7] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
+                />
+              </div>
+              <div className="flex flex-col justify-start mt-4">
+                <label htmlFor="label" className="uppercase opensans font-bold ">
+                  match time
+                  <span className="text-[#D00D00]">*</span>
+                </label>
+                <input
+                  type="number"
+                  name="match_time"
+                  placeholder="e.g 180"
+                  onChange={(e) => {
+                    handleChange(e);
+                  }}
+                  value={data.match_time}
+                  className=" bg-[#F2F3F7] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
+                />
+              </div>
+              <div className="flex flex-col justify-start mt-4">
+                <label htmlFor="label" className="uppercase opensans font-bold ">
+                  location
+                  <span className="text-[#D00D00]">*</span>
+                </label>
+                <input
+                  type="number"
+                  name="location"
+                  placeholder="e.g 180"
+                  onChange={(e) => {
+                    handleChange(e);
+                  }}
+                  value={data.location}
+                  className=" bg-[#F2F3F7] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
+                />
+              </div>
               <div className="flex flex-col justify-start mt-4">
                 <label htmlFor="label" className="uppercase opensans font-bold ">
                   ball position <span className="lowercase text-xs">(%)</span>

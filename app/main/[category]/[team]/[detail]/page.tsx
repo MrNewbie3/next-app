@@ -1,3 +1,4 @@
+import PlayerVer from "@/components/client/player_ver";
 import Crew from "@/components/crew";
 import ExerciseTime from "@/components/exerciseTime";
 import History from "@/components/history";
@@ -14,7 +15,7 @@ type PageProps = {
   };
 };
 export default function page({ params: query }: PageProps) {
-  const navigation = ["player", "last match", "season stats", "history", "periodisasi", "staff"];
+  const navigation = ["player", "last match", "season stats", "history", "periodisasi", "staff", "verification"];
   const pages = [
     // @ts-ignore
     <MakePlayer params={query} key={1} />,
@@ -27,6 +28,7 @@ export default function page({ params: query }: PageProps) {
     <ExerciseTime params={query} key={5} />,
     // @ts-ignore
     <Crew params={query} key={6} />,
+    <PlayerVer params={query} />,
   ];
   return <div>{pages[navigation.indexOf(decodeURI(query.detail))]}</div>;
 }

@@ -17,6 +17,8 @@ function AddPlayer({ params: query }: PageProps) {
   const token = getAuthTokenClient();
   const value = token;
   const router = useRouter();
+  let is_league;
+  let position;
   const [data, setData] = useState({
     fullname: "",
     nickname: "",
@@ -32,6 +34,7 @@ function AddPlayer({ params: query }: PageProps) {
     photo_player: null,
     position: "",
     akta_player: null,
+    is_league: "",
     ijazah_player: null,
     clubId: query.team,
   });
@@ -41,6 +44,7 @@ function AddPlayer({ params: query }: PageProps) {
       .get("player/" + query.id_player)
       .then((result: any) => {
         setData(result.data.data);
+        console.log(result.data.data);
       })
       .catch((err: any) => {
         throw new Error(err.message);
@@ -71,6 +75,7 @@ function AddPlayer({ params: query }: PageProps) {
     dataForm.append("place_of_birth", data.place_of_birth);
     dataForm.append("date_of_birth", data.date_of_birth);
     dataForm.append("height", data.height);
+    dataForm.append("is_league", data.is_league);
     dataForm.append("weight", data.weight);
     dataForm.append("username", result.data.username);
     dataForm.append("password", result.data.password);
@@ -274,8 +279,29 @@ function AddPlayer({ params: query }: PageProps) {
               </div>
               <div className="flex flex-col justify-start mt-4 text-sm">
                 <label htmlFor="label" className="uppercase opensans font-bold ">
+                  Pernah bermain liga?
+                  <span className="text-[#D00D00]"> * </span>
+                  {data.is_league ? "YA" : "BELUM"}
+                </label>
+                <select
+                  defaultValue={data.is_league}
+                  name="is_league"
+                  id=""
+                  onChange={(e) => {
+                    handleChangeSelect(e);
+                  }}
+                  className=" bg-[#F2F3F7] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
+                >
+                  <option value="">Pilih status</option>
+                  <option value="true">Ya</option>
+                  <option value="false">Belum</option>
+                </select>
+              </div>
+              <div className="flex flex-col justify-start mt-4 text-sm">
+                <label htmlFor="label" className="uppercase opensans font-bold ">
                   position
-                  <span className="text-[#D00D00]">*</span>
+                  <span className="text-[#D00D00]"> * </span>
+                  {data.position}
                 </label>
                 <select
                   defaultValue={data.position}
@@ -304,7 +330,7 @@ function AddPlayer({ params: query }: PageProps) {
               </div>
               <div className="flex flex-col justify-start mt-4 text-sm  ">
                 <label htmlFor="label" className="uppercase opensans font-bold ">
-                  foto pemain <span className="text-[#D00D00]">*</span>
+                  foto pemain <span className="text-[#D00D00] uppercase">maks 2 mb photo file*</span>
                 </label>
                 <input
                   type="file"
@@ -318,7 +344,7 @@ function AddPlayer({ params: query }: PageProps) {
               </div>
               <div className="flex flex-col justify-start mt-4 text-sm  ">
                 <label htmlFor="label" className="uppercase opensans font-bold ">
-                  ijazah pemain <span className="text-[#D00D00]">*</span>
+                  ijazah pemain <span className="text-[#D00D00] uppercase">maks 2 mb photo file*</span>
                 </label>
                 <input
                   type="file"
@@ -332,7 +358,7 @@ function AddPlayer({ params: query }: PageProps) {
               </div>
               <div className="flex flex-col justify-start mt-4 text-sm  ">
                 <label htmlFor="label" className="uppercase opensans font-bold ">
-                  akta pemain <span className="text-[#D00D00]">*</span>
+                  akta pemain <span className="text-[#D00D00] uppercase">maks 2 mb photo file*</span>
                 </label>
                 <input
                   type="file"

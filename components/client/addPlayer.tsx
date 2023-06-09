@@ -34,6 +34,7 @@ function AddPlayer({ params: query }: PageProps) {
     position: "",
     akta_player: null,
     ijazah_player: null,
+    is_league: false,
     clubId: query.team,
   });
 
@@ -75,6 +76,7 @@ function AddPlayer({ params: query }: PageProps) {
     dataForm.append("username", result.data.username);
     dataForm.append("position", data.position);
     dataForm.append("role", data.role);
+    dataForm.append("is_league", data.is_league.toString());
     dataForm.append("password", result.data.password);
     // @ts-ignore
     dataForm.append("akta_player", data.akta_player);
@@ -161,7 +163,7 @@ function AddPlayer({ params: query }: PageProps) {
                   }}
                   placeholder="e.g Mancester United"
                   value={data.fullname}
-                  className=" bg-[#F2F3F7] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
+                  className=" bg-[#FFFFFF] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
                 />
               </div>
 
@@ -177,7 +179,7 @@ function AddPlayer({ params: query }: PageProps) {
                   }}
                   placeholder="e.g Red Devil"
                   value={data.nickname}
-                  className=" bg-[#F2F3F7] h-10 border-none w-full focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
+                  className=" bg-[#FFFFFF] h-10 border-none w-full focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
                 />
               </div>
               <div className="flex flex-col justify-start mt-4 text-sm">
@@ -192,7 +194,7 @@ function AddPlayer({ params: query }: PageProps) {
                   }}
                   placeholder="e.g 58"
                   value={data.number_of_player}
-                  className=" bg-[#F2F3F7]  h-10 border-none w-full focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
+                  className=" bg-[#FFFFFF]  h-10 border-none w-full focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
                 />
               </div>
               <div className="flex flex-col justify-start mt-4 text-sm">
@@ -205,7 +207,7 @@ function AddPlayer({ params: query }: PageProps) {
                     handleOption(e);
                   }}
                   id=""
-                  className=" bg-[#F2F3F7] h-10 border-none w-full focus:outline-none p-2 mt-2 rounded-lg font-semibold "
+                  className=" bg-[#FFFFFF] h-10 border-none w-full focus:outline-none p-2 mt-2 rounded-lg font-semibold "
                   defaultValue={"Pilih jenis kelamin"}
                 >
                   <option disabled>Pilih jenis kelamin</option>
@@ -225,7 +227,7 @@ function AddPlayer({ params: query }: PageProps) {
                   }}
                   placeholder="e.g Manchester"
                   value={data.place_of_birth}
-                  className=" bg-[#F2F3F7] h-10 border-none w-full focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
+                  className=" bg-[#FFFFFF] h-10 border-none w-full focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
                 />
               </div>
               <div className="flex flex-col justify-start mt-4 text-sm">
@@ -239,7 +241,7 @@ function AddPlayer({ params: query }: PageProps) {
                     handleChange(e);
                   }}
                   value={data.date_of_birth}
-                  className=" bg-[#F2F3F7] h-10 border-none w-full focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
+                  className=" bg-[#FFFFFF] h-10 border-none w-full focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
                 />
               </div>
             </div>
@@ -256,7 +258,7 @@ function AddPlayer({ params: query }: PageProps) {
                     handleChange(e);
                   }}
                   placeholder="e.g 58"
-                  className=" bg-[#F2F3F7] h-10 border-none w-full focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
+                  className=" bg-[#FFFFFF] h-10 border-none w-full focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
                 />
               </div>
               <div className="flex flex-col justify-start mt-4 text-sm">
@@ -272,8 +274,27 @@ function AddPlayer({ params: query }: PageProps) {
                   }}
                   placeholder="e.g 58"
                   value={data.weight}
-                  className=" bg-[#F2F3F7]  h-10 border-none w-full focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
+                  className=" bg-[#FFFFFF]  h-10 border-none w-full focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
                 />
+              </div>
+              <div className="flex flex-col justify-start mt-4 text-sm">
+                <label htmlFor="label" className="uppercase opensans font-bold ">
+                  Pernah bermain liga?
+                  <span className="text-[#D00D00]">*</span>
+                </label>
+                <select
+                  defaultValue={""}
+                  name="is_league"
+                  id=""
+                  onChange={(e) => {
+                    handleChangeSelect(e);
+                  }}
+                  className=" bg-[#FFFFFF] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
+                >
+                  <option value="">Pilih status</option>
+                  <option value="true">Ya</option>
+                  <option value="false">Belum</option>
+                </select>
               </div>
               <div className="flex flex-col justify-start mt-4 text-sm">
                 <label htmlFor="label" className="uppercase opensans font-bold ">
@@ -287,7 +308,7 @@ function AddPlayer({ params: query }: PageProps) {
                   onChange={(e) => {
                     handleChangeSelect(e);
                   }}
-                  className=" bg-[#F2F3F7] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
+                  className=" bg-[#FFFFFF] h-10 border-none w-full  focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
                 >
                   <option value="">Pilih posisi</option>
                   <option value="CF">CF</option>
@@ -304,20 +325,10 @@ function AddPlayer({ params: query }: PageProps) {
                   <option value="CB">CB</option>
                   <option value="GK">GK</option>
                 </select>
-                {/* <input
-                  type="text"
-                  name="position"
-                  onChange={(e) => {
-                    handleChange(e);
-                  }}
-                  placeholder="e.g 58"
-                  value={data.position}
-                  className=" bg-[#F2F3F7]  h-10 border-none w-full focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
-                /> */}
               </div>
               <div className="flex flex-col justify-start mt-4 text-sm  ">
                 <label htmlFor="label" className="uppercase opensans font-bold ">
-                  foto pemain <span className="text-[#D00D00]">*</span>
+                  foto pemain <span className="text-[#D00D00] uppercase">maks 2 mb photo file*</span>
                 </label>
                 <input
                   type="file"
@@ -326,12 +337,12 @@ function AddPlayer({ params: query }: PageProps) {
                     // @ts-ignore
                     handleChange(e);
                   }}
-                  className=" block w-full outline-none file:h-full file:bg-[#dddddd] file:border-none file:w-[118px] h-10 mt-2 text-gray-900 border rounded-lg cursor-pointer bg-[#F2F3F7] focus:outline-none  "
+                  className=" block w-full outline-none file:h-full file:bg-[#dddddd] file:border-none file:w-[118px] h-10 mt-2 text-gray-900 border rounded-lg cursor-pointer bg-[#FFFFFF] focus:outline-none border-none  "
                 />
               </div>
               <div className="flex flex-col justify-start mt-4 text-sm  ">
                 <label htmlFor="label" className="uppercase opensans font-bold ">
-                  ijazah pemain <span className="text-[#D00D00]">*</span>
+                  ijazah pemain <span className="text-[#D00D00] uppercase">maks 2 mb photo file*</span>
                 </label>
                 <input
                   type="file"
@@ -340,12 +351,12 @@ function AddPlayer({ params: query }: PageProps) {
                     // @ts-ignore
                     handleChange(e);
                   }}
-                  className=" block w-full outline-none file:h-full file:bg-[#dddddd] file:border-none file:w-[118px] h-10 mt-2 text-gray-900 border rounded-lg cursor-pointer bg-[#F2F3F7] focus:outline-none  "
+                  className=" block w-full outline-none file:h-full file:bg-[#dddddd] file:border-none file:w-[118px] h-10 mt-2 text-gray-900 border rounded-lg cursor-pointer bg-[#FFFFFF] focus:outline-none border-none  "
                 />
               </div>
               <div className="flex flex-col justify-start mt-4 text-sm  ">
                 <label htmlFor="label" className="uppercase opensans font-bold ">
-                  akta pemain <span className="text-[#D00D00]">*</span>
+                  akta pemain <span className="text-[#D00D00] uppercase">maks 2 mb photo file*</span>
                 </label>
                 <input
                   type="file"
@@ -354,7 +365,7 @@ function AddPlayer({ params: query }: PageProps) {
                     // @ts-ignore
                     handleChange(e);
                   }}
-                  className=" block w-full outline-none file:h-full file:bg-[#dddddd] file:border-none file:w-[118px] h-10 mt-2 text-gray-900 border rounded-lg cursor-pointer bg-[#F2F3F7] focus:outline-none  "
+                  className=" block w-full outline-none file:h-full file:bg-[#dddddd] file:border-none file:w-[118px] h-10 mt-2 text-gray-900 border rounded-lg cursor-pointer bg-[#FFFFFF] focus:outline-none border-none  "
                 />
               </div>
             </div>

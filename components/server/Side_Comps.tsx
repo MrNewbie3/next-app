@@ -34,7 +34,7 @@ export default async function Side_Comps({ req, res }: PageProps) {
         data.success ? "" : (data = [])
       }
       <div className="flex flex-col gap-y-4 ">
-        {data.data.length > 0 ? <h1 className="font-bold ">Kategori</h1> : <></>}
+        {data.data.length > 0 ? <h1 className="font-bold ">Solo Premiere League</h1> : <></>}
         {data.data.map((value: any) => {
           return (
             <Link href={`/main/${value.uuid}`} key={value.id}>

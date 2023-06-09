@@ -184,7 +184,7 @@ export default async function PlayerLastMatch({ params: query }: PageProps) {
           </h1>
         </div>
         <button className="hover:bg-[#D00D00] transition-all duration-200 bg-white ring-1 capitalize font-semibold ring-[#D00D00] text-[#D00D00] px-4 rounded-lg h-9 hover:text-white active:bg-[#D00D00] active:text-white   ">
-          Edit Match
+          Download PDF Match
         </button>
       </div>
       <div className="lg:flex gap-6">

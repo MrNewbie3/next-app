@@ -1,0 +1,111 @@
+"use client";
+import React, { useState, useEffect } from "react";
+import { instance } from "@/config/axios";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+
+type PageProps = {
+  params: {
+    category: string;
+    team: string;
+    detail: string;
+  };
+};
+
+function PlayerVer({ params: query }: PageProps) {
+  const router = useRouter();
+  const [data, setData] = useState({ data: { players: [] } });
+  const [datas, setDatas] = useState({ data: {} });
+  const importData = (data: Object) => {
+    console.log(data);
+
+    instance
+      .put("/player/verify/player", data)
+      .then((result: Object) => {
+        alert("success verify player");
+      })
+      .catch((err: Object) => {
+        alert("failed to verify player");
+      });
+  };
+
+  useEffect(() => {
+    instance
+      .get("club/p/" + query.team)
+      .then((result: any) => {
+        const res = result.data.data.players.filter((e: any) => {
+          return e.role === "PLAYER" ? e : "";
+        });
+        // @ts-ignore
+        setData({ data: { players: res } });
+      })
+      .catch((err: any) => {
+        console.log(err);
+      });
+    instance
+      .get("club/" + query.team)
+      .then((result: any) => {
+        // @ts-ignore
+        setDatas(result.data);
+      })
+      .catch((err: any) => {
+        console.log(err);
+      });
+  }, []);
+
+  return (
+    <>
+      <div className="flex justify-between w-full items-center mb-5">
+        <div className="h-16 max-w-[650px] px-10 py-2 w-[650px] rounded-lg drop-shadow-md  bg-white">
+          <div className="flex text-xs font-semibold  ">
+            {/* @ts-ignore */}
+            <p>{datas.data.club_established}</p>
+          </div>
+          {/* @ts-ignore */}
+          <h1 className="text-xl font-bold uppercase">{datas.data.club_name}'s player verification</h1>
+        </div>
+        <Link href={`/main/${query.category}/${query.team}/verification/pdf`}>
+          <button className="hover:bg-[#D00D00] bg-white ring-1 capitalize font-semibold ring-[#D00D00] text-[#D00D00] px-8 rounded-lg h-9 hover:text-white active:bg-[#D00D00] active:text-white   "> Download PDF</button>
+        </Link>
+      </div>
+      <div className="bg-white w-full  rounded-xl p-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 w-full gap-5">
+          {data.data.players.length > 0 &&
+            data.data.players.map((value: any) => {
+              return (
+                <div key={value.id} className="flex flex-col w-full capitalize">
+                  <div className="bg-[#F2F3F7] py-2 rounded-lg flex justify-between px-8 w-full items-center  ">
+                    <div className="gap-5 items-center h-12 w- flex">
+                      <h1 className="text-2xl font-bold  text-[#D00D00]">{value.number_of_player}</h1>
+                      <p className="text-xs text-gray-400">{value.position}</p>
+                      <div>
+                        <h2 className="text-md font-semibold">{value.fullname}</h2>
+                        <h2 className="text-md font-semibold">{value.nickname}</h2>
+                      </div>
+                      <h2 className="font-semibold text-xs text-gray-500">{value.is_verified ? "terverifikasi" : "belum di verifikasi"}</h2>
+                    </div>
+                    <input
+                      id="green-checkbox"
+                      type="checkbox"
+                      checked={value.is_verified}
+                      onChange={(e) => {
+                        if (e.target.checked) {
+                          importData({
+                            playerIds: [value.uuid],
+                            isVerified: true,
+                          });
+                        }
+                      }}
+                      className="w-6 h-6 text-green-800 ring-green-800  border-green-800 rounded focus:ring-green-500"
+                    />
+                  </div>
+                </div>
+              );
+            })}
+        </div>
+      </div>
+    </>
+  );
+}
+
+export default PlayerVer;

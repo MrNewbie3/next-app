@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { instance } from "@/config/axios";
 
-const arr = ["player", "last match", "season stats", "history", "periodisasi", "staff"];
+const arr = ["player", "last match", "season stats", "history", "periodisasi", "staff", "verification"];
 const notSuperAdmin = ["player", "staff"];
 type PageProps = {
   params: {

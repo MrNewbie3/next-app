@@ -18,6 +18,7 @@ function AddTeam({ params }: Props) {
     club_established: "",
     start_season: "",
     end_season: "",
+    group: "",
     // @ts-ignore
     userId: JSON.parse(localStorage.getItem("login")).data.user.uuid,
     categoryId: params,
@@ -131,6 +132,21 @@ function AddTeam({ params }: Props) {
                   handleChange(e);
                 }}
                 name={"club_origin"}
+                className=" bg-[#F2F3F7] h-10 border-none w-full max-w-2xl focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
+              />
+            </div>
+            <div className="flex flex-col justify-start mt-4">
+              <label htmlFor="label" className="opensans font-bold uppercase text-sm">
+                Group <span className="text-[#D00D00]">*</span>
+              </label>
+              <input
+                type="text"
+                placeholder="e.g Manchester"
+                value={data.group}
+                onChange={(e) => {
+                  handleChange(e);
+                }}
+                name={"group"}
                 className=" bg-[#F2F3F7] h-10 border-none w-full max-w-2xl focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
               />
             </div>
