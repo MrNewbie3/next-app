@@ -24,8 +24,8 @@ const styles = StyleSheet.create({
     marginBottom: "20px",
   },
   clubLogo: {
-    width: "60px",
-    height: "60px",
+    width: "80px",
+    height: "80px",
     marginRight: "10px",
   },
   clubDetails: {
@@ -64,8 +64,8 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   playerPicture: {
-    width: "80px",
-    height: "80px",
+    width: "60px",
+    height: "60px",
     marginBottom: "5px",
   },
   playerInfo: {
@@ -107,6 +107,9 @@ function MyDocument(params: any) {
             <View style={styles.tableCell}>
               <Text style={styles.tableCellText}>Number of Players</Text>
             </View>
+            <View style={styles.tableCell}>
+              <Text style={styles.tableCellText}>Eks Liga?</Text>
+            </View>
           </View>
           {player.map((player: any, index: number) => (
             <View style={styles.tableRow} key={index}>
@@ -127,6 +130,9 @@ function MyDocument(params: any) {
               </View>
               <View style={styles.tableCell}>
                 <Text style={styles.playerInfo}>{player.number_of_player}</Text>
+              </View>
+              <View style={styles.tableCell}>
+                <Text style={styles.playerInfo}>{player.is_league ? "YA" : "BUKAN"}</Text>
               </View>
             </View>
           ))}

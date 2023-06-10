@@ -95,6 +95,7 @@ function PlayerVer({ params: query }: PageProps) {
                         </Link>
                       </div>
                       <h2 className="font-semibold text-xs text-gray-500">{value.is_verified ? "terverifikasi" : "belum di verifikasi"}</h2>
+                      <h2 className="font-semibold text-xs lowercase text-gray-500">{value.is_league ? "eks liga" : ""}</h2>
                     </div>
                     <input
                       id="green-checkbox"
