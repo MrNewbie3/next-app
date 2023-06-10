@@ -169,7 +169,7 @@ function AddPlayer({ params: query }: PageProps) {
 
               <div className="flex flex-col justify-start mt-4 text-sm">
                 <label htmlFor="label" className=" uppercase  opensans font-bold ">
-                  Nama tampilan <span className="text-[#D00D00]">*</span>
+                  akun instagram <span className="text-[#D00D00]">contoh: @nama_akun *</span>
                 </label>
                 <input
                   type="text"
@@ -177,7 +177,7 @@ function AddPlayer({ params: query }: PageProps) {
                   onChange={(e) => {
                     handleChange(e);
                   }}
-                  placeholder="e.g Red Devil"
+                  placeholder="e.g @nama_akun"
                   value={data.nickname}
                   className=" bg-[#FFFFFF] h-10 border-none w-full focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
                 />

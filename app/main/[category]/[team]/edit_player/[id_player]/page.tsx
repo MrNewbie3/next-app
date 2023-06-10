@@ -3,6 +3,7 @@ import { instance } from "@/config/axios";
 import { getAuthTokenClient } from "@/config/cookie";
 import { redirect, useRouter } from "next/navigation";
 import React, { Suspense, useEffect, useState } from "react";
+import { ClipLoader } from "react-spinners";
 import { blob } from "stream/consumers";
 // to: @lakyulakyu
 // remind me to repair file input form @MrNewbie3
@@ -17,8 +18,7 @@ function AddPlayer({ params: query }: PageProps) {
   const token = getAuthTokenClient();
   const value = token;
   const router = useRouter();
-  let is_league;
-  let position;
+  const [loading, setLoading] = useState(false);
   const [data, setData] = useState({
     fullname: "",
     nickname: "",
@@ -52,6 +52,7 @@ function AddPlayer({ params: query }: PageProps) {
   }, []);
 
   async function postData(e: React.FormEvent) {
+    setLoading(true);
     e.preventDefault();
     const getAuthUser = await fetch(`${process.env.NEXT_PUBLIC_URL}/user/auth`, {
       headers: {
@@ -98,9 +99,11 @@ function AddPlayer({ params: query }: PageProps) {
     const res = await post.json();
 
     if (!res.success) {
+      setLoading(false);
       return alert(res.message);
     }
     alert("oke");
+    setLoading(false);
     return router.push(`/main/${query.category}/${query.team}`);
   }
   const handleChangeSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -169,7 +172,7 @@ function AddPlayer({ params: query }: PageProps) {
 
               <div className="flex flex-col justify-start mt-4 text-sm">
                 <label htmlFor="label" className=" uppercase  opensans font-bold ">
-                  Nama tampilan <span className="text-[#D00D00]">*</span>
+                  akun instagram <span className="text-[#D00D00]">contoh: @nama_akun *</span>
                 </label>
                 <input
                   type="text"
@@ -177,7 +180,7 @@ function AddPlayer({ params: query }: PageProps) {
                   onChange={(e) => {
                     handleChange(e);
                   }}
-                  placeholder="e.g Red Devil"
+                  placeholder="e.g @nama_akun"
                   value={data.nickname}
                   className=" bg-[#F2F3F7] h-10 border-none w-full focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
                 />
@@ -372,9 +375,16 @@ function AddPlayer({ params: query }: PageProps) {
               </div>
             </div>
           </div>
-          <button type="submit" className="bg-[#D00D00] h-10 rounded-lg mt-10 text-white opensans w-full">
-            Simpan
-          </button>
+          {!loading && (
+            <button type="submit" className="bg-[#D00D00] h-10 rounded-lg mt-10 text-white opensans w-full">
+              Simpan
+            </button>
+          )}
+          {loading && (
+            <button disabled className="bg-grey h-10 rounded-lg mt-10 w-full">
+              <ClipLoader color="#ffffff" size={20} />
+            </button>
+          )}
         </form>
       </div>
     </>
