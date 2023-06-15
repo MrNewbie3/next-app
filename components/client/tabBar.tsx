@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { instance } from "@/config/axios";
+import { login } from "@/hooks/action";
 
 const arr = ["player", "last match", "season stats", "history", "periodisasi", "staff", "verification"];
 const notSuperAdmin = ["player", "staff"];
@@ -17,15 +18,10 @@ type PageProps = {
 function TeamDetails({ params: query }: PageProps) {
   const path = usePathname();
   const [data, setData] = useState(null);
+
   useEffect(() => {
-    instance
-      .get("user/auth")
-      .then((result: { data: React.SetStateAction<null> }) => {
-        setData(result.data);
-      })
-      .catch((err: string | undefined) => {
-        throw new Error(err);
-      });
+    // @ts-ignore
+    setData(JSON.parse(localStorage.getItem("login")));
   }, []);
 
   const decode = decodeURI(path);
@@ -44,7 +40,7 @@ function TeamDetails({ params: query }: PageProps) {
         <div>
           <ul className=" flex text-gray-600 font-semibold justify-around w-fit h-12 px-8 gap-x-8 items-center bg-white drop-shadow-md rounded-lg ">
             {/* @ts-ignore */}
-            {data.data.role.toLowerCase() === "superadmin"
+            {data.data.user.role.toLowerCase() === "superadmin"
               ? arr.map((data, index) => {
                   return (
                     <Link key={index} href={`/main/${query.category}/${query.team}/${data}`}>
