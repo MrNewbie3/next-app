@@ -137,11 +137,6 @@ function MyDocument(params: any) {
 }
 
 const PDFView = (data: Object) => {
-  const [client, setClient] = useState(false);
-  useEffect(() => {
-    setClient(true);
-  }, []);
-
   return (
     <PDFViewer className="w-full h-screen">
       <MyDocument data={data} />

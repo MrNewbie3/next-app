@@ -182,9 +182,9 @@ export default function GeneralMatch({ params: detail }: PageProps) {
                   <span className="text-[#D00D00]">*</span>
                 </label>
                 <input
-                  type="number"
+                  type="text"
                   name="location"
-                  placeholder="e.g 180"
+                  placeholder="e.g City"
                   onChange={(e) => {
                     handleChange(e);
                   }}

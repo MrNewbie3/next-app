@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { instance } from "@/config/axios";
 import { useRouter } from "next/navigation";
+import { BounceLoader } from "react-spinners";
 
 type PageProps = {
   params: {
@@ -13,8 +14,20 @@ type PageProps = {
 
 function PlayerList({ params: query }: PageProps) {
   const router = useRouter();
+  const arr = [1, 2, 3, 4, 5, 6];
+  console.log(arr.includes(2));
+  // @ts-ignore
+  const id_player = JSON.parse(localStorage.getItem("data_player"));
+  const setPlayerPicked: String[] = [];
+  const [dataLoading, setDataLoading] = useState(false);
+  if (id_player !== null) {
+    id_player.map((e: any) => {
+      setPlayerPicked.push(e.playerId);
+    });
+  }
   const [data, setData] = useState({ data: { players: [] } });
   const importData = () => {
+    setDataLoading(true);
     // @ts-ignore
     const playerData = JSON.parse(localStorage.getItem("data_player"));
     // @ts-ignore
@@ -25,9 +38,13 @@ function PlayerList({ params: query }: PageProps) {
       .then((result: Object) => {
         localStorage.removeItem("data_player");
         localStorage.removeItem("match");
+        setDataLoading(false);
+        alert("ok");
         router.push("/main");
       })
       .catch((err: Object) => {
+        setDataLoading(false);
+        alert("failed to import data");
         console.log(err);
       });
   };
@@ -66,7 +83,7 @@ function PlayerList({ params: query }: PageProps) {
                     <input
                       id="green-checkbox"
                       type="checkbox"
-                      checked={false}
+                      checked={setPlayerPicked.includes(value.id)}
                       onChange={() => {
                         return 0;
                       }}
@@ -77,9 +94,15 @@ function PlayerList({ params: query }: PageProps) {
               );
             })}
         </div>
-        <button className="bg-[#D00D00] h-10 rounded-lg mt-10 text-white opensans w-full" onClick={importData}>
-          Import Data
-        </button>
+        {dataLoading ? (
+          <div className="fixed top-0 left-0 w-full h-full bg-gray-500 bg-opacity-50 flex items-center justify-center">
+            <BounceLoader color="gray" size={20} />
+          </div>
+        ) : (
+          <button className="bg-[#D00D00] h-10 rounded-lg mt-10 text-white opensans w-full" onClick={importData}>
+            Import Data
+          </button>
+        )}
       </div>
     </>
   );
