@@ -8,11 +8,12 @@ on:
 jobs:
   build:
     runs-on: self-hosted
-    container:
-      image: ubuntu:latest
-      options: --memory=8g
-      
+    container: ubuntu-latest
+
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
       - name: Deploy using SSH
         uses: appleboy/ssh-action@master
         with:
@@ -27,6 +28,6 @@ jobs:
             git status
             source ~/.nvm/nvm.sh  # Source nvm initialization script again
             nvm use 16
-            yarn 
-            yarn build
+            yarn install --frozen-lockfile  # Install dependencies
+            node_modules/.bin/next build  # Build Next.js app
             pm2 restart dash-stapa
