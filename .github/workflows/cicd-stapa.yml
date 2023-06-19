@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: ubuntu:latest
+      options: --memory=8g
       
     steps:
       - name: Deploy using SSH
