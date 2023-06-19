@@ -9,8 +9,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: 'ubuntu-latest'
-      options: --memory=8g
+      image: ubuntu:latest
       
     steps:
       - name: Deploy using SSH
