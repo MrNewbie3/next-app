@@ -31,5 +31,4 @@ jobs:
             source ~/.nvm/nvm.sh  # Source nvm initialization script again
             nvm use 16
             yarn install --frozen-lockfile  # Install dependencies
-            node_modules/.bin/next build  # Build Next.js app
             pm2 restart dash-stapa
