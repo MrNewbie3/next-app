@@ -25,7 +25,7 @@ const persistor = persistStore(store);
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const data = typeof window != "undefined" ? localStorage.getItem("login") : undefined;
   useEffect(() => {
-    data === undefined ? localStorage.setItem("login", JSON.stringify({ data: { token: null } })) : "";
+    data === undefined || null ? localStorage.setItem("login", JSON.stringify({ data: { token: null } })) : "";
   }, []);
 
   return (
