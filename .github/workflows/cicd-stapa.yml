@@ -1,0 +1,34 @@
+name: CD
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: ubuntu:latest
+      options: --memory=8g
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Deploy using SSH
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.PRIVATE_KEY }}
+          port: 22
+          script: |
+            source ~/.nvm/nvm.sh  # Source nvm initialization script
+            cd ~/stapa
+            git pull origin main
+            git status
+            source ~/.nvm/nvm.sh  # Source nvm initialization script again
+            nvm use 16
+            yarn install --frozen-lockfile  # Install dependencies
+            pm2 restart dash-stapa
