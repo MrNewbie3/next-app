@@ -19,6 +19,7 @@ type PageProps = {
 
 function AddMatch({ params: query }: PageProps) {
   const navigate = useRouter();
+  // @ts-ignore
   const router = usePathname().replace("new_match", "");
   return (
     <div className="">

@@ -24,6 +24,7 @@ function TeamDetails({ params: query }: PageProps) {
     setData(JSON.parse(localStorage.getItem("login")));
   }, []);
 
+  // @ts-ignore
   const decode = decodeURI(path);
   return (
     <div className="wrapper">

@@ -16,6 +16,7 @@ type PageProps = {
 };
 function PlayerDetails({ params: query }: PageProps) {
   const path = usePathname();
+  // @ts-ignore
   const decode = decodeURI(path);
   return (
     <div>
