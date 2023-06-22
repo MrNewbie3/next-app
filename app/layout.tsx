@@ -30,7 +30,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
   return (
     <html lang="en">
-      <head></head>
+      <head>
+        <title>LMSS</title>
+      </head>
       <body className="bg-light-grey ">
         <React.StrictMode>
           <Provider store={store}>
