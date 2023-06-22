@@ -13,6 +13,7 @@ import storage from "redux-persist/lib/storage";
 import { PersistGate } from "redux-persist/integration/react";
 import UserAuth from "@/components/client/user_auth";
 import { useEffect } from "react";
+import React from "react";
 
 const persistConfig = {
   key: "root",
@@ -31,12 +32,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <head></head>
       <body className="bg-light-grey ">
-        <Provider store={store}>
-          {data !== undefined ? <UserAuth></UserAuth> : <></>}
-          <PersistGate loading={null} persistor={persistor}>
-            {children}
-          </PersistGate>
-        </Provider>
+        <React.StrictMode>
+          <Provider store={store}>
+            {data !== undefined ? <UserAuth></UserAuth> : <></>}
+            <PersistGate loading={null} persistor={persistor}>
+              {children}
+            </PersistGate>
+          </Provider>
+        </React.StrictMode>
       </body>
     </html>
   );
