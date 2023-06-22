@@ -89,7 +89,6 @@ function ListPlayer({ params: query }: PageProps) {
                 </div>
               );
             })}
-            <div className="wrapper px-5 bg-black"></div>
           </div>
         </div>
       )}
