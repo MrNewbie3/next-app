@@ -79,6 +79,7 @@ function HistoryDetails({ params: query }: PageProps) {
         .get(`${process.env.NEXT_PUBLIC_URL}/match/` + query.league)
         .then((result: any) => {
           setRawData(result.data.data);
+          console.log(result.data.data);
         })
         .catch((err: any) => {
           throw new Error("error: " + err);
@@ -144,11 +145,11 @@ function HistoryDetails({ params: query }: PageProps) {
             <div className="flex text-xs font-semibold  ">
               <p>
                 {/* @ts-ignore */}
-                {getClub.data[0].club.start_season} - {getClub.data[0].club.end_season}
+                Tanggal Tanding: {getClub.data[0].match_date}
               </p>
             </div>
             {/* @ts-ignore */}
-            <h1 className="text-xl font-bold ">{getClub.data[0].club.club_name}</h1>
+            <h1 className="text-xl font-bold ">Lawan: {getClub.data[0].opponent_name}</h1>
           </div>
 
           <button className="hover:bg-[#D00D00] flex items-center gap-2 bg-white ring-1 capitalize font-semibold ring-[#D00D00] text-[#D00D00] px-4 rounded-lg h-9 hover:text-white active:bg-[#D00D00] active:text-white   ">

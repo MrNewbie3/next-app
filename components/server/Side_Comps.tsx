@@ -18,7 +18,7 @@ async function getData() {
 
 export default async function Side_Comps() {
   let data = await getData();
-
+  const league = ["solo premiere league", "batu premiere league"];
   return (
     <>
       {
@@ -26,17 +26,20 @@ export default async function Side_Comps() {
         data.success ? "" : (data = [])
       }
       <div className="flex flex-col gap-y-4 ">
-        {data.data.length > 0 ? <h1 className="font-bold ">Solo Premiere League</h1> : <></>}
-        {data.data.map((value: any) => {
+        {/* {data.data.length > 0 ? <h1 className="font-bold ">Solo Premiere League</h1> : <></>} */}
+        {data.data.map((value: any, index: number) => {
           return (
-            <Link href={`/main/${value.uuid}`} key={value.id}>
-              <button className="text-grey flex px-7 gap-4 items-center w-[170px] font-semibold py-2 rounded-md ">
-                <div className="icon">
-                  <MdSportsSoccer className="text-2xl" />
-                </div>
-                <p className="capitalize font-semibold truncate hover:text-clip">{value.category_name}</p>
-              </button>
-            </Link>
+            <div className="wrapper">
+              <h1 className="font-bold capitalize">{league[index]}</h1>
+              <Link href={`/main/${value.uuid}`} key={value.id}>
+                <button className="text-grey flex px-7 gap-4 items-center w-[170px] font-semibold py-2 rounded-md ">
+                  <div className="icon">
+                    <MdSportsSoccer className="text-2xl" />
+                  </div>
+                  <p className="capitalize font-semibold truncate hover:text-clip">{value.category_name}</p>
+                </button>
+              </Link>
+            </div>
           );
         })}
       </div>
