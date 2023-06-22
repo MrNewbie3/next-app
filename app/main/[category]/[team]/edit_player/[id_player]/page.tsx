@@ -1,6 +1,7 @@
 "use client";
 import { instance } from "@/config/axios";
 import { getAuthTokenClient } from "@/config/cookie";
+import Image from "next/image";
 import { redirect, useRouter } from "next/navigation";
 import React, { Suspense, useEffect, useState } from "react";
 import { ClipLoader } from "react-spinners";
@@ -38,13 +39,14 @@ function AddPlayer({ params: query }: PageProps) {
     ijazah_player: null,
     clubId: query.team,
   });
-
+  const [preview, setPreview] = useState(null);
+  const [previewAkta, setPreviewAkta] = useState(null);
+  const [previewIjazah, setPreviewIjazah] = useState(null);
   useEffect(() => {
     instance
       .get("player/" + query.id_player)
       .then((result: any) => {
         setData(result.data.data);
-        console.log(result.data.data);
       })
       .catch((err: any) => {
         throw new Error(err.message);
@@ -115,6 +117,7 @@ function AddPlayer({ params: query }: PageProps) {
   };
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, files } = e.target;
+
     setData({
       ...data,
       [name]: files ? files[0] : value,
@@ -335,11 +338,20 @@ function AddPlayer({ params: query }: PageProps) {
                 <label htmlFor="label" className="uppercase opensans font-bold ">
                   foto pemain <span className="text-[#D00D00] uppercase">maks 2 mb photo file*</span>
                 </label>
+                <Image
+                  className="w-20 h-30 object-contain"
+                  alt="player_image"
+                  // @ts-ignore
+                  src={preview || data.photo_player || "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png"}
+                  width={400}
+                  height={400}
+                />
                 <input
                   type="file"
                   name="photo_player"
                   onChange={(e) => {
                     // @ts-ignore
+                    setPreview(URL.createObjectURL(e.target.files[0]));
                     handleChange(e);
                   }}
                   className=" block w-full outline-none file:h-full file:bg-[#dddddd] file:border-none file:w-[118px] h-10 mt-2 text-gray-900 border rounded-lg cursor-pointer bg-[#F2F3F7] focus:outline-none  "
@@ -349,11 +361,20 @@ function AddPlayer({ params: query }: PageProps) {
                 <label htmlFor="label" className="uppercase opensans font-bold ">
                   ijazah pemain <span className="text-[#D00D00] uppercase">maks 2 mb photo file*</span>
                 </label>
+                <Image
+                  className="w-20 h-30 object-contain"
+                  alt="ijazah player"
+                  // @ts-ignore
+                  src={previewIjazah || data.ijazah_player || "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png"}
+                  width={400}
+                  height={400}
+                />
                 <input
                   type="file"
                   name="ijazah_player"
                   onChange={(e) => {
                     // @ts-ignore
+                    setPreviewIjazah(URL.createObjectURL(e.target.files[0]));
                     handleChange(e);
                   }}
                   className=" block w-full outline-none file:h-full file:bg-[#dddddd] file:border-none file:w-[118px] h-10 mt-2 text-gray-900 border rounded-lg cursor-pointer bg-[#F2F3F7] focus:outline-none  "
@@ -363,11 +384,20 @@ function AddPlayer({ params: query }: PageProps) {
                 <label htmlFor="label" className="uppercase opensans font-bold ">
                   akta pemain <span className="text-[#D00D00] uppercase">maks 2 mb photo file*</span>
                 </label>
+                <Image
+                  className="w-20 h-30 object-contain"
+                  alt="akta_player"
+                  // @ts-ignore
+                  src={previewAkta || data.akta_player || "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png"}
+                  width={400}
+                  height={400}
+                />
                 <input
                   type="file"
                   name="akta_player"
                   onChange={(e) => {
                     // @ts-ignore
+                    setPreviewAkta(URL.createObjectURL(e.target.files[0]));
                     handleChange(e);
                   }}
                   className=" block w-full outline-none file:h-full file:bg-[#dddddd] file:border-none file:w-[118px] h-10 mt-2 text-gray-900 border rounded-lg cursor-pointer bg-[#F2F3F7] focus:outline-none  "

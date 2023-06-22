@@ -1,7 +1,7 @@
 "use client";
 
 import { login, logout } from "@/hooks/action";
-import { getAuthTokenClient, setAuthToken } from "../../config/cookie";
+import { setAuthToken } from "../../config/cookie";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { connect } from "react-redux";

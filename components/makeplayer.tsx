@@ -18,9 +18,6 @@ async function getData(params: String) {
       Authorization: `Bearer ${cookieStore.get("token")?.value}`,
     },
     cache: "no-store",
-    next: {
-      revalidate: 10,
-    },
   });
   if (!res.ok) {
     throw new Error("Failed to fetch data = " + res.statusText);

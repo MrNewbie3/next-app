@@ -73,7 +73,7 @@ function ListPlayer({ params: query }: PageProps) {
                       </div>
                     </Link>
                     <div className="flex flex-row gap-x-5 justify-end items-center">
-                      <Link href={`main/${query.category}/${query.team}/edit_player/${value.uuid}`} className=" cursor-pointer">
+                      <Link href={`/main/${query.category}/${query.team}/edit_player/${value.uuid}`} className=" cursor-pointer">
                         <BsPencilFill />
                       </Link>
                       <div

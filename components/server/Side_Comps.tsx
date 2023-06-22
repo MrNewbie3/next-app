@@ -8,9 +8,6 @@ async function getData() {
   const cookieStore = cookies();
   const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/category`, {
     cache: "no-store",
-    next: {
-      revalidate: 10,
-    },
     headers: { Authorization: `Bearer ${cookieStore.get("token")?.value}` },
   });
   if (!res.ok) {
@@ -19,12 +16,7 @@ async function getData() {
   return res.json();
 }
 
-type PageProps = {
-  req: NextApiRequest;
-  res: NextApiResponse;
-};
-
-export default async function Side_Comps({ req, res }: PageProps) {
+export default async function Side_Comps() {
   let data = await getData();
 
   return (

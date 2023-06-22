@@ -7,7 +7,7 @@ import "@fontsource/open-sans/800.css";
 import reducer from "@/hooks/reducer";
 import thunk from "redux-thunk";
 import { Provider } from "react-redux";
-import { createStore, applyMiddleware } from "redux";
+import { legacy_createStore as createStore, applyMiddleware } from "redux";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { PersistGate } from "redux-persist/integration/react";
@@ -19,7 +19,6 @@ const persistConfig = {
   storage,
 };
 const persistedReducer = persistReducer(persistConfig, reducer);
-
 const store = createStore(persistedReducer, applyMiddleware(thunk));
 const persistor = persistStore(store);
 export default function RootLayout({ children }: { children: React.ReactNode }) {
