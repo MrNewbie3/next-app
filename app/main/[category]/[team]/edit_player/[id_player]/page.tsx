@@ -5,7 +5,6 @@ import Image from "next/image";
 import { redirect, useRouter } from "next/navigation";
 import React, { Suspense, useEffect, useState } from "react";
 import { ClipLoader } from "react-spinners";
-import { blob } from "stream/consumers";
 // to: @lakyulakyu
 // remind me to repair file input form @MrNewbie3
 type PageProps = {
@@ -19,6 +18,7 @@ function AddPlayer({ params: query }: PageProps) {
   const token = getAuthTokenClient();
   const value = token;
   const router = useRouter();
+  const [loadingPage, setLoadingPage] = useState(true);
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState({
     fullname: "",
@@ -47,8 +47,10 @@ function AddPlayer({ params: query }: PageProps) {
       .get("player/" + query.id_player)
       .then((result: any) => {
         setData(result.data.data);
+        setLoadingPage(false);
       })
       .catch((err: any) => {
+        setLoadingPage(false);
         throw new Error(err.message);
       });
   }, []);
@@ -417,6 +419,16 @@ function AddPlayer({ params: query }: PageProps) {
           )}
         </form>
       </div>
+      {loadingPage ? (
+        <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-75">
+          <div className="text-white text-xl">
+            <span className="mr-2 animate-pulse">⏳</span>
+            Waiting: Retrieving Data...
+          </div>
+        </div>
+      ) : (
+        <></>
+      )}
     </>
   );
 }
