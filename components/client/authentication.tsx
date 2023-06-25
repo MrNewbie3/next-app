@@ -16,9 +16,13 @@ export default function Authentication() {
 
         data.filter((e: any) => {
           // @ts-ignore
-          if (dataUser.data.user.role !== "SUPERADMIN" && dataUser.data.user.id === e.userId) {
+          if (dataUser.data.user.role === "COACH" && dataUser.data.user.id === e.userId) {
             // @ts-ignore
             return router.push("/main/7fe637a8-0eb7-4c32-9ce5-0f85edfe7de4/" + e.uuid);
+          }
+          if (dataUser.data.user.role === "ADMIN") {
+            // @ts-ignore
+            return router.push("/main/3b2ae5bb-736c-43d1-86ef-4119aec586d4/");
           }
         });
       })
