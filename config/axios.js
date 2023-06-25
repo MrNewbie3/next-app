@@ -9,5 +9,6 @@ const instance = axios.create({
 });
 
 instance.defaults.headers.common["Authorization"] = "Bearer " + auth;
+instance.defaults.maxContentLength = 10000000;
 
 module.exports = { instance };

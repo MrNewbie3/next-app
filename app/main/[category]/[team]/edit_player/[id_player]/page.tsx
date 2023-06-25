@@ -92,23 +92,24 @@ function AddPlayer({ params: query }: PageProps) {
     dataForm.append("ijazah_player", data.ijazah_player);
     // @ts-ignore
 
-    const post = await fetch(`${process.env.NEXT_PUBLIC_URL}/player/` + query.id_player, {
+    fetch(`${process.env.NEXT_PUBLIC_URL}/player/` + query.id_player, {
       method: "PUT",
       body: dataForm,
 
       headers: {
         Authorization: `Bearer ${token}`,
       },
-    });
-    const res = await post.json();
-
-    if (!res.success) {
-      setLoading(false);
-      return alert(res.message);
-    }
-    alert("oke");
-    setLoading(false);
-    return router.push(`/main/${query.category}/${query.team}`);
+    })
+      .then((result) => {
+        console.log(result);
+        alert("oke");
+        setLoading(false);
+        return router.push(`/main/${query.category}/${query.team}`);
+      })
+      .catch((err) => {
+        setLoading(false);
+        return alert("failed to update, try with smaller image size");
+      });
   }
   const handleChangeSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = e.target;
