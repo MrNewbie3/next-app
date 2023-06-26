@@ -14,15 +14,11 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     <>
       <Navbar />
       <div className="flex flex-row  ">
-        {cookiesStore.get("role")?.value === "SUPERADMIN" ? (
-          <Sidebar>
-            {/* @ts-ignore */}
-            <Side_Comps />
-          </Sidebar>
-        ) : (
-          <></>
-        )}
-        <Side_Comps />
+        {cookiesStore.get("role")?.value === "SUPERADMIN" ? <></> : <></>}
+        <Sidebar>
+          {/* @ts-ignore */}
+          <Side_Comps />
+        </Sidebar>
         {children}
       </div>
     </>
