@@ -34,14 +34,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <title>LMSS</title>
       </head>
       <body className="bg-light-grey ">
-        <React.StrictMode>
-          <Provider store={store}>
-            {data !== undefined ? <UserAuth></UserAuth> : <></>}
-            <PersistGate loading={null} persistor={persistor}>
-              {children}
-            </PersistGate>
-          </Provider>
-        </React.StrictMode>
+        <Provider store={store}>
+          <PersistGate loading={null} persistor={persistor}>
+            {data !== undefined && <UserAuth />}
+            {children}
+          </PersistGate>
+        </Provider>
       </body>
     </html>
   );

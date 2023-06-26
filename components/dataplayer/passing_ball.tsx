@@ -80,8 +80,7 @@ const passing_ball = (props: PageProps) => {
                 {100}
                 <span>%</span>
               </h2>
-              <div className=" w-40 h-40 z-10">
-                {" "}
+              <div className="w-40 h-40 z-10">
                 <Doughnut data={dataSuccessFinal} />
               </div>
             </div>

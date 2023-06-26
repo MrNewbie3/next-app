@@ -36,7 +36,7 @@ function AddTeam({ params }: Props) {
 
   useEffect(() => {
     instance
-      .get("user//?quantity=100")
+      .get("user/?quantity=100")
       .then((result: any) => {
         setCoach(result.data.data);
       })

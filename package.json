@@ -15,7 +15,7 @@
     "dotenv": "^16.0.3",
     "next": "^13.4.6",
     "react": "^18.2.0",
-    "react-chartjs-2": "3.0.4",
+    "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.44.2",
     "react-icons": "^4.9.0",

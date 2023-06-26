@@ -48,7 +48,32 @@ function ListPlayer({ params: query }: PageProps) {
   };
   return (
     <div>
-      {data.success === null && <h1>Loading</h1>}
+      {data.success === null && (
+        <div className="flex flex-row py-10 gap-5  w-full capitalize">
+          <div className="bg-[#F2F3F7] py-2 rounded-lg flex gap-5 px-8 w-full items-center">
+            <div className="animate-pulse w-full flex items-center gap-x-5">
+              <div className="w-12 h-12 bg-gray-300 rounded-full"></div>
+              <div className="gap-5 items-center h-12 w-full flex">
+                <div>
+                  <div className="h-4 bg-gray-300 rounded w-24"></div>
+                  <div className="h-6 bg-gray-300 rounded w-36 mt-1"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="bg-[#F2F3F7] py-2 rounded-lg flex gap-5 px-8 w-full items-center">
+            <div className="animate-pulse w-full flex items-center gap-x-5">
+              <div className="w-12 h-12 bg-gray-300 rounded-full"></div>
+              <div className="gap-5 items-center h-12 w-full flex">
+                <div>
+                  <div className="h-4 bg-gray-300 rounded w-24"></div>
+                  <div className="h-6 bg-gray-300 rounded w-36 mt-1"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
       {!(data !== null && data.success && data.data.players.length !== 0) ? (
         ""
       ) : (
@@ -72,19 +97,23 @@ function ListPlayer({ params: query }: PageProps) {
                         </div>
                       </div>
                     </Link>
-                    <div className="flex flex-row gap-x-5 justify-end items-center">
-                      <Link href={`/main/${query.category}/${query.team}/edit_player/${value.uuid}`} className=" cursor-pointer">
-                        <BsPencilFill />
-                      </Link>
-                      <div
-                        className=" cursor-pointer"
-                        onClick={() => {
-                          handleDelete(value.uuid);
-                        }}
-                      >
-                        <BsTrashFill />
+                    {query.detail === "player" ? (
+                      <div className="flex flex-row gap-x-5 justify-end items-center">
+                        <Link href={`/main/${query.category}/${query.team}/edit_player/${value.uuid}`} className=" cursor-pointer">
+                          <BsPencilFill />
+                        </Link>
+                        <div
+                          className=" cursor-pointer"
+                          onClick={() => {
+                            handleDelete(value.uuid);
+                          }}
+                        >
+                          <BsTrashFill />
+                        </div>
                       </div>
-                    </div>
+                    ) : (
+                      <></>
+                    )}
                   </div>
                 </div>
               );

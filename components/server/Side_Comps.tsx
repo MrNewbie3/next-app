@@ -18,6 +18,9 @@ async function getData() {
 
 export default async function Side_Comps() {
   let data = await getData();
+
+  const cookieStore = cookies();
+
   const league = ["solo premiere league", "batu premiere league"];
   return (
     <>
@@ -31,7 +34,7 @@ export default async function Side_Comps() {
           return (
             <div className="wrapper">
               <h1 className="font-bold capitalize">{league[index]}</h1>
-              <Link href={`/main/${value.uuid}`} key={value.id}>
+              <Link href={`/main/${value.slug}`} key={value.id}>
                 <button className="text-grey flex px-7 gap-4 items-center w-[170px] font-semibold py-2 rounded-md ">
                   <div className="icon">
                     <MdSportsSoccer className="text-2xl" />

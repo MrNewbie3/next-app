@@ -3,6 +3,7 @@ import Link from "next/link";
 import { GrFormNext } from "react-icons/gr";
 import React, { useState, useEffect } from "react";
 import { instance } from "@/config/axios";
+import { useRouter } from "next/navigation";
 
 type PageProps = {
   params: {
@@ -13,6 +14,7 @@ type PageProps = {
 };
 
 function PlayerPick({ params: player }: PageProps) {
+  const router = useRouter();
   const [playerData, setPlayer] = useState({ nickname: null, fullname: null, number_of_player: null });
   useEffect(() => {
     instance
@@ -68,7 +70,7 @@ function PlayerPick({ params: player }: PageProps) {
     const jsonData = JSON.parse(localStorage.getItem("data_player"));
     alert("data berhasil disimpan");
     const exist = jsonData[0];
-
+    router.push(`/main/${player.category}/${player.team}/new_match/`);
     return localStorage.setItem("data_player", JSON.stringify([{ ...exist }, data]));
 
     // window.location.reload();

@@ -51,7 +51,7 @@ const Login = ({ status, token, data, login }: any) => {
     localStorage.setItem("token", JSON.stringify(res.data.token));
     alert("berhasil login");
     setLoading(false);
-    setAuthToken(res.data.token);
+    setAuthToken(res.data.token, res.data.user.role);
     return router.push("/main");
   }
 

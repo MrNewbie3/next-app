@@ -1,6 +1,5 @@
 "use client";
-import React from "react";
-import { useEffect, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 
@@ -12,6 +11,7 @@ type PageProps = {
 
 const Passing_ball = (props: PageProps) => {
   const { success, success_final, unsuccess, unsuccess_final } = props.data;
+
   const dataSuccess = {
     datasets: [
       {
@@ -32,7 +32,15 @@ const Passing_ball = (props: PageProps) => {
       },
     ],
   };
+  // const [mounted, setMounted] = useState(false);
 
+  // useEffect(() => {
+  //   setMounted(true);
+
+  //   return () => {
+  //     setMounted(false);
+  //   };
+  // }, []);
   return (
     <div className="max-w-4xl w-full lg:max-w-5xl bg-white  rounded-lg px-6 py-4 ">
       <div className="mb-6 text-[20px] font-semibold">Passing & Ball Position</div>

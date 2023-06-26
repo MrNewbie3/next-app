@@ -6,18 +6,13 @@ import Navbar from "../../components/server/navbar";
 import "../globals.css";
 import Sidebar from "../../components/client/sidebar";
 import Side_Comps from "../../components/server/Side_Comps";
-import { Metadata } from "next";
-
-// export const metadata: Metadata = {
-//   title: "LMSS",
-//   description: "For better performance stats",
-//   icons: { icon: "" },
-// };
+import { cookies } from "next/headers";
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const cookiesStore = cookies();
   return (
     <>
-      <Navbar />
+      {cookiesStore.get("role")?.value === "SUPERADMIN" ? <Navbar /> : <></>}
       <div className="flex flex-row  ">
         <Sidebar>
           {/* @ts-ignore */}

@@ -1,11 +1,13 @@
 import { cookies } from "next/headers";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 type PageProps = {
   params: {
     team: String;
-    query: String;
+    category: String;
+    detail: string;
   };
 };
 
@@ -58,7 +60,9 @@ async function TeamCard({ params: query }: PageProps) {
       <div className=" w-full rounded-lg py-4">
         <div className=" flex  justify-between max-lg:flex-col  items-center ">
           <h1 className="capitalize font-bold opensans text-3xl">{data.data.club_nickname}</h1>
-          <button className="bg-[#D00D00] max-lg:mt-4 rounded-lg text-white px-12 py-2">Edit Club</button>
+          <Link href={`/main/${query.category}/`} className="bg-[#D00D00] max-lg:mt-4 rounded-lg text-white px-12 py-2">
+            Kembali
+          </Link>
         </div>
 
         <div className="card flex max-lg:flex-col  justify-between mt-8 ">
