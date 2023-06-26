@@ -12,12 +12,17 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const cookiesStore = cookies();
   return (
     <>
-      {cookiesStore.get("role")?.value === "SUPERADMIN" ? <Navbar /> : <></>}
+      <Navbar />
       <div className="flex flex-row  ">
-        <Sidebar>
-          {/* @ts-ignore */}
-          <Side_Comps />
-        </Sidebar>
+        {cookiesStore.get("role")?.value === "SUPERADMIN" ? (
+          <Sidebar>
+            {/* @ts-ignore */}
+            <Side_Comps />
+          </Sidebar>
+        ) : (
+          <></>
+        )}
+        <Side_Comps />
         {children}
       </div>
     </>
