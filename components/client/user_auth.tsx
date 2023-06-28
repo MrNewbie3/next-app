@@ -3,10 +3,11 @@ import { instance } from "@/config/axios";
 import { useEffect, useState } from "react";
 import { login, logout } from "@/hooks/action";
 import { connect } from "react-redux";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { PacmanLoader } from "react-spinners";
 function UserAuth({ logout, login }: any) {
   const router = useRouter();
+  const path = usePathname();
   const [data, setData] = useState(null);
   useEffect(() => {
     instance
@@ -23,7 +24,7 @@ function UserAuth({ logout, login }: any) {
         }
         return router.push("/login");
       });
-  }, [router]);
+  }, [path]);
   if (data !== null) {
     return <></>;
   }

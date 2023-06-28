@@ -12,7 +12,10 @@ export function getAuthTokenClient() {
   return cookie.get("token");
 }
 
+export function getUserRole() {
+  return cookie.get("role");
+}
+
 export function removeAuthToken() {
   cookie.remove("token", { path: "/" });
 }
-           

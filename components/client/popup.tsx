@@ -42,10 +42,10 @@ function Popup() {
     <>
       <div className="h-screen w-full bg-opacity-20   flex justify-center z-50">
         <div className="bg-white mt-20 p-8 h-64 w-[400px] rounded-xl flex flex-col">
-          <h1 className="font-semibold mb-8 text-lg">Tambah kategori</h1>
-          <h2 className="font-bold text-xs opensans-bold">NAMA KATEGORI</h2>
+          <h1 className="font-semibold mb-8 text-lg">Tambah Event</h1>
+          <h2 className="font-bold text-xs opensans-bold">NAMA EVENT</h2>
           <form className="flex flex-col" onSubmit={handleSubmit(postData)}>
-            <input type="text" {...register("category_name")} placeholder="e.g Sepak Bola" className=" bg-[#F2F3F7] h-10 border-none focus:outline-none  p-2 mt-2 rounded-lg font-semibold " />
+            <input type="text" {...register("category_name")} placeholder="e.g Liga Sepak Bola Kuvukiland" className=" bg-[#F2F3F7] h-10 border-none focus:outline-none  p-2 mt-2 rounded-lg font-semibold " />
             <p className="text-red-600">{errors.category_name?.message}</p>
             <button className="bg-[#D00D00] rounded-lg opensans-bold h-10  text-white mt-6 " type="submit">
               Simpan
