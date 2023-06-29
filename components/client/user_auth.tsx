@@ -21,8 +21,9 @@ function UserAuth({ logout, login }: any) {
           logout();
           //   @ts-ignore
           setData({ success: false });
+          return router.push("/login");
         }
-        return router.push("/login");
+        throw new Error(err);
       });
   }, [path]);
   if (data !== null) {

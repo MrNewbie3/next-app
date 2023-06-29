@@ -33,8 +33,10 @@ export default function Authentication() {
       }
     };
 
-    if (dataUser.data.user.role !== "SUPERADMIN" && dataUser.data.token != null) {
-      name();
+    if (dataUser.data.user.role != undefined) {
+      if (dataUser.data.user.role !== "SUPERADMIN") {
+        name();
+      }
     }
   }, []);
   return <div></div>;
