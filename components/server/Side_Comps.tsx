@@ -1,8 +1,6 @@
-import { NextApiRequest, NextApiResponse } from "next";
 import { cookies } from "next/headers";
 import Link from "next/link";
 import React from "react";
-import { MdSportsSoccer } from "react-icons/md";
 
 async function getData() {
   const cookieStore = cookies();
@@ -16,7 +14,7 @@ async function getData() {
   return res.json();
 }
 
-export default async function Side_Comps() {
+export default async function Side_Comps(props: any) {
   let data = await getData();
 
   return (
@@ -29,7 +27,7 @@ export default async function Side_Comps() {
         {data.data.map((value: any, index: number) => {
           return (
             <div className="wrapper">
-              <Link href={`/main/${value.slug}`} key={value.id}>
+              <Link href={`/main/${value.uuid}`} key={value.id}>
                 <button className="text-grey flex px- gap-4 items-center w-[170px] font-semibold py-2 rounded-md ">
                   <p className="capitalize font-semibold truncate hover:text-clip">{value.category_name}</p>
                 </button>

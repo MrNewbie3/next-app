@@ -6,9 +6,8 @@ import Navbar from "../../components/server/navbar";
 import "../globals.css";
 import Sidebar from "../../components/client/sidebar";
 import Side_Comps from "../../components/server/Side_Comps";
-import { cookies } from "next/headers";
 
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children, params }: { children: React.ReactNode; params: string }) {
   return (
     <>
       <Navbar />
