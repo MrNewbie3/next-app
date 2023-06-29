@@ -19,7 +19,7 @@ export default function Authentication() {
       if (role === "ADMIN") {
         const matchingCategory = categoryData.data.data.find((data: any) => data.userId === userAuth.data.data.id);
         if (matchingCategory) {
-          router.push("/main/" + matchingCategory.slug);
+          router.push("/main/" + matchingCategory.uuid);
         }
       }
       if (role === "COACH") {
@@ -27,13 +27,13 @@ export default function Authentication() {
         if (matchingClub) {
           const matchingCategory = categoryData.data.data.find((data: any) => data.id === matchingClub.categoryId);
           if (matchingCategory) {
-            router.push(`/main/${matchingCategory.slug}/${matchingClub.uuid}`);
+            router.push(`/main/${matchingCategory.uuid}/${matchingClub.uuid}`);
           }
         }
       }
     };
 
-    if (dataUser.data.user.role !== "SUPERADMIN") {
+    if (dataUser.data.user.role !== "SUPERADMIN" && dataUser.data.token != null) {
       name();
     }
   }, []);
