@@ -7,7 +7,6 @@ type PageProps = {
   params: { query: string };
 };
 function AddExercise({ params: query }: PageProps) {
-  console.log(query);
 
   const router = useRouter();
   const [data, setData] = useState({

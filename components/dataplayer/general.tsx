@@ -7,7 +7,6 @@ type PageProps = {
 
 const general = (props: PageProps) => {
   const { data } = props;
-  console.log(data);
 
   useEffect(() => {}, [data]);
 

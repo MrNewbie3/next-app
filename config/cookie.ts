@@ -8,8 +8,8 @@ export function setAuthToken(token: string, role?: string) {
   cookie.set("role", role, { path: "/" });
 }
 
-export function getAuthTokenClient() {
-  return cookie.get("token");
+export async function getAuthTokenClient() {
+  return await cookie.get("token");
 }
 
 export function getUserRole() {

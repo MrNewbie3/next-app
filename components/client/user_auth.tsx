@@ -9,27 +9,30 @@ import { getAuthTokenClient } from "@/config/cookie";
 function UserAuth({ logout, login }: any) {
   const router = useRouter();
   const path = usePathname();
-  const tokenUser = getAuthTokenClient();
+  // @ts-ignore
+  const tokenUser = localStorage.getItem("login") != null ? JSON.parse(localStorage.getItem("token")) : undefined;
   const [data, setData] = useState(null);
   useEffect(() => {
-    instance
-      .get("user/auth")
-      .then((result: any) => {
-        const currentPath = path.replace("/", "");
-        setData(result.data.data);
-        localStorage.setItem("login", JSON.stringify({ data: { token: tokenUser, user: result.data.data } }));
-        if (currentPath.toLocaleLowerCase() === "login") return router.push("/main");
-      })
-      .catch((err: any) => {
-        if (err.response.status === 401) {
-          localStorage.setItem("login", JSON.stringify({ data: { token: null } }));
-          logout();
-          //   @ts-ignore
-          setData({ success: false });
-          return router.push("/login");
-        }
-        throw new Error(err);
+    (async () => {
+      const data = await fetch(process.env.NEXT_PUBLIC_URL + "/user/auth", {
+        headers: {
+          Authorization: `Bearer ${tokenUser}`,
+        },
       });
+      const res = await data.json();
+      if (!data.ok) {
+        localStorage.setItem("login", JSON.stringify({ data: { token: null } }));
+        logout();
+        //   @ts-ignore
+        setData({ success: false });
+        return router.push("/login");
+      }
+      const currentPath = path.replace("/", "");
+      setData(res.data);
+      localStorage.setItem("login", JSON.stringify({ data: { token: tokenUser, user: res.data } }));
+      if (currentPath.toLocaleLowerCase() === "login") return router.push("/main");
+      return res;
+    })();
   }, [path]);
   if (data !== null) {
     return <></>;

@@ -14,7 +14,7 @@ async function getData() {
   return res.json();
 }
 
-export default async function Side_Comps(props: any) {
+export default async function Side_Comps() {
   let data = await getData();
 
   return (
@@ -24,7 +24,7 @@ export default async function Side_Comps(props: any) {
         data.success ? "" : (data = [])
       }
       <div className="flex flex-col gap-y-4 ">
-        {data.data.map((value: any, index: number) => {
+        {data.data.map((value: any) => {
           return (
             <div className="wrapper">
               <Link href={`/main/${value.uuid}`} key={value.id}>
