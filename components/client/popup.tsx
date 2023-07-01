@@ -9,7 +9,7 @@ import * as yup from "yup";
 function Popup() {
   const schema = yup
     .object({
-      category_name: yup.string().required("kategori tidak boleh kosong"),
+      category_name: yup.string().required("Event tidak boleh kosong"),
     })
     .required();
   type FormData = yup.InferType<typeof schema>;
@@ -23,11 +23,13 @@ function Popup() {
   const cookieStore = getAuthTokenClient();
 
   async function postData(e: FormData) {
-    console.log(e);
+    const { category_name } = e;
+    // @ts-ignore
+    const userId = JSON.parse(localStorage.getItem("login")).data.user.uuid;
 
     const post = await fetch(`${process.env.NEXT_PUBLIC_URL}/category`, {
       method: "POST",
-      body: JSON.stringify(e),
+      body: JSON.stringify({ category_name, userId }),
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${cookieStore}`,
