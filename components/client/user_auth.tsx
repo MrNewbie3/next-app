@@ -5,15 +5,20 @@ import { login, logout } from "@/hooks/action";
 import { connect } from "react-redux";
 import { usePathname, useRouter } from "next/navigation";
 import { PacmanLoader } from "react-spinners";
+import { getAuthTokenClient } from "@/config/cookie";
 function UserAuth({ logout, login }: any) {
   const router = useRouter();
   const path = usePathname();
+  const tokenUser = getAuthTokenClient();
   const [data, setData] = useState(null);
   useEffect(() => {
     instance
       .get("user/auth")
       .then((result: any) => {
-        setData(result.data);
+        const currentPath = path.replace("/", "");
+        setData(result.data.data);
+        localStorage.setItem("login", JSON.stringify({ data: { token: tokenUser, user: result.data.data } }));
+        if (currentPath.toLocaleLowerCase() === "login") return router.push("/main");
       })
       .catch((err: any) => {
         if (err.response.status === 401) {

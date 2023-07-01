@@ -48,6 +48,10 @@ function AddPlayer({ params: query }: PageProps) {
     });
     const result = await getAuthUser.json();
     if (!result.success) {
+      if (result.status == "401") {
+        typeof window != undefined ? window.location.reload() : undefined;
+        return router.push("/login");
+      }
       throw new Error(result.message);
     }
 
