@@ -10,7 +10,7 @@ function UserAuth({ logout, login }: any) {
   const router = useRouter();
   const path = usePathname();
   // @ts-ignore
-  const tokenUser = localStorage.getItem("login") != null ? JSON.parse(localStorage.getItem("token")) : undefined;
+  const tokenUser = localStorage.getItem("login") != undefined ? JSON.parse(localStorage.getItem("token")) : undefined;
   const [data, setData] = useState(null);
   useEffect(() => {
     (async () => {
