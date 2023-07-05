@@ -35,7 +35,6 @@ function AddTeam({ params }: Props) {
   const [loadingSubmit, setLoadingSubmit] = useState(false);
   const cookieStore = getAuthTokenClient();
   const router = useRouter();
-  console.log(data);
 
   useEffect(() => {
     instance
