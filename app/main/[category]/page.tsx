@@ -2,9 +2,9 @@ import Authentication from "@/components/client/authentication";
 import { cookies } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
-import { NextRequest } from "next/server";
 import React from "react";
 import { FaEdit, FaPlus, FaTrash } from "react-icons/fa";
+import DeleteClub from "@/components/client/club/deleteClub";
 
 interface PageProps {
   params: {
@@ -78,13 +78,13 @@ export default async function Page({ params }: PageProps) {
                         <FaEdit />
                       </Link>
                     </button>
+                    <DeleteClub id={data.uuid} name={data.club_name} />
                   </div>
                 </div>
               </div>
             );
           })}
         </div>
-        // redirect(`/${category}/${data.data.id}`)
       )}
     </div>
   );
