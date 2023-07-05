@@ -15,6 +15,8 @@ type Props = {
   };
 };
 function AddTeam({ params }: Props) {
+  // @ts-ignore
+  const [uid, setUid] = useState(JSON.parse(localStorage.getItem("login")).data.user.uuid);
   const [data, setData] = useState({
     club_name: "",
     club_shortname: "",
@@ -23,9 +25,9 @@ function AddTeam({ params }: Props) {
     club_established: "",
     start_season: "",
     end_season: "",
-    // @ts-ignore
-    userId: JSON.parse(localStorage.getItem("login")).data.user.uuid,
-    categoryId: params,
+    group: "",
+    userId: "",
+    categoryId: params.category,
     club_image: null,
   });
   const [coach, setCoach] = useState([]);
@@ -33,6 +35,7 @@ function AddTeam({ params }: Props) {
   const [loadingSubmit, setLoadingSubmit] = useState(false);
   const cookieStore = getAuthTokenClient();
   const router = useRouter();
+  console.log(data);
 
   useEffect(() => {
     instance
@@ -47,6 +50,7 @@ function AddTeam({ params }: Props) {
       .get("club/" + params.id_team)
       .then((result: any) => {
         setData(result.data.data);
+        setData((currentState) => ({ ...currentState, userId: uid, categoryId: params.category }));
         setLoading(false);
       })
       .catch((err: any) => {
@@ -74,6 +78,7 @@ function AddTeam({ params }: Props) {
     const res = await post.json();
 
     if (!res.success) {
+      setLoadingSubmit(false);
       alert(res.message);
       return alert("failed to update, try again");
     }
@@ -91,6 +96,7 @@ function AddTeam({ params }: Props) {
   };
   const handleChangeSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = e.target;
+
     setData({
       ...data,
       [name]: value,
@@ -244,6 +250,21 @@ function AddTeam({ params }: Props) {
                     className=" bg-[#F2F3F7] h-10 border-none w-full max-w-2xl focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
                   />
                 </div>
+                <div className="flex flex-col justify-start mt-4">
+                  <label htmlFor="label" className="opensans font-bold uppercase text-sm">
+                    Group <span className="text-[#D00D00]">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="e.g Manchester"
+                    value={data.group}
+                    onChange={(e) => {
+                      handleChange(e);
+                    }}
+                    name={"club_origin"}
+                    className=" bg-[#F2F3F7] h-10 border-none w-full max-w-2xl focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
+                  />
+                </div>
               </div>
               <div className="w-full ">
                 <div className="flex flex-col justify-start mt-4">
@@ -307,7 +328,7 @@ function AddTeam({ params }: Props) {
                     {coach.map((e) => {
                       return (
                         // @ts-ignore
-                        <option key={e.uuid} value={e.id}>
+                        <option key={e.uuid} value={e.uuid}>
                           {/* @ts-ignore */}
                           {e.username}
                         </option>
