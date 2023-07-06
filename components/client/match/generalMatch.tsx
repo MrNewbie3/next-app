@@ -20,7 +20,7 @@ export default function GeneralMatch({ params: detail }: PageProps) {
     lost_ball_position: "",
     corner_kick_position: "",
     match_date: "",
-    clubId: detail.category,
+    clubId: detail.team,
     detailMatch: 0,
     opponent_score: 0,
     score: 0,
