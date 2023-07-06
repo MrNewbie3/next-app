@@ -1,7 +1,6 @@
 "use client";
 import { getAuthTokenClient } from "@/config/cookie";
-import { cookies } from "next/headers";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 type PageProps = {
   params: { category: string; team: string };
@@ -62,10 +61,10 @@ function TambahLatihan({ params: query }: PageProps) {
       },
     });
     const res = await post.json();
-    if (!res.success) {
+    if (!post.ok) {
+      alert("failed to post");
       return alert(res.message);
     }
-    console.log(res);
 
     alert("sukses menyimpan data");
     return router.push(`/main/${query.category}/${query.team}`);
@@ -73,7 +72,7 @@ function TambahLatihan({ params: query }: PageProps) {
   return (
     <>
       <button
-        onClick={(e) => {
+        onClick={() => {
           router.push(`/main/${query.category}/${query.team}/periodisasi`);
         }}
         className="bg-[#137403] px-4  py-2 text-white mb-10 rounded-lg"

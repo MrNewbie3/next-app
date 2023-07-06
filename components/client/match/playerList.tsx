@@ -35,7 +35,7 @@ function PlayerList({ params: query }: PageProps) {
     const matchData = { ...match, detailMatch: playerData };
     instance
       .post("/match", matchData)
-      .then((result: Object) => {
+      .then(() => {
         localStorage.removeItem("data_player");
         localStorage.removeItem("match");
         setDataLoading(false);

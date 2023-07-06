@@ -20,7 +20,7 @@ export default function GeneralMatch({ params: detail }: PageProps) {
     lost_ball_position: "",
     corner_kick_position: "",
     match_date: "",
-    clubId: null,
+    clubId: detail.category,
     detailMatch: 0,
     opponent_score: 0,
     score: 0,
@@ -43,19 +43,6 @@ export default function GeneralMatch({ params: detail }: PageProps) {
     }));
   };
 
-  useEffect(() => {
-    instance
-      .get("/club/" + detail.team)
-      .then((result: any) => {
-        setData((prevState) => ({
-          ...prevState,
-          clubId: result.data.data.id,
-        }));
-      })
-      .catch((err: any) => {
-        console.log(err);
-      });
-  }, []);
   return (
     <>
       {data.clubId !== null ? (
