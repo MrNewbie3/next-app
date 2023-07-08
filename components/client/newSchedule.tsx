@@ -18,8 +18,8 @@ function TambahLatihan({ params: query }: PageProps) {
     time_exercise: "",
     repetition: "",
     number_player: "",
-    clubId: query.team,
-    periodisasi_photo: "",
+    club: query.team,
+    photo_exercise: "",
   });
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, files } = e.target;
@@ -257,7 +257,7 @@ function TambahLatihan({ params: query }: PageProps) {
                 </label>
                 <input
                   type="file"
-                  name="periodisasi_photo"
+                  name="photo_exercise"
                   onChange={(e) => {
                     handleChange(e);
                   }}

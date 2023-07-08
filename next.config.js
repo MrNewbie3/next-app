@@ -3,6 +3,8 @@ const nextConfig = {
   experimental: {
     appDir: true,
   },
+
+  swcMinify: false,
   env: {
     NEXT_PUBLIC_URL: "https://api.mokletscience.com/api/v1",
   },

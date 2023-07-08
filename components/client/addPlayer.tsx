@@ -88,24 +88,27 @@ function AddPlayer({ params: query }: PageProps) {
     dataForm.append("ijazah_player", data.ijazah_player);
     // @ts-ignore
     dataForm.append("clubId", response.data.uuid);
+    try {
+      const post = await fetch(`${process.env.NEXT_PUBLIC_URL}/player`, {
+        method: "POST",
+        body: dataForm,
 
-    const post = await fetch(`${process.env.NEXT_PUBLIC_URL}/player`, {
-      method: "POST",
-      body: dataForm,
-
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    const res = await post.json();
-
-    if (!res.success) {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const res = await post.json();
+      console.log(post);
+      if (!post.ok) {
+        setLoading(false);
+        return alert(res.message);
+      }
       setLoading(false);
-      return alert(res.message);
+      alert("oke");
+      return router.push(`/main/${query.category}/${query.team}`);
+    } catch (error) {
+      alert("Ukuran file terlalu besar, coba lagi");
     }
-    setLoading(false);
-    alert("oke");
-    return router.push(`/main/${query.category}/${query.team}`);
   }
   const handleChangeSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = e.target;

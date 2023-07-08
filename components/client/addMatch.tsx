@@ -5,6 +5,7 @@ import ListPlayer from "./listPlayer";
 import PlayerList from "./match/playerList";
 import GeneralMatch from "./match/generalMatch";
 import { usePathname, useRouter } from "next/navigation";
+import ImportExcel from "./match/importExcel";
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(" ");
 }
@@ -39,10 +40,11 @@ function AddMatch({ params: query }: PageProps) {
           </h4>
         </div>
         <Tab.Group>
-          <Tab.List className=" flex text-gray-600 font-semibold justify-around max-w-[384px] h-12 mt-8 items-center bg-[#F2F3F7]      drop-shadow-md rounded-lg  capitalize    ">
-            <Tab className={({ selected }) => classNames(!selected ? "transition-all duration-300 ease-out" : "bg-[#D00D00]  text-white px-4 py-1 focus:outline-none rounded-lg")}>General match</Tab>
-            <Tab className={({ selected }) => classNames(!selected ? "transition-all duration-300 ease-out" : "bg-[#D00D00]  text-white px-4 py-1 focus:outline-none rounded-lg")}>player pick</Tab>
-            <Tab className={({ selected }) => classNames(!selected ? "transition-all duration-300 ease-out" : "bg-[#D00D00]  text-white px-4 py-1 focus:outline-none rounded-lg")}>player list</Tab>
+          <Tab.List className=" flex text-gray-600 font-semibold justify-around min-w-[384px] w-fit h-12 gap-x-10 px-2 mt-8 items-center bg-[#F2F3F7]      drop-shadow-md rounded-lg  capitalize    ">
+            <Tab className={({ selected }) => classNames(!selected ? "transition-all duration-300 ease-out capitalize" : "bg-[#D00D00] uppercase text-white px-4 py-1 focus:outline-none rounded-lg")}>General match</Tab>
+            <Tab className={({ selected }) => classNames(!selected ? "transition-all duration-300 ease-out capitalize" : "bg-[#D00D00] uppercase text-white px-4 py-1 focus:outline-none rounded-lg")}>player pick</Tab>
+            <Tab className={({ selected }) => classNames(!selected ? "transition-all duration-300 ease-out capitalize" : "bg-[#D00D00] uppercase text-white px-4 py-1 focus:outline-none rounded-lg")}>player list</Tab>
+            <Tab className={({ selected }) => classNames(!selected ? "transition-all duration-300 ease-out capitalize" : "bg-[#D00D00] uppercase text-white px-4 py-1 focus:outline-none rounded-lg")}>import data</Tab>
           </Tab.List>
           <Tab.Panels>
             <Tab.Panel>
@@ -61,6 +63,9 @@ function AddMatch({ params: query }: PageProps) {
                   detail: "new_match",
                 }}
               />
+            </Tab.Panel>
+            <Tab.Panel>
+              <ImportExcel />
             </Tab.Panel>
           </Tab.Panels>
         </Tab.Group>
