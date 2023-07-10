@@ -18,8 +18,8 @@ function TambahLatihan({ params: query }: PageProps) {
     time_exercise: "",
     repetition: "",
     number_player: "",
-    club: query.team,
-    photo_exercise: "",
+    clubId: query.team,
+    periodisasi_photo: null,
   });
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, files } = e.target;
@@ -113,10 +113,10 @@ function TambahLatihan({ params: query }: PageProps) {
                   <option value="" disabled>
                     Pilih Jenis Latihan
                   </option>
-                  <option value="Taktik">Taktik</option>
-                  <option value="Taktik">Teknik</option>
-                  <option value="Fitnes">Fitnes</option>
-                  <option value="Fisik">Fisik</option>
+                  <option value="taktik">Taktik</option>
+                  <option value="taktik">Teknik</option>
+                  <option value="fitnes">Fitnes</option>
+                  <option value="fisik">Fisik</option>
                 </select>
               </div>
 
@@ -166,9 +166,9 @@ function TambahLatihan({ params: query }: PageProps) {
                   <option value="" disabled>
                     Kategori
                   </option>
-                  <option value="Low">Low</option>
-                  <option value="Medium">Medium</option>
-                  <option value="Hight">Hight</option>
+                  <option value="low">Low</option>
+                  <option value="medium">Medium</option>
+                  <option value="high">High</option>
                 </select>
               </div>
               <div className="flex flex-col justify-start mt-4 text-sm ">
@@ -185,9 +185,9 @@ function TambahLatihan({ params: query }: PageProps) {
                   className=" bg-[#F2F3F7] h-10 border-none w-full focus:outline-none  p-2 mt-2 rounded-lg font-semibold "
                 >
                   <option value="">Intensitas</option>
-                  <option value="Low">Low</option>
-                  <option value="Medium">Medium</option>
-                  <option value="Hight">Hight</option>
+                  <option value="low">Low</option>
+                  <option value="medium">Medium</option>
+                  <option value="high">High</option>
                 </select>
               </div>
               <div className="flex flex-col justify-start mt-4 text-sm">
@@ -257,7 +257,7 @@ function TambahLatihan({ params: query }: PageProps) {
                 </label>
                 <input
                   type="file"
-                  name="photo_exercise"
+                  name="periodisasi_photo"
                   onChange={(e) => {
                     handleChange(e);
                   }}

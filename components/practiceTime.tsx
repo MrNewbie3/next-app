@@ -73,7 +73,7 @@ function PraticeTime({ params: query }: PageProps) {
                           <div className="flex gap-1">
                             <p className="text-xs text-[#137403] font-bold -mb-1">{params.type}</p>
                           </div>
-                          <h2 className="text-base font-medium  capitalize">{format(new Date(params.date_exercise), "EEEE, d MMMM yyyy") || 0}</h2>
+                          <h2 className="text-base font-medium  capitalize">{new Date(params.date_exercise).toLocaleDateString("ID", { weekday: "long", day: "numeric", month: "long", year: "numeric" }) || "belum terjadwal"}</h2>
                         </div>
                       </div>
                     </Link>
@@ -90,8 +90,7 @@ function PraticeTime({ params: query }: PageProps) {
                           <div className="flex gap-1">
                             <p className="text-xs text-[#137403] font-bold -mb-1">{params.type}</p>
                           </div>
-
-                          <h2 className="text-base font-medium  capitalize">{format(new Date(params.date_exercise), "EEEE, d MMMM yyyy") || 0}</h2>
+                          <h2 className="text-base font-medium  capitalize">{new Date(params.date_exercise).toLocaleDateString("ID", { weekday: "long", day: "numeric", month: "long", year: "numeric" }) || "belum terjadwal"}</h2>
                         </div>
                       </div>
                     </Link>

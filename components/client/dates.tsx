@@ -1,11 +1,27 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { format, addDays, subDays } from "date-fns";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import { instance } from "@/config/axios";
+import { PulseLoader, RingLoader } from "react-spinners";
+import Link from "next/link";
 
 const DatePicker = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
-
+  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState();
+  useEffect(() => {
+    instance
+      .get("/periodisasi")
+      .then((result: any) => {
+        setLoading(false);
+        setData(result.data.data);
+      })
+      .catch((err: any) => {
+        setLoading(false);
+        throw new Error(err);
+      });
+  }, []);
   const handlePrevDay = () => {
     setCurrentDate((prev) => subDays(prev, 7));
   };
@@ -16,13 +32,29 @@ const DatePicker = () => {
 
   const renderDates = () => {
     const dates = [];
+    const color: String[] = ["#137403", "#D00D00", "#2846AF"];
     for (let i = 0; i <= 6; i++) {
       const date = addDays(currentDate, i);
       dates.push(
-        <div key={i} className={` w-full border-t-4 text-4xl bg-grey font-bold justify-start `}>
-          {format(date, "dd")}
+        <div key={i} className={` w-full border-t-2 py-4  border-black text-4xl  font-bold justify-start `}>
+          <div className="wrapper flex flex-col">
+            {format(date, "dd")}
+            {data != undefined
+              ? // @ts-ignore
+                data.map((e: any, index: number) => {
+                  const date_exer = new Date(e.date_exercise);
+                  return format(date_exer, "MM") == format(date, "MM") && format(date_exer, "dd") == format(date, "dd") ? (
+                    <Link href={"./schedule/" + e.uuid}>
+                      <div className={`text-base hover:cursor-pointer mt-5 font-semibold px-3 py-1 capitalize rounded-sm h-fit text-white w-fit bg-[${color[index % 3]}]`}>{e.type}</div>
+                    </Link>
+                  ) : (
+                    ""
+                  );
+                })
+              : ""}
+          </div>
+
           {/* @ts-ignore */}
-          {new Date(Date.now()).getDate() == format(date, "dd") ? "1" : "2"}
         </div>
       );
     }
@@ -42,7 +74,15 @@ const DatePicker = () => {
           <FiChevronRight />
         </button>
       </div>
-      <div className="flex justify-center space-x-4 w-full h-64 ">{renderDates()}</div>
+      {loading ? (
+        <div className="flex flex-col items-center justify-center min-h-[120px]">
+          <PulseLoader color="#D00D00" size={15} />
+        </div>
+      ) : (
+        <>
+          <div className="flex justify-center space-x-4 w-full h-64 ">{renderDates()}</div>
+        </>
+      )}
     </div>
   );
 };

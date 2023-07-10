@@ -98,7 +98,6 @@ function AddPlayer({ params: query }: PageProps) {
         },
       });
       const res = await post.json();
-      console.log(post);
       if (!post.ok) {
         setLoading(false);
         return alert(res.message);
