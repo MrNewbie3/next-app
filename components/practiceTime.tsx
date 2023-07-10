@@ -4,7 +4,7 @@ import { Tab } from "@headlessui/react";
 import { format, getTime, parseISO } from "date-fns";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import { FiDownload } from "react-icons/fi";
+import { FiDownload, FiTrash } from "react-icons/fi";
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(" ");
@@ -29,7 +29,18 @@ function PraticeTime({ params: query }: PageProps) {
         throw new Error(err);
       });
   }, []);
-
+  const handleDelete = (params: string) => {
+    instance
+      .delete("periodisasi/" + params)
+      .then((result: any) => {
+        alert("success delete");
+        typeof window != "undefined" ? window.location.reload() : 0;
+      })
+      .catch((err: any) => {
+        alert("failed to delete");
+        return alert(err);
+      });
+  };
   if (data !== null) {
     // @ts-ignore
     data.map((params) => {
@@ -66,34 +77,54 @@ function PraticeTime({ params: query }: PageProps) {
               <Tab.Panel className="grid grid-cols-1 md:grid-cols-2 gap-5 gap-y-4 mt-8">
                 {history.map((params: any, index: number) => {
                   return (
-                    <Link key={params.id} href={`/main/${query.category}/${query.team}/schedule/${params.uuid}`}>
-                      <div className="bg-[#F2F3F7]  px-4 py-2 rounded-lg  gap-5   items-center  flex">
-                        <h1 className="text-2xl font-bold  text-[#D00D00]">{(index += 1)}</h1>
-                        <div>
-                          <div className="flex gap-1">
-                            <p className="text-xs text-[#137403] font-bold -mb-1">{params.type}</p>
+                    <div key={index} className="justify-between bg-[#F2F3F7] items-center px-4 py-2 rounded-lg  flex">
+                      <Link href={`/main/${query.category}/${query.team}/schedule/${index}`} className=" ">
+                        <div className="wrapper flex gap-5">
+                          <h1 className="text-2xl font-bold  text-[#D00D00]">{index + 1}</h1>
+                          <div>
+                            <div className="flex gap-1">
+                              <p className="text-xs text-[#137403] font-bold -mb-1">{params.type}</p>
+                            </div>
+                            <h2 className="text-base font-medium  capitalize">{new Date(params.date_exercise).toLocaleDateString("ID", { weekday: "long", day: "numeric", month: "long", year: "numeric" }) || "belum terjadwal"}</h2>
                           </div>
-                          <h2 className="text-base font-medium  capitalize">{new Date(params.date_exercise).toLocaleDateString("ID", { weekday: "long", day: "numeric", month: "long", year: "numeric" }) || "belum terjadwal"}</h2>
                         </div>
-                      </div>
-                    </Link>
+                      </Link>
+                      <button
+                        onClick={() => {
+                          handleDelete(params.uuid);
+                        }}
+                        className="delete text-[#D00D00]"
+                      >
+                        <FiTrash size={20} />
+                      </button>
+                    </div>
                   );
                 })}
               </Tab.Panel>
               <Tab.Panel className="grid grid-cols-1 md:grid-cols-2 gap-5 gap-y-4 mt-8">
                 {upcoming.map((params: any, index: number) => {
                   return (
-                    <Link key={index} href={`/main/${query.category}/${query.team}/schedule/${index}`}>
-                      <div className="bg-[#F2F3F7]  px-4 py-2 rounded-lg  gap-5   items-center  flex">
-                        <h1 className="text-2xl font-bold  text-[#D00D00]">{index + 1}</h1>
-                        <div>
-                          <div className="flex gap-1">
-                            <p className="text-xs text-[#137403] font-bold -mb-1">{params.type}</p>
+                    <div key={index} className="justify-between bg-[#F2F3F7] items-center px-4 py-2 rounded-lg  flex">
+                      <Link href={`/main/${query.category}/${query.team}/schedule/${index}`} className=" ">
+                        <div className="wrapper flex gap-5">
+                          <h1 className="text-2xl font-bold  text-[#D00D00]">{index + 1}</h1>
+                          <div>
+                            <div className="flex gap-1">
+                              <p className="text-xs text-[#137403] font-bold -mb-1">{params.type}</p>
+                            </div>
+                            <h2 className="text-base font-medium  capitalize">{new Date(params.date_exercise).toLocaleDateString("ID", { weekday: "long", day: "numeric", month: "long", year: "numeric" }) || "belum terjadwal"}</h2>
                           </div>
-                          <h2 className="text-base font-medium  capitalize">{new Date(params.date_exercise).toLocaleDateString("ID", { weekday: "long", day: "numeric", month: "long", year: "numeric" }) || "belum terjadwal"}</h2>
                         </div>
-                      </div>
-                    </Link>
+                      </Link>
+                      <button
+                        onClick={() => {
+                          handleDelete(params.uuid);
+                        }}
+                        className="delete text-[#D00D00]"
+                      >
+                        <FiTrash size={20} />
+                      </button>
+                    </div>
                   );
                 })}
               </Tab.Panel>
