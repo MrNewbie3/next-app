@@ -6,7 +6,8 @@ const nextConfig = {
 
   swcMinify: false,
   env: {
-    NEXT_PUBLIC_URL: "https://api-stapa-app.vercel.app/api/v1",
+    NEXT_PUBLIC_URL: "https://api.mokletscience.com/api/v1",
+    NEXT_PUBLIC_API_TEST: "https://api-stapa-app.vercel.app/api/v1",
   },
   images: {
     remotePatterns: [
