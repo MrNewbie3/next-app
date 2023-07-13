@@ -11,7 +11,7 @@ function ExerciseTime({ params: query }: PageProps) {
     <div className="flex flex-col gap-6">
       {/* @ts-ignore */}
       <MakeSchedule params={query} />
-      <DatePicker />
+      <DatePicker params={query} />
     </div>
   );
 }

@@ -3,24 +3,36 @@ import { useEffect, useState } from "react";
 import { format, addDays, subDays } from "date-fns";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { instance } from "@/config/axios";
-import { PulseLoader, RingLoader } from "react-spinners";
+import { PulseLoader } from "react-spinners";
 import Link from "next/link";
 
-const DatePicker = () => {
+type PageProps = {
+  params: {
+    category: String;
+    team: String;
+  };
+};
+
+const DatePicker = ({ params: query }: PageProps) => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState();
   useEffect(() => {
-    instance
-      .get("/periodisasi")
-      .then((result: any) => {
+    (async () => {
+      try {
+        const [periodisasiRes, teamRes] = await Promise.all([instance.get("/periodisasi"), instance.get("/club/" + query.team)]);
+        const periodisasiData = periodisasiRes.data.data;
+        const teamData = teamRes.data.data;
+        const filterData = periodisasiData.filter((val: { clubId: number }) => {
+          return val.clubId === teamData.id;
+        });
+        setData(filterData);
         setLoading(false);
-        setData(result.data.data);
-      })
-      .catch((err: any) => {
+      } catch (error: any) {
         setLoading(false);
-        throw new Error(err);
-      });
+        throw new Error(error);
+      }
+    })();
   }, []);
   const handlePrevDay = () => {
     setCurrentDate((prev) => subDays(prev, 7));
@@ -80,7 +92,7 @@ const DatePicker = () => {
         </div>
       ) : (
         <>
-          <div className="flex justify-center space-x-4 w-full h-64 ">{renderDates()}</div>
+          <div className="flex justify-center space-x-4 w-full h-64 overflow-auto ">{renderDates()}</div>
         </>
       )}
     </div>
