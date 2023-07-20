@@ -37,6 +37,7 @@ export default function GeneralMatch({ params: detail }: PageProps) {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
+
     setData((prevState) => ({
       ...prevState,
       [name]: name.toLowerCase() === "opponent_score" || name.toLowerCase() === "score" ? Number(value) : value,
@@ -119,7 +120,8 @@ export default function GeneralMatch({ params: detail }: PageProps) {
                   tanggal tanding
                 </label>
                 <input
-                  type="date"
+                  type="datetime-local"
+                  step={"1"}
                   name="match_date"
                   placeholder="e.g MU "
                   onChange={(e) => {

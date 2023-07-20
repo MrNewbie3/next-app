@@ -59,6 +59,13 @@ function PlayerPick({ params: player }: PageProps) {
     goal_kick: "",
     throw_in: "",
     free_kick: "",
+    events: [
+      {
+        event_type: "",
+        event_time: "",
+        playerId: 1,
+      },
+    ],
   });
   async function postData(e: React.FormEvent) {
     e.preventDefault();
