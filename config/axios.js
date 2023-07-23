@@ -2,7 +2,7 @@
 const axios = require("axios");
 const { getAuthTokenClient } = require("./cookie");
 
-const auth = localStorage.getItem("token");
+const auth = JSON.parse(localStorage.getItem("token"));
 const url = process.env.NEXT_PUBLIC_URL;
 const instance = axios.create({
   baseURL: url,
