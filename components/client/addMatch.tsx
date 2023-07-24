@@ -6,6 +6,8 @@ import PlayerList from "./match/playerList";
 import GeneralMatch from "./match/generalMatch";
 import { usePathname, useRouter } from "next/navigation";
 import ImportExcel from "./match/importExcel";
+import localStorage from "redux-persist/es/storage";
+import { type } from "os";
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(" ");
 }
@@ -21,18 +23,32 @@ type PageProps = {
 function AddMatch({ params: query }: PageProps) {
   const navigate = useRouter();
   // @ts-ignore
+
   const router = usePathname().replace("new_match", "");
+
   return (
     <div className="">
       <div className="bg-white w-full rounded-xl px-10 py-10">
-        <button
-          className="bg-[#137403] px-4 py-2 text-white mb-10 rounded-lg"
-          onClick={() => {
-            navigate.push(router);
-          }}
-        >
-          Kembali
-        </button>
+        <div className="button-group flex gap-x-5">
+          <button
+            className="bg-[#137403] px-4 py-2 text-white mb-10 rounded-lg"
+            onClick={() => {
+              navigate.push(router);
+            }}
+          >
+            Kembali
+          </button>
+          <button
+            className="bg-[#D00D00] px-4 py-2 text-white mb-10 rounded-lg"
+            onClick={() => {
+              localStorage.removeItem("match");
+              localStorage.removeItem("data_player");
+              typeof window != "undefined" ? window.location.reload() : null;
+            }}
+          >
+            Hapus Data
+          </button>
+        </div>
         <div>
           <h1 className="opensans font-bold text-xl">Tambah Match </h1>
           <h4 className="font-semibold">
