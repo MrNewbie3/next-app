@@ -15,16 +15,19 @@ type PageProps = {
 
 function PlayerPick({ params: player }: PageProps) {
   const router = useRouter();
-  const [playerData, setPlayer] = useState({ nickname: null, fullname: null, number_of_player: null });
+  const [loading, setLoading] = useState(true);
+  const [playerData, setPlayer] = useState({ nickname: null, fullname: null, number_of_player: null, position: null });
   useEffect(() => {
     instance
       .get("player/" + player.player)
       .then((result: any) => {
         setPlayer(result.data.data);
-        setData({ ...data, playerId: result.data.data.id });
+        setData({ ...data, playerId: result.data.data.id, events: [{ event_type: "", event_time: "", playerId: result.data.data.id }] });
+        setLoading(false);
       })
       .catch((err: any) => {
-        console.log(err.message);
+        setLoading(false);
+        throw new Error(err);
       });
   }, []);
 
@@ -93,7 +96,7 @@ function PlayerPick({ params: player }: PageProps) {
 
   return (
     <div className="px-8">
-      {playerData.fullname !== null ? (
+      {!loading ? (
         <div className="bg-white w-full rounded-xl px-10 py-10 ">
           <Link href={`/main/${player.category}/${player.team}/new_match/`}>
             <button className="bg-[#137403] px-4 py-2 text-white mb-10 rounded-lg">Kembali</button>
@@ -121,7 +124,7 @@ function PlayerPick({ params: player }: PageProps) {
           <div className="bg-white max-w-full p-2 rounded-lg mt-8  gap-5 mb-4   items-center h-12 w- flex">
             <h1 className="text-4xl font-bold  text-[#D00D00]">{playerData.number_of_player}</h1>
             <div>
-              <p className="text-xs text-gray-400 font-semibold">player_position</p>
+              <p className="text-xs text-gray-400 font-semibold">{playerData.position}</p>
               <h2 className="text-lg font-semibold  ">{playerData.fullname}</h2>
             </div>
           </div>
