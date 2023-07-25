@@ -35,6 +35,7 @@ function PlayerList({ params: query }: PageProps) {
     const matchData = { ...match, detailMatch: playerData };
     fetch(process.env.NEXT_PUBLIC_URL + "/match", {
       body: matchData,
+      method: "POST",
       headers: {
         // @ts-ignore
         Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))} `,
