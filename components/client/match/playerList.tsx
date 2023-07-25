@@ -33,8 +33,13 @@ function PlayerList({ params: query }: PageProps) {
     // @ts-ignore
     const match = JSON.parse(localStorage.getItem("match"));
     const matchData = { ...match, detailMatch: playerData };
-    instance
-      .post("/match", matchData)
+    fetch(process.env.NEXT_PUBLIC_URL + "/match", {
+      body: matchData,
+      headers: {
+        // @ts-ignore
+        Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))} `,
+      },
+    })
       .then(() => {
         localStorage.removeItem("data_player");
         localStorage.removeItem("match");
