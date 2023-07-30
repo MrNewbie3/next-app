@@ -79,9 +79,9 @@ function PlayerPick({ params: player }: PageProps) {
     // @ts-ignore
     const jsonData = JSON.parse(localStorage.getItem("data_player"));
     alert("data berhasil disimpan");
-    const exist = jsonData[0];
+    const exist = jsonData;
     router.push(`/main/${player.category}/${player.team}/new_match/`);
-    return localStorage.setItem("data_player", JSON.stringify([{ ...exist }, data]));
+    return localStorage.setItem("data_player", JSON.stringify([...exist, data]));
 
     // window.location.reload();
   }
