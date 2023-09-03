@@ -151,7 +151,7 @@ function AddTeam({ params }: Props) {
               />
             </div>
           </div>
-          <div className="w-full ">
+          <div className="w-full">
             <div className="flex flex-col justify-start mt-4">
               <label htmlFor="label" className="opensans font-bold uppercase text-sm">
                 Tanggal Berdiri <span className="text-[#D00D00]">*</span>

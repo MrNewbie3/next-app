@@ -54,7 +54,7 @@ function TeamDetails({ params: query }: PageProps) {
               : notSuperAdmin.map((data, index) => {
                   return (
                     <Link key={index} href={`/main/${query.category}/${query.team}/${data}`}>
-                      <li key={index} className={!decode.includes(arr[index]) ? "capitalize " : "bg-[#D00D00] text-white px-4 py-1 rounded-lg focus:outline-none uppercase "}>
+                      <li key={index} className={!decode.includes(notSuperAdmin[index]) ? "capitalize " : "bg-[#D00D00] text-white px-4 py-1 rounded-lg focus:outline-none uppercase "}>
                         {data}
                       </li>
                     </Link>

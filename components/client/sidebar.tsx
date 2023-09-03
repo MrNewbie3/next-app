@@ -26,11 +26,7 @@ export default function popup({ children }: Props) {
           </div>
         </div>
       ) : (
-        <div className="bg-[#F2F3F7] min-w-[218px] h-full">
-          <div className="flex flex-col items-center">
-            <div className="mt-6">{children}</div>
-          </div>
-        </div>
+        <></>
       )}
     </>
   );
