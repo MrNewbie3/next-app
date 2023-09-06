@@ -74,6 +74,7 @@ function PlayerPick({ params: player }: PageProps) {
     e.preventDefault();
     if (localStorage.getItem("data_player") === null) {
       alert("data berhasil disimpan");
+      router.push("./");
       return localStorage.setItem("data_player", JSON.stringify([data]));
     }
     // @ts-ignore
@@ -82,8 +83,6 @@ function PlayerPick({ params: player }: PageProps) {
     const exist = jsonData;
     router.push(`/main/${player.category}/${player.team}/new_match/`);
     return localStorage.setItem("data_player", JSON.stringify([...exist, data]));
-
-    // window.location.reload();
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

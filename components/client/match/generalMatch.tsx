@@ -24,6 +24,7 @@ export default function GeneralMatch({ params: detail }: PageProps) {
     detailMatch: 0,
     opponent_score: 0,
     score: 0,
+    status: "ONGOING",
   });
 
   async function postData(e: React.FormEvent) {

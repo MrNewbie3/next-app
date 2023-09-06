@@ -32,21 +32,24 @@ function PlayerList({ params: query }: PageProps) {
     const playerData = JSON.parse(localStorage.getItem("data_player"));
     // @ts-ignore
     const match = JSON.parse(localStorage.getItem("match"));
-    const matchData = { ...match, detailMatch: playerData };
+    const matchData = { ...match, detailMatch: playerData, match_date: match.match_date + ":00" };
     fetch(process.env.NEXT_PUBLIC_URL + "/match", {
-      body: matchData,
+      body: JSON.stringify(matchData),
       method: "POST",
       headers: {
         // @ts-ignore
         Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))} `,
       },
     })
-      .then(() => {
+      .then((response: any) => {
         localStorage.removeItem("data_player");
         localStorage.removeItem("match");
         setDataLoading(false);
+        if (response.status !== 200 || response.status !== 201) {
+          return alert("failed to input data, status: " + response.status);
+        }
         alert("ok");
-        router.push("/main");
+        router.push("./");
       })
       .catch((err: Object) => {
         setDataLoading(false);
@@ -133,7 +136,7 @@ function PlayerList({ params: query }: PageProps) {
               <BounceLoader color="gray" size={20} />
             </div>
           ) : (
-            <button className="bg-[#D00D00] h-10 rounded-lg mt-10 text-white opensans w-full" onClick={importData}>
+            <button className="bg-[#D00D00] h-10 rounded-lg mt-10 text-white opensans w-full" onClick={() => importData()}>
               Import Data
             </button>
           )}

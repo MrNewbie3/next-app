@@ -13,9 +13,8 @@ type PageProps = {
 
 async function getData(params: String) {
   const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/match/c/` + params, {
-    cache: "no-store",
     next: {
-      revalidate: 10,
+      revalidate: 2,
     },
     headers: {
       Authorization: `Bearer ${process.env.NEXT_PUBLIC}`,
@@ -29,6 +28,7 @@ async function getData(params: String) {
 
 async function History({ params: query }: PageProps) {
   let data = await getData(query.team);
+  console.log(data);
 
   return (
     <div className=" mb-6 w-full">
