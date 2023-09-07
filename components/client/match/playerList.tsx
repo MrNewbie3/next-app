@@ -32,7 +32,7 @@ function PlayerList({ params: query }: PageProps) {
     const playerData = JSON.parse(localStorage.getItem("data_player"));
     // @ts-ignore
     const match = JSON.parse(localStorage.getItem("match"));
-    const matchData = { ...match, detailMatch: playerData, match_date: match.match_date + ":00" };
+    const matchData = { ...match, detailMatch: playerData };
     fetch(process.env.NEXT_PUBLIC_URL + "/match", {
       body: JSON.stringify(matchData),
       method: "POST",
