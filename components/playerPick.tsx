@@ -22,7 +22,7 @@ function PlayerPick({ params: player }: PageProps) {
       .get("player/" + player.player)
       .then((result: any) => {
         setPlayer(result.data.data);
-        setData({ ...data, playerId: result.data.data.id, events: [{ event_type: "", event_time: "", playerId: result.data.data.id }] });
+        setData({ ...data, playerId: result.data.data.id, events: [{ event_type: "GOAL", event_time: "25", playerId: result.data.data.id }] });
         setLoading(false);
       })
       .catch((err: any) => {
