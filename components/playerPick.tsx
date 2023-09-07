@@ -64,8 +64,8 @@ function PlayerPick({ params: player }: PageProps) {
     free_kick: "",
     events: [
       {
-        event_type: "",
-        event_time: "",
+        event_type: "GOAL",
+        event_time: "25",
         playerId: 1,
       },
     ],
